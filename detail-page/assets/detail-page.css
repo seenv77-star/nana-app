@@ -227,6 +227,31 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .price-card li { list-style: none; font-size: 14px; color: rgba(255, 255, 255, .85); padding-left: 22px; position: relative; }
 .price-card li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 900; }
 
+.value-list .incl { color: var(--accent); font-weight: 700; white-space: nowrap; }
+.value-list div span.incl { text-decoration: none; color: var(--accent); }
+
+/* 플랜 카드 (가격이 다른 상품 여러 개) */
+.plans { margin-top: 20px; display: grid; gap: 14px; }
+.plan { position: relative; border-radius: 18px; padding: 22px 20px 20px; background: var(--bg-alt); border: 1.5px solid var(--line); }
+.plan.featured { border: 2px solid var(--accent); box-shadow: 0 8px 24px rgba(0, 0, 0, .06); }
+.plan .pl-badge { position: absolute; top: -12px; left: 20px; background: var(--accent); color: #fff; font-size: 12px; font-weight: 800; padding: 4px 12px; border-radius: 999px; }
+.plan .pl-name { font-size: 19px; font-weight: 800; color: var(--primary); }
+.plan .pl-desc { margin-top: 2px; font-size: 14px; color: var(--muted); }
+.plan .pl-price { margin-top: 12px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.plan .pl-price s { font-size: 14px; color: var(--muted); }
+.plan .pl-price .p-rate { font-size: 20px; font-weight: 900; color: var(--accent); }
+.plan .pl-price b { font-size: 28px; font-weight: 900; color: var(--primary); letter-spacing: -0.02em; }
+.plan .pl-note { margin-top: 4px; font-size: 13px; font-weight: 700; color: var(--accent); }
+.plan ul { margin: 14px 0 16px; display: grid; gap: 6px; }
+.plan li { list-style: none; font-size: 14px; padding-left: 22px; position: relative; }
+.plan li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 900; }
+.plan .btn { padding: 15px; font-size: 16px; }
+
+/* 바텀시트 플랜 선택 */
+.plan-pick { display: grid; gap: 8px; }
+.chip.pick { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 14px 16px; text-align: left; }
+.chip.pick b { font-size: 15px; }
+
 /* 희소성·긴박감 */
 .scarcity { margin-top: 16px; border-radius: 14px; padding: 18px; background: var(--accent-soft); border: 1.5px solid var(--accent); text-align: center; }
 .scarcity .reason { font-size: 14px; color: var(--primary); font-weight: 600; }

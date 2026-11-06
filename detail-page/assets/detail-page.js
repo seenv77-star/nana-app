@@ -167,16 +167,33 @@
       var html = head(o);
       if (has(o.values)) {
         html += '<div class="value-list">' + o.values.map(function (v) {
-          return "<div><span>" + v.label + "</span><span>" + v.worth + "</span></div>";
+          /* worth(금액)가 없으면 '포함'으로 표시 — 근거 없는 가치 금액은 쓰지 않는다 */
+          return v.worth ? "<div><span>" + v.label + "</span><span>" + v.worth + "</span></div>"
+            : '<div><span>' + v.label + '</span><span class="incl">✓ 포함</span></div>';
         }).join("") + (o.valueTotal ? '<div class="total"><span>총 가치</span><span>' + o.valueTotal + "</span></div>" : "") + "</div>";
       }
-      var rate = o.original ? Math.round((1 - o.price / o.original) * 100) : 0;
-      html += '<div class="price-card"><div class="p-name">' + (o.name || P.meta.name) + "</div>" +
-        (o.original ? '<div class="p-original">정가 ' + won(o.original) + "</div>" : "") +
-        '<div class="p-row">' + (rate > 0 ? '<span class="p-rate">' + rate + "%</span>" : "") + '<span class="p-price">' + won(o.price) + "</span></div>" +
-        (o.perDay ? '<div class="p-per">' + o.perDay + "</div>" : "") +
-        (has(o.items) ? "<ul>" + o.items.map(function (i) { return "<li>" + i + "</li>"; }).join("") + "</ul>" : "") +
-        "</div>";
+      if (has(o.plans)) {
+        /* 상품이 여러 개(가격이 다른 플랜)일 때: 플랜 카드 */
+        html += '<div class="plans">' + o.plans.map(function (pl) {
+          var r = pl.original ? Math.round((1 - pl.price / pl.original) * 100) : 0;
+          return '<div class="plan' + (pl.featured ? " featured" : "") + '">' +
+            (pl.badge ? '<span class="pl-badge">' + pl.badge + "</span>" : "") +
+            '<div class="pl-name">' + pl.name + "</div>" + (pl.desc ? '<div class="pl-desc">' + pl.desc + "</div>" : "") +
+            '<div class="pl-price">' + (pl.original ? "<s>" + won(pl.original) + "</s>" : "") +
+            (r > 0 ? '<span class="p-rate">' + r + "%</span>" : "") + "<b>" + won(pl.price) + "</b></div>" +
+            (pl.note ? '<div class="pl-note">' + pl.note + "</div>" : "") +
+            (has(pl.items) ? "<ul>" + pl.items.map(function (i) { return "<li>" + i + "</li>"; }).join("") + "</ul>" : "") +
+            '<button class="btn' + (pl.featured ? "" : " ghost") + '" data-open-sheet data-plan="' + esc(pl.id) + '">' + (pl.cta || "이걸로 신청하기") + "</button></div>";
+        }).join("") + "</div>";
+      } else {
+        var rate = o.original ? Math.round((1 - o.price / o.original) * 100) : 0;
+        html += '<div class="price-card"><div class="p-name">' + (o.name || P.meta.name) + "</div>" +
+          (o.original ? '<div class="p-original">정가 ' + won(o.original) + "</div>" : "") +
+          '<div class="p-row">' + (rate > 0 ? '<span class="p-rate">' + rate + "%</span>" : "") + '<span class="p-price">' + won(o.price) + "</span></div>" +
+          (o.perDay ? '<div class="p-per">' + o.perDay + "</div>" : "") +
+          (has(o.items) ? "<ul>" + o.items.map(function (i) { return "<li>" + i + "</li>"; }).join("") + "</ul>" : "") +
+          "</div>";
+      }
       if (o.scarcity) {
         var s = o.scarcity;
         html += '<div class="scarcity">' + (s.reason ? '<div class="reason">' + s.reason + "</div>" : "") +
@@ -222,9 +239,17 @@
     if (has(P[key]) && R[key]) out += R[key](P[key]);
   });
 
+  var plans = (P.offer && P.offer.plans) || [];
   var price = P.offer ? P.offer.price : 0;
-  out += '<div class="sticky-cta"><div class="s-price">' + (P.offer && P.offer.original ? "<s>" + won(P.offer.original) + "</s>" : "") +
-    "<b>" + (price ? won(price) : "") + '</b></div><button class="btn" data-open-sheet>' + ((P.cta && P.cta.label) || "구매하기") + "</button></div>";
+  var stickyPrice;
+  if (plans.length) {
+    var minPrice = Math.min.apply(null, plans.map(function (p) { return p.price; }));
+    stickyPrice = "<span>이벤트가</span><b>" + won(minPrice) + "~</b>";
+  } else {
+    stickyPrice = (P.offer && P.offer.original ? "<s>" + won(P.offer.original) + "</s>" : "") + "<b>" + (price ? won(price) : "") + "</b>";
+  }
+  out += '<div class="sticky-cta"><div class="s-price">' + stickyPrice +
+    '</div><button class="btn" data-open-sheet>' + ((P.cta && P.cta.label) || "구매하기") + "</button></div>";
   root.innerHTML = '<main class="page">' + out + "</main>" +
     '<div class="sheet-backdrop" data-close-sheet></div><div class="sheet" role="dialog" aria-modal="true" aria-label="구매 과정"></div>';
 
@@ -251,9 +276,17 @@
   var backdrop = root.querySelector(".sheet-backdrop");
   var state;
 
-  function reset() { state = { step: 1, sel: {}, qty: 1 }; }
-  function total() { return price * state.qty + (cfg.shipping || 0); }
-  function ready() { return opts.every(function (o) { return state.sel[o.name]; }); }
+  function reset(planId) { state = { step: 1, sel: {}, qty: 1, plan: planId || null }; }
+  function curPlan() { return plans.filter(function (p) { return p.id === state.plan; })[0]; }
+  function unit() { return plans.length ? (curPlan() ? curPlan().price : 0) : price; }
+  function total() { return unit() * state.qty + (cfg.shipping || 0); }
+  /* when: ["플랜id"] 가 있으면 해당 플랜을 골랐을 때만 보이는 옵션 */
+  function visibleOpts() {
+    return opts.filter(function (o) { return !o.when || o.when.indexOf(state.plan) > -1; });
+  }
+  function ready() {
+    return (!plans.length || curPlan()) && visibleOpts().every(function (o) { return state.sel[o.name]; });
+  }
   function bar() {
     return '<div class="grab"></div><div class="s-steps">' + [1, 2, 3].map(function (n) {
       return "<i" + (n <= state.step ? ' class="on"' : "") + "></i>";
@@ -264,7 +297,12 @@
     var h = bar();
     if (state.step === 1) {
       h += "<h4>" + (cfg.step1Title || "옵션을 선택해 주세요") + "</h4>";
-      opts.forEach(function (o) {
+      if (plans.length) {
+        h += '<div class="opt"><div class="opt-label">' + esc(cfg.planLabel || "상품") + '</div><div class="plan-pick">' + plans.map(function (p) {
+          return '<button class="chip pick' + (state.plan === p.id ? " on" : "") + '" data-pick="' + esc(p.id) + '"><span>' + esc(p.name) + "</span><b>" + won(p.price) + "</b></button>";
+        }).join("") + "</div></div>";
+      }
+      visibleOpts().forEach(function (o) {
         h += '<div class="opt"><div class="opt-label">' + esc(o.name) + '</div><div class="chips">' + o.values.map(function (v) {
           var sold = (o.soldOut || []).indexOf(v) > -1;
           return '<button class="chip' + (state.sel[o.name] === v ? " on" : "") + '" data-opt="' + esc(o.name) + '" data-val="' + esc(v) + '"' + (sold ? " disabled" : "") + ">" + esc(v) + "</button>";
@@ -276,30 +314,33 @@
       h += '<div class="sum"><span>총 결제 예정 금액</span><b>' + won(total()) + "</b></div>" +
         '<div class="actions"><button class="btn ghost" data-close-sheet>닫기</button><button class="btn" data-next' + (ready() ? "" : " disabled") + ">다음 단계</button></div>";
     } else if (state.step === 2) {
-      h += "<h4>주문 정보를 확인해 주세요</h4><div class=\"receipt\"><div><span>상품</span><span>" + esc(P.meta.name) + "</span></div>";
-      opts.forEach(function (o) { h += "<div><span>" + esc(o.name) + "</span><span>" + esc(state.sel[o.name]) + "</span></div>"; });
+      h += "<h4>" + (cfg.step2Title || "주문 정보를 확인해 주세요") + "</h4><div class=\"receipt\"><div><span>상품</span><span>" +
+        esc(curPlan() ? curPlan().name : P.meta.name) + "</span></div>";
+      visibleOpts().forEach(function (o) { h += "<div><span>" + esc(o.name) + "</span><span>" + esc(state.sel[o.name]) + "</span></div>"; });
       if (cfg.qty !== false) h += "<div><span>수량</span><span>" + state.qty + "개</span></div>";
-      h += "<div><span>상품 금액</span><span>" + won(price * state.qty) + "</span></div>" +
-        "<div><span>배송비</span><span>" + (cfg.shipping ? won(cfg.shipping) : "무료") + "</span></div>" +
+      h += "<div><span>상품 금액</span><span>" + won(unit() * state.qty) + "</span></div>" +
+        (cfg.shipping === false ? "" : "<div><span>배송비</span><span>" + (cfg.shipping ? won(cfg.shipping) : "무료") + "</span></div>") +
         (has(cfg.gifts) ? "<div><span>사은품</span><span>" + cfg.gifts.join(", ") + "</span></div>" : "") +
         '<div class="total"><span>최종 결제 금액</span><span>' + won(total()) + "</span></div></div>" +
-        '<div class="actions"><button class="btn ghost" data-prev>이전</button><button class="btn" data-next>주문 완료하기</button></div>';
+        '<div class="actions"><button class="btn ghost" data-prev>이전</button><button class="btn" data-next>' + (cfg.submitLabel || "주문 완료하기") + "</button></div>";
     } else {
+      var cp = curPlan() || {};
       h += '<div class="done"><div class="check">✓</div><h4>' + (cfg.doneTitle || "주문이 완료되었습니다!") + "</h4><p>" +
-        (cfg.doneText || "실제 판매 페이지에서는 이 단계에서 결제가 진행됩니다.") + '</p></div><div class="actions single"><button class="btn" data-close-sheet>닫기</button></div>';
+        (cp.doneText || cfg.doneText || "실제 판매 페이지에서는 이 단계에서 결제가 진행됩니다.") + '</p></div><div class="actions single"><button class="btn" data-close-sheet>닫기</button></div>';
     }
     h += '<p class="note">※ 구매 과정 체험용 화면입니다. 실제 결제는 이루어지지 않습니다.</p>';
     sheet.innerHTML = h;
   }
 
-  function open() { reset(); draw(); sheet.classList.add("on"); backdrop.classList.add("on"); document.body.style.overflow = "hidden"; }
+  function open(planId) { reset(planId); draw(); sheet.classList.add("on"); backdrop.classList.add("on"); document.body.style.overflow = "hidden"; }
   function close() { sheet.classList.remove("on"); backdrop.classList.remove("on"); document.body.style.overflow = ""; }
 
   root.addEventListener("click", function (e) {
     var el = e.target.closest("button, [data-close-sheet]");
     if (!el) return;
-    if (el.hasAttribute("data-open-sheet")) return open();
+    if (el.hasAttribute("data-open-sheet")) return open(el.dataset.plan);
     if (el.hasAttribute("data-close-sheet")) return close();
+    if (el.dataset.pick) { state.plan = el.dataset.pick; return draw(); }
     if (el.dataset.opt) { state.sel[el.dataset.opt] = el.dataset.val; return draw(); }
     if (el.dataset.qty) { state.qty = Math.min(cfg.maxQty || 10, Math.max(1, state.qty + Number(el.dataset.qty))); return draw(); }
     if (el.hasAttribute("data-next") && !el.disabled) { state.step++; return draw(); }

@@ -139,6 +139,13 @@ window.PAGE = {
     price: 0,         // 판매가 (숫자)
     perDay: "{{하루 약 000원}}",
     items: ["{{포함 1}}", "{{포함 2}}"],
+    /* 가격이 다른 상품이 여러 개면 original/price 대신 plans 사용 (예: pages/king-yena-love.html)
+    plans: [
+      { id: "basic", name: "{{상품 A}}", desc: "{{한 줄}}", original: 0, price: 0, badge: "{{뱃지}}",
+        items: ["{{포함}}"], cta: "{{버튼}}", doneText: "{{완료 안내}}" },
+      { id: "pro", name: "{{상품 B}}", original: 0, price: 0, featured: true, note: "{{이득 한 줄}}", items: [] }
+    ],
+    values 의 worth 를 비우면 금액 대신 '✓ 포함'으로 표시 */
     scarcity: {
       reason: "{{한정 명분}}",
       deadline: "{{2026-12-31T23:59:59+09:00}}", // 실제 마감일만
@@ -159,6 +166,8 @@ window.PAGE = {
   /* 구매 과정 체험 (옵션 → 주문 확인 → 완료) */
   purchase: {
     options: [{ name: "{{옵션명}}", values: ["{{값1}}", "{{값2}}"], soldOut: [] }],
+    // plans 를 쓰면 첫 단계에서 상품을 고르고, 옵션에 when: ["플랜id"] 를 주면 그 상품일 때만 표시
+    // shipping: false 로 두면 배송비 줄 숨김 (서비스용)
     maxQty: 5,        // qty: false 로 두면 수량 선택 숨김 (서비스용)
     shipping: 0,
     gifts: [],

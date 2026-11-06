@@ -12,6 +12,7 @@ detail-page/
   pages/_template.html        ← 새 페이지 시작용 빈 템플릿
   pages/sneaker.html          ← 예시: 실물 상품(운동화)
   pages/pt-program.html       ← 예시: 무형 서비스(1:1 온라인 PT)
+  pages/king-yena-love.html   ← 예시: 상품 여러 개(킹예나 연애상담 3종)
 ```
 
 ### 새 상세페이지 만들기

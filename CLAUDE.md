@@ -20,3 +20,4 @@
 ## 참고 예시
 - 실물 상품: `detail-page/pages/sneaker.html`
 - 무형 서비스: `detail-page/pages/pt-program.html`
+- 상품 여러 개(플랜): `detail-page/pages/king-yena-love.html`
