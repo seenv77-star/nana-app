@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>상품명</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../assets/detail-page.css">
+</head>
+<body>
+<div id="app"></div>
+<script>
+/* =========================================================
+   새 상세페이지 시작용 빈 템플릿
+   1) 이 파일을 복사해 pages/<상품영문명>.html 로 저장
+   2) docs/상세페이지-가이드.md 1장의 INPUT 값을 먼저 정리
+   3) 아래 {{ }} 를 채우기. 필요 없는 블록은 통째로 지우면 자동으로 건너뜀
+   4) 실제 데이터로 다 바꾸면 meta.demo 를 false 로
+   ========================================================= */
+window.PAGE = {
+  meta: {
+    title: "{{상품명}}",
+    name: "{{상품명 (주문서에 표시)}}",
+    demo: true,
+    theme: { accent: "#ff5a1f", accentSoft: "#fff0e9", bg: "#faf7f2" } // 강조색은 한 가지만
+  },
+
+  /* ① 첫 화면 — 타깃 호명 + 꿈의 결과 + 증거 배지 */
+  hero: {
+    callout: "{{타깃}}이라면",
+    headline: "{{문제 해결한 꿈의 상황}}<br><span class=\"hl\">{{핵심 단어}}</span>",
+    sub: "{{한 줄 보조 설명}}",
+    image: { label: "제품 대표 사진", ratio: "1/1", src: "", prompt: "업로드한 제품 참조, 아이보리 스튜디오 배경, 부드러운 그라데이션 조명, 정사각형 2K" },
+    badges: ["{{증거 1}}", "{{증거 2}}", "{{보증}}"]
+  },
+
+  /* ② 증거 숫자 — 반드시 맨 앞 */
+  proof: [
+    { num: "{{4.9}}", label: "리뷰 평점" },
+    { num: "{{0,000+}}", label: "누적 판매" },
+    { num: "{{수치}}", label: "{{핵심 스펙}}" }
+  ],
+
+  /* ③ 문제 공감 — 고객이 실제로 쓰는 표현 */
+  problem: {
+    eyebrow: "혹시 이런 고민 있으세요?",
+    title: "{{대표 문제 한 문장}}",
+    items: ["{{문제 1}}", "{{문제 2}}", "{{문제 3}}", "{{문제 4}}"],
+    bridge: "문제는 {{오해}}가 아니라, <span class=\"mark\">{{진짜 원인}}</span>이었습니다."
+  },
+
+  /* ④ 잘못 해결하면 */
+  pain: {
+    eyebrow: "그냥 두면",
+    title: "{{방치했을 때의 결과}}",
+    cases: [
+      { title: "{{사례 1 제목}}", text: "{{구체적인 손해}}" },
+      { title: "{{사례 2 제목}}", text: "{{구체적인 손해}}" }
+    ]
+  },
+
+  /* ⑤ 대안과 한계 */
+  alternatives: {
+    eyebrow: "다들 이렇게 해 보셨죠",
+    title: "많이 시도하지만<br>오래가지 못하는 방법들",
+    items: [
+      { name: "{{대안 A}}", limit: "{{한계 A}}" },
+      { name: "{{대안 B}}", limit: "{{한계 B}}" },
+      { name: "{{대안 C}}", limit: "{{한계 C}}" }
+    ]
+  },
+
+  /* ⑥ 솔루션 + USP + 한끗 */
+  solution: {
+    eyebrow: "그래서 만들었습니다",
+    name: "{{상품명}}",
+    desc: "{{대안들의 한계를 어떻게 넘었는지 한 문장}}",
+    usp: [
+      { icon: "✔", title: "{{USP 1}}", text: "{{근거}}" },
+      { icon: "✔", title: "{{USP 2}}", text: "{{근거}}" },
+      { icon: "✔", title: "{{USP 3}}", text: "{{근거}}" }
+    ],
+    onePoint: {
+      title: "{{다른 곳엔 없는 한끗 디테일}}",
+      text: "{{이 디테일이 고객의 어떤 문제를 해결하는지}}",
+      image: { label: "한끗 디테일", ratio: "4/3", prompt: "{{디테일이 보이는 클로즈업}}" }
+    }
+  },
+
+  /* ⑦ 기능·특징 — 당연한 특징도 전부 */
+  features: [
+    { eyebrow: "{{분류}}", title: "{{기능 1 → 혜택}}", text: "{{설명}}", points: ["{{키워드}}"],
+      image: { label: "착용·사용 사진", ratio: "4/5", prompt: "{{실제 사용 장면}}" } },
+    { eyebrow: "{{분류}}", title: "{{기능 2 → 혜택}}", text: "{{설명}}",
+      image: { label: "디테일 사진", ratio: "1/1", prompt: "{{소재·마감 매크로}}" } }
+  ],
+
+  /* ⑧ 비교표 (타사 브랜드명 금지) */
+  compare: {
+    eyebrow: "한눈에 비교",
+    title: "{{비교 헤드라인}}",
+    columns: ["일반 {{카테고리}}", "{{상품명 짧게}}"],
+    rows: [["{{항목}}", "{{일반}}", "{{우리}}"]]
+  },
+
+  /* ⑨ 후기 + 많이 팔리는 현상 (실제 후기만!) */
+  reviews: {
+    eyebrow: "먼저 써 본 분들의 이야기",
+    title: "\"{{대표 후기 한 줄}}\"",
+    rating: "{{4.9}}", count: "리뷰 {{000}}개 기준",
+    items: [{ name: "{{김*은}}", meta: "{{직업·옵션}}", stars: 5, title: "{{후기 제목}}", text: "{{후기 본문}}" }],
+    notice: { title: "{{품절·배송지연·조기마감 안내}}", text: "{{사과 + 보상}}" }
+  },
+
+  /* ⑩ 신뢰 */
+  trust: {
+    eyebrow: "만든 사람",
+    title: "{{권위 한 줄}}",
+    story: "{{스토리: 처음 상태 → 겪은 문제 → 시행착오 → 만든 이유}}",
+    badges: ["{{인증}}", "{{기간}}", "{{협업}}", "{{테스트}}"]
+  },
+
+  /* ⑪ 사용법·시간 비용 */
+  howto: {
+    eyebrow: "시작은 간단해요",
+    title: "{{N단계면 끝}}",
+    timeCost: "{{하루 15분}}",
+    steps: [{ title: "{{1단계}}", text: "{{설명}}" }, { title: "{{2단계}}", text: "{{설명}}" }, { title: "{{3단계}}", text: "{{설명}}" }]
+  },
+
+  /* ⑫ 가치 → 가격 → 희소성(명분) */
+  offer: {
+    eyebrow: "가격보다 먼저, 받는 것",
+    title: "{{이번에 받는 것}}",
+    values: [{ label: "{{구성 1}}", worth: "{{0원}}" }, { label: "{{구성 2}}", worth: "{{0원}}" }],
+    valueTotal: "{{총 가치}}",
+    name: "{{구성명}}",
+    original: 0,      // 정가 (숫자)
+    price: 0,         // 판매가 (숫자)
+    perDay: "{{하루 약 000원}}",
+    items: ["{{포함 1}}", "{{포함 2}}"],
+    scarcity: {
+      reason: "{{한정 명분}}",
+      deadline: "{{2026-12-31T23:59:59+09:00}}", // 실제 마감일만
+      stockLabel: "남은 수량", stockLeft: 0, stockTotal: 0
+    }
+  },
+
+  /* ⑬ 보증 */
+  guarantee: { seal: "{{30일}}<br>보증", title: "{{A 동안 B 못 하면 C}}", text: "{{조건 상세}}" },
+
+  /* ⑭ FAQ — 경쟁 상품 1점 후기에서 */
+  faq: { items: [{ q: "{{망설임 1}}", a: "{{해소 답변}}" }, { q: "{{망설임 2}}", a: "{{해소 답변}}" }] },
+
+  /* ⑮ 최종 CTA */
+  final: { headline: "{{결과 약속}}", text: "{{마감 리마인드}}" },
+  cta: { label: "지금 구매하기", sub: "{{배송·보증 한 줄}}" },
+
+  /* 구매 과정 체험 (옵션 → 주문 확인 → 완료) */
+  purchase: {
+    options: [{ name: "{{옵션명}}", values: ["{{값1}}", "{{값2}}"], soldOut: [] }],
+    maxQty: 5,        // qty: false 로 두면 수량 선택 숨김 (서비스용)
+    shipping: 0,
+    gifts: [],
+    doneTitle: "주문이 완료되었습니다!",
+    doneText: "{{완료 후 안내}}"
+  }
+};
+</script>
+<script src="../assets/detail-page.js"></script>
+</body>
+</html>
