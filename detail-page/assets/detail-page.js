@@ -140,12 +140,12 @@
     problem: function (p) {
       /* results 가 있으면 누를 수 있는 자가진단 체크리스트 (스스로 체크 → 문제 인식·몰입) */
       if (has(p.results)) {
-        return sec(head(p) + '<ul class="checklist selfcheck">' + p.items.map(function (i, n) {
+        return sec(head(p) + (p.image ? '<div class="sec-img">' + img(p.image) + "</div>" : "") + '<ul class="checklist selfcheck">' + p.items.map(function (i, n) {
           return '<li><button type="button" class="sc-item" data-sc="' + n + '" aria-pressed="false">' + i + "</button></li>";
         }).join("") + '</ul><div class="sc-result" aria-live="polite"><b class="sc-count">0 / ' + p.items.length + '</b><p class="sc-msg">' + p.results[0].text + "</p></div>" +
           (p.bridge ? '<p class="bridge">' + p.bridge + "</p>" : ""), "", "problem");
       }
-      return sec(head(p) + '<ul class="checklist">' + p.items.map(function (i) { return "<li>" + i + "</li>"; }).join("") + "</ul>" +
+      return sec(head(p) + (p.image ? '<div class="sec-img">' + img(p.image) + "</div>" : "") + '<ul class="checklist">' + p.items.map(function (i) { return "<li>" + i + "</li>"; }).join("") + "</ul>" +
         (p.bridge ? '<p class="bridge">' + p.bridge + "</p>" : ""), "", "problem");
     },
 
@@ -193,7 +193,7 @@
     },
 
     alternatives: function (a) {
-      return sec(head(a) + '<div class="alts">' + a.items.map(function (it, i) {
+      return sec(head(a) + (a.image ? '<div class="sec-img">' + img(a.image) + "</div>" : "") + '<div class="alts">' + a.items.map(function (it, i) {
         return '<div class="alt-item"><span class="num">' + String.fromCharCode(65 + i) + "</span><div><b>" + it.name + "</b><p>" + it.limit + "</p></div></div>";
       }).join("") + "</div>", "alt");
     },
