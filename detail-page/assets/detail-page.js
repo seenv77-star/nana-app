@@ -203,6 +203,16 @@
         (m.closing ? '<p class="mf-closing">' + m.closing + "</p>" : "") + "</section>";
     },
 
+    /* 취소·환불 및 이용 안내 (페이지 맨 끝 작은 글씨): groups [{h, items:[]}], biz [{k, v}] */
+    legal: function (l) {
+      return '<section class="legal" id="legal"><h2>' + (l.title || "취소·환불 및 이용 안내") + "</h2>" +
+        l.groups.map(function (g) {
+          return "<h3>" + g.h + "</h3><ul>" + g.items.map(function (i) { return "<li>" + i + "</li>"; }).join("") + "</ul>";
+        }).join("") +
+        (has(l.biz) ? '<h3>' + (l.bizTitle || "사업자 정보") + '</h3><dl class="legal-biz">' + l.biz.map(function (b) { return "<div><dt>" + b.k + "</dt><dd>" + b.v + "</dd></div>"; }).join("") + "</dl>" : "") +
+        "</section>";
+    },
+
     /* 한눈에 보기: rows [{k, v}] */
     summary: function (m) {
       return sec(head(m) + '<dl class="summary">' + m.rows.map(function (r) {

@@ -619,3 +619,15 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .mf-hl { position: relative; margin-top: 34px; font-size: 27px; font-weight: 900; line-height: 1.45; letter-spacing: -0.02em; color: #fff; }
 .mf-hl em { font-style: normal; color: var(--accent-light); }
 .mf-closing { position: relative; margin-top: 28px; font-size: 15px; line-height: 1.75; color: rgba(255, 255, 255, .8); }
+
+/* ---------- 취소·환불 및 이용 안내 ---------- */
+.legal { padding: 36px 20px 40px; background: #f4efed; color: #6f6169; font-size: 12.5px; line-height: 1.65; }
+.legal h2 { font-size: 15px; color: var(--primary); margin-bottom: 4px; }
+.legal h3 { font-size: 13px; color: var(--primary); margin-top: 18px; }
+.legal ul { margin: 6px 0 0 16px; display: grid; gap: 4px; }
+.legal li { list-style: disc; }
+.legal b { color: var(--primary); }
+.legal-biz { margin: 6px 0 0; display: grid; gap: 2px; }
+.legal-biz div { display: grid; grid-template-columns: 110px 1fr; gap: 8px; }
+.legal-biz dt { color: var(--primary); font-weight: 700; }
+.legal-biz dd { margin: 0; }
