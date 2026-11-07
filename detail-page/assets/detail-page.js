@@ -491,14 +491,42 @@
         (cfg.shipping === false ? "" : "<div><span>배송비</span><span>" + (cfg.shipping ? won(cfg.shipping) : "무료") + "</span></div>") +
         (has(cfg.gifts) ? "<div><span>사은품</span><span>" + cfg.gifts.join(", ") + "</span></div>" : "") +
         '<div class="total"><span>최종 결제 금액</span><span>' + won(total()) + "</span></div></div>" +
-        '<div class="actions"><button class="btn ghost" data-prev>이전</button><button class="btn" data-next>' + (cfg.submitLabel || "주문 완료하기") + "</button></div>";
+        '<div class="actions"><button class="btn ghost" data-prev>이전</button><button class="btn' + (cfg.kakao ? " kakao" : "") + '" data-next>' +
+        (cfg.kakao ? (cfg.kakaoLabel || "카카오톡으로 신청하기") : (cfg.submitLabel || "주문 완료하기")) + "</button></div>" +
+        (cfg.kakao ? '<p class="kakao-hint">누르면 신청 내용이 복사되고, 킹예나 카카오톡 채널 채팅방이 열려요.</p>' : "");
+    } else if (cfg.kakao) {
+      h += '<div class="done"><div class="check kakao">✓</div><h4>신청 내용이 복사됐어요</h4><p>열린 카카오톡 채널 채팅방에 <b>붙여넣기</b> 후 보내 주세요.<br>확인 후 일정과 결제 방법을 안내해 드려요.</p></div>' +
+        '<div class="receipt"><pre class="kakao-text">' + esc(kakaoText()) + '</pre></div>' +
+        '<div class="actions"><button class="btn ghost" data-copy>다시 복사</button><a class="btn kakao" href="' + esc(cfg.kakao) + '" target="_blank" rel="noopener">채팅방 다시 열기</a></div>';
     } else {
       var cp = curPlan() || {};
       h += '<div class="done"><div class="check">✓</div><h4>' + (cfg.doneTitle || "주문이 완료되었습니다!") + "</h4><p>" +
         (cp.doneText || cfg.doneText || "실제 판매 페이지에서는 이 단계에서 결제가 진행됩니다.") + '</p></div><div class="actions single"><button class="btn" data-close-sheet>닫기</button></div>';
     }
-    h += '<p class="note">※ 구매 과정 체험용 화면입니다. 실제 결제는 이루어지지 않습니다.</p>';
+    h += cfg.kakao ? '<p class="note">' + (cfg.kakaoNote || "결제는 카카오톡 채널에서 안내해 드려요.") + "</p>"
+      : '<p class="note">※ 구매 과정 체험용 화면입니다. 실제 결제는 이루어지지 않습니다.</p>';
     sheet.innerHTML = h;
+  }
+
+  function kakaoText() {
+    var cp = curPlan();
+    var lines = ["[" + (cfg.kakaoTitle || P.meta.name + " 신청") + "]", "상품: " + (cp ? cp.name : P.meta.name) + " (" + won(unit() * state.qty) + ")"];
+    visibleOpts().forEach(function (o) { lines.push(o.name + ": " + state.sel[o.name]); });
+    if (cfg.qty !== false) lines.push("수량: " + state.qty + "개");
+    return lines.join("\n");
+  }
+  function copyText(t) {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(t).catch(function () { copyFallback(t); });
+        return;
+      }
+    } catch (e) { }
+    copyFallback(t);
+  }
+  function copyFallback(t) {
+    var ta = document.createElement("textarea"); ta.value = t; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (e) { } document.body.removeChild(ta);
   }
 
   function open(planId, sel) { reset(planId); if (sel) { try { state.sel = JSON.parse(sel); } catch (e) { } } draw(); sheet.classList.add("on"); backdrop.classList.add("on"); document.body.style.overflow = "hidden"; }
@@ -527,7 +555,11 @@
     if (el.dataset.pick) { state.plan = el.dataset.pick; return draw(); }
     if (el.dataset.opt) { state.sel[el.dataset.opt] = el.dataset.val; return draw(); }
     if (el.dataset.qty) { state.qty = Math.min(cfg.maxQty || 10, Math.max(1, state.qty + Number(el.dataset.qty))); return draw(); }
-    if (el.hasAttribute("data-next") && !el.disabled) { state.step++; return draw(); }
+    if (el.hasAttribute("data-copy")) { copyText(kakaoText()); el.textContent = "복사됐어요"; return; }
+    if (el.hasAttribute("data-next") && !el.disabled) {
+      if (cfg.kakao && state.step === 2) { copyText(kakaoText()); window.open(cfg.kakao, "_blank", "noopener"); }
+      state.step++; return draw();
+    }
     if (el.hasAttribute("data-prev")) { state.step--; return draw(); }
   });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
