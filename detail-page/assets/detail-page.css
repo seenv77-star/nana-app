@@ -497,3 +497,35 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   .sheet, .sheet-backdrop { transition: none; }
 }
 .plan.premium .pl-price .p-rate { color: var(--accent-light); }
+
+/* ---------- 후기 대표 문장 띠 ---------- */
+.quote-band { background: var(--accent-soft); padding: 26px 22px; text-align: center; }
+.quote-band .q-label { font-size: 12px; font-weight: 800; color: var(--accent); letter-spacing: .02em; }
+.quote-band p { margin-top: 8px; font-size: 20px; font-weight: 800; line-height: 1.45; color: var(--primary); letter-spacing: -0.02em; }
+.quote-band small { display: block; margin-top: 8px; font-size: 12.5px; color: var(--muted); }
+
+/* ---------- 고민 유형 탭 ---------- */
+.ty-tabs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 18px; }
+.ty-tab { background: var(--bg-alt); font-weight: 700; }
+.ty-tab.on { background: var(--primary); color: #fff; border-color: var(--primary); }
+.ty-panel { display: grid; gap: 12px; }
+.ty-panel[hidden] { display: none; }
+.ty-who, .ty-qs { background: var(--bg); border: 1px solid var(--line); border-radius: 16px; padding: 18px; }
+.ty-who b, .ty-qs > b { font-size: 13px; font-weight: 800; color: var(--accent); }
+.ty-who ul { margin-top: 8px; display: grid; gap: 6px; }
+.ty-who li { list-style: none; font-size: 15px; font-weight: 600; color: var(--primary); padding-left: 20px; position: relative; }
+.ty-who li::before { content: "•"; position: absolute; left: 6px; color: var(--accent); }
+.ty-q { display: grid; grid-template-columns: 34px 1fr; gap: 10px; align-items: center; margin-top: 10px; }
+.ty-q span { width: 34px; height: 34px; border-radius: 10px; background: var(--bg-dark); color: #fff; font-size: 12px; font-weight: 900; display: grid; place-items: center; }
+.ty-q p { font-size: 15.5px; font-weight: 700; color: var(--primary); }
+.ty-rec { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; background: var(--bg-dark); color: #fff; border-radius: 16px; padding: 16px 16px 16px 18px; }
+.ty-rec small { font-size: 12px; color: rgba(255, 255, 255, .6); }
+.ty-rec b { display: block; font-size: 16px; }
+.ty-rec span { display: block; font-size: 12.5px; color: rgba(255, 255, 255, .7); margin-top: 2px; }
+.ty-rec .btn { width: auto; padding: 13px 14px; font-size: 14.5px; white-space: nowrap; }
+
+/* 섹션 안 사진 */
+.sec-img { margin-bottom: 18px; }
+.sec.dark .img-slot.empty { background: linear-gradient(160deg, #3a2436, #2a1a28); border-color: rgba(255,255,255,.2); }
+.sec.dark .img-slot.empty .slot-label { color: #e8cfd8; }
+.sec.dark .img-slot.empty .slot-prompt { color: rgba(255,255,255,.55); }

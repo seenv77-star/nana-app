@@ -15,10 +15,12 @@
   var DEFAULT_ORDER = [
     "hero",         // ① 첫 화면 후킹: 타깃 호명 + 꿈의 결과
     "proof",        // ② 증거·증명·가치 시각화 (맨 앞)
+    "quote",        // ②+ (선택) 후기에서 가장 많이 나온 한 문장
     "problem",      // ③ 문제 공감: "혹시 이런 고민 있으세요?"
     "pain",         // ④ 잘못 해결하면 생기는 손해
     "alternatives", // ⑤ 흔한 대안과 그 한계
     "solution",     // ⑥ 그래서 탄생한 솔루션 + USP + 한끗 디테일
+    "types",        // ⑥+ (선택) 고민 유형 고르기 → 답을 찾는 질문 + 추천 상품
     "features",     // ⑦ 기능·특징 (일반적 특징도 빠짐없이)
     "change",       // ⑦+ (선택) 사용 전 → 사용 후 미래 그려 주기
     "compare",      // ⑧ 일반 제품 vs 우리 제품
@@ -150,13 +152,36 @@
     pain: function (p) {
       /* stat: 실제 조사 데이터 카드 (출처 필수) */
       var stat = p.stat ? '<div class="stat-card"><b>' + p.stat.num + "</b><p>" + p.stat.label + '</p><small>출처: ' + p.stat.source + "</small></div>" : "";
-      return sec(head(p) + stat + '<div class="cases">' + p.cases.map(function (c) {
+      return sec(head(p) + (p.image ? '<div class="sec-img">' + img(p.image) + "</div>" : "") + stat + '<div class="cases">' + p.cases.map(function (c) {
         return '<div class="case"><b>' + c.title + "</b><p>" + c.text + "</p></div>";
       }).join("") + "</div>", "dark");
     },
 
+    quote: function (q) {
+      return '<div class="quote-band"><span class="q-label">' + (q.label || "후기에서 가장 많이 나온 말") + '</span><p>“' + q.text + '”</p>' +
+        (q.by ? "<small>" + q.by + "</small>" : "") + "</div>";
+    },
+
+    /* 고민 유형 탭: items [{ name, who:[], questions:[], plan, sel:{옵션명: 값}, recText }] */
+    types: function (t) {
+      var planOf = function (id) { return ((P.offer && P.offer.plans) || []).filter(function (p) { return p.id === id; })[0]; };
+      return sec(head(t) + '<div class="ty-tabs" role="tablist">' + t.items.map(function (it, i) {
+        return '<button type="button" class="chip ty-tab' + (i ? "" : " on") + '" role="tab" aria-selected="' + (i ? "false" : "true") + '" data-type="' + i + '">' + it.name + "</button>";
+      }).join("") + "</div>" + t.items.map(function (it, i) {
+        var pl = planOf(it.plan);
+        return '<div class="ty-panel" data-panel="' + i + '"' + (i ? " hidden" : "") + ">" +
+          '<div class="ty-who"><b>이런 분이라면</b><ul>' + it.who.map(function (w) { return "<li>" + w + "</li>"; }).join("") + "</ul></div>" +
+          '<div class="ty-qs"><b>' + (t.qTitle || "상담이 끝나면 답을 찾는 질문") + "</b>" + it.questions.map(function (q, n) {
+            return '<div class="ty-q"><span>Q' + (n + 1) + "</span><p>" + q + "</p></div>";
+          }).join("") + "</div>" +
+          (pl ? '<div class="ty-rec"><div><small>추천 상담</small><b>' + pl.name + "</b><span>" + (it.recText || "") + '</span></div><button class="btn" data-open-sheet data-plan="' + esc(pl.id) + '"' +
+            (it.sel ? " data-sel='" + esc(JSON.stringify(it.sel)) + "'" : "") + ">" + won(pl.price) + " 신청</button></div>" : "") +
+          "</div>";
+      }).join(""), "alt", "types");
+    },
+
     change: function (c) {
-      return sec(head(c) + '<div class="change"><div class="ch-col before"><span class="ch-tag">' + (c.beforeLabel || "상담 전") + "</span><ul>" +
+      return sec(head(c) + (c.image ? '<div class="sec-img">' + img(c.image) + "</div>" : "") + '<div class="change"><div class="ch-col before"><span class="ch-tag">' + (c.beforeLabel || "상담 전") + "</span><ul>" +
         c.before.map(function (i) { return "<li>" + i + "</li>"; }).join("") + '</ul></div><div class="ch-col after"><span class="ch-tag">' + (c.afterLabel || "상담 후") + "</span><ul>" +
         c.after.map(function (i) { return "<li>" + i + "</li>"; }).join("") + "</ul></div></div>", "alt");
     },
@@ -292,7 +317,7 @@
     },
 
     final: function (f) {
-      return sec('<div class="final"><h2 class="sec-title">' + f.headline + "</h2>" +
+      return sec('<div class="final">' + (f.image ? '<div class="sec-img">' + img(f.image) + "</div>" : "") + '<h2 class="sec-title">' + f.headline + "</h2>" +
         (f.text ? '<p class="sec-sub">' + f.text + "</p>" : "") +
         '<button class="btn" data-open-sheet>' + (P.cta && P.cta.label || "지금 구매하기") + "</button>" +
         (P.cta && P.cta.sub ? '<p class="cta-sub">' + P.cta.sub + "</p>" : "") + "</div>", "alt");
@@ -407,7 +432,7 @@
     sheet.innerHTML = h;
   }
 
-  function open(planId) { reset(planId); draw(); sheet.classList.add("on"); backdrop.classList.add("on"); document.body.style.overflow = "hidden"; }
+  function open(planId, sel) { reset(planId); if (sel) { try { state.sel = JSON.parse(sel); } catch (e) { } } draw(); sheet.classList.add("on"); backdrop.classList.add("on"); document.body.style.overflow = "hidden"; }
   function close() { sheet.classList.remove("on"); backdrop.classList.remove("on"); document.body.style.overflow = ""; }
 
   root.addEventListener("click", function (e) {
@@ -423,7 +448,12 @@
       root.querySelector(".sc-result").classList.toggle("hot", cnt >= (pr.hotFrom || 3));
       return;
     }
-    if (el.hasAttribute("data-open-sheet")) return open(el.dataset.plan);
+    if (el.dataset.type) {
+      root.querySelectorAll(".ty-tab").forEach(function (b) { var on = b === el; b.classList.toggle("on", on); b.setAttribute("aria-selected", String(on)); });
+      root.querySelectorAll(".ty-panel").forEach(function (p) { p.hidden = p.dataset.panel !== el.dataset.type; });
+      return;
+    }
+    if (el.hasAttribute("data-open-sheet")) return open(el.dataset.plan, el.dataset.sel);
     if (el.hasAttribute("data-close-sheet")) return close();
     if (el.dataset.pick) { state.plan = el.dataset.pick; return draw(); }
     if (el.dataset.opt) { state.sel[el.dataset.opt] = el.dataset.val; return draw(); }
