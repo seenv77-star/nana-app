@@ -567,3 +567,34 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .trust-story .hl-light { color: var(--accent-light); font-weight: 800; }
 .trust-story b { color: #fff; }
 .sec.dark .sec-title .hl { color: var(--accent-light); }
+
+/* ---------- 고민 유형: 전체 상품 목록 ---------- */
+.ty-plans { background: var(--bg-dark); border-radius: 16px; padding: 16px; display: grid; gap: 8px; }
+.ty-plans-h { font-size: 13px; font-weight: 800; color: var(--accent-light); margin-bottom: 2px; }
+.ty-plan { display: flex; justify-content: space-between; align-items: center; gap: 10px; width: 100%; text-align: left; padding: 13px 14px; border-radius: 12px; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .12); color: #fff; font-size: 14.5px; font-weight: 700; }
+.ty-plan span { display: flex; flex-direction: column; gap: 2px; }
+.ty-plan em { font-style: normal; align-self: flex-start; font-size: 11px; font-weight: 800; background: var(--accent); color: #fff; padding: 2px 8px; border-radius: 999px; margin-bottom: 2px; }
+.ty-plan small { font-size: 12px; font-weight: 500; color: rgba(255, 255, 255, .65); }
+.ty-plan b { white-space: nowrap; font-size: 15px; }
+.ty-plan.rec { background: #fff; color: var(--primary); border-color: #fff; }
+.ty-plan.rec small { color: var(--muted); }
+.ty-plan.rec b { color: var(--accent); }
+
+/* ---------- 후기 요약 ---------- */
+.rv-summary { background: var(--accent-soft); border-radius: 14px; padding: 16px 18px; margin-bottom: 18px; }
+.rv-summary b { font-size: 13px; font-weight: 800; color: var(--accent); }
+.rv-summary p { margin-top: 6px; font-size: 14.5px; font-weight: 600; color: var(--primary); line-height: 1.6; }
+
+/* ---------- 한눈에 보기 ---------- */
+.summary { margin: 0; background: var(--bg); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.summary div { display: grid; grid-template-columns: 82px 1fr; gap: 12px; padding: 15px 16px; border-bottom: 1px solid var(--line); }
+.summary div:last-child { border-bottom: 0; }
+.summary dt { font-size: 13.5px; font-weight: 800; color: var(--accent); }
+.summary dd { margin: 0; font-size: 14.5px; color: var(--primary); line-height: 1.55; }
+
+/* ---------- 신청 전 체크사항 ---------- */
+.notes { display: grid; gap: 10px; }
+.notes li { list-style: none; background: var(--bg-alt); border: 1px solid var(--line); border-radius: 14px; padding: 15px 16px 15px 44px; position: relative; }
+.notes li::before { content: "✓"; position: absolute; left: 16px; top: 15px; width: 18px; height: 18px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 11px; font-weight: 900; text-align: center; line-height: 18px; }
+.notes b { font-size: 15px; color: var(--primary); }
+.notes p { margin-top: 3px; font-size: 14px; color: var(--muted); }

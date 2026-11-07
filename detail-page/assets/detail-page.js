@@ -176,10 +176,29 @@
           '<div class="ty-qs"><b>' + (t.qTitle || "상담이 끝나면 답을 찾는 질문") + "</b>" + it.questions.map(function (q, n) {
             return '<div class="ty-q"><span>Q' + (n + 1) + "</span><p>" + q + "</p></div>";
           }).join("") + "</div>" +
-          (pl ? '<div class="ty-rec"><div><small>추천 상담</small><b>' + pl.name + "</b><span>" + (it.recText || "") + '</span></div><button class="btn" data-open-sheet data-plan="' + esc(pl.id) + '"' +
-            (it.sel ? " data-sel='" + esc(JSON.stringify(it.sel)) + "'" : "") + ">" + won(pl.price) + " 신청</button></div>" : "") +
+          (pl ? '<div class="ty-plans"><b class="ty-plans-h">' + (t.plansTitle || "이 고민에 맞는 상담") + "</b>" +
+            ((P.offer && P.offer.plans) || []).slice().sort(function (a, b) { return a.price - b.price; }).map(function (x) {
+              var rec = x.id === pl.id;
+              return '<button type="button" class="ty-plan' + (rec ? " rec" : "") + '" data-open-sheet data-plan="' + esc(x.id) + '"' +
+                (it.sel ? " data-sel='" + esc(JSON.stringify(it.sel)) + "'" : "") + "><span>" + (rec ? "<em>추천</em>" : "") + x.name +
+                (rec && it.recText ? "<small>" + it.recText + "</small>" : "") + "</span><b>" + won(x.price) + "</b></button>";
+            }).join("") + "</div>" : "") +
           "</div>";
       }).join(""), "alt", "types");
+    },
+
+    /* 한눈에 보기: rows [{k, v}] */
+    summary: function (m) {
+      return sec(head(m) + '<dl class="summary">' + m.rows.map(function (r) {
+        return "<div><dt>" + r.k + "</dt><dd>" + r.v + "</dd></div>";
+      }).join("") + "</dl>", "alt", "summary");
+    },
+
+    /* 신청 전 체크사항: items [{t, d}] */
+    notes: function (n) {
+      return sec(head(n) + '<ul class="notes">' + n.items.map(function (i) {
+        return "<li><b>" + i.t + "</b>" + (i.d ? "<p>" + i.d + "</p>" : "") + "</li>";
+      }).join("") + "</ul>", "", "notes");
     },
 
     change: function (c) {
@@ -238,7 +257,7 @@
     },
 
     reviews: function (r) {
-      var html = head(r);
+      var html = head(r) + (r.summary ? '<div class="rv-summary"><b>' + (r.summaryTitle || "후기를 요약했어요") + "</b><p>" + r.summary + "</p></div>" : "");
       if (r.rating) {
         html += '<div class="rating-box"><div class="score">' + r.rating + '</div><div class="stars">★★★★★</div>' +
           (r.count ? '<div class="muted" style="font-size:13px;margin-top:4px">' + r.count + "</div>" : "") + "</div>";
