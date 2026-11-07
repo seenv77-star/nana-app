@@ -20,10 +20,12 @@
     "alternatives", // ⑤ 흔한 대안과 그 한계
     "solution",     // ⑥ 그래서 탄생한 솔루션 + USP + 한끗 디테일
     "features",     // ⑦ 기능·특징 (일반적 특징도 빠짐없이)
+    "change",       // ⑦+ (선택) 사용 전 → 사용 후 미래 그려 주기
     "compare",      // ⑧ 일반 제품 vs 우리 제품
     "reviews",      // ⑨ 후기 + 많이 팔리는 현상
     "trust",        // ⑩ 스토리·권위·인증
     "howto",        // ⑪ 사용법·필요한 시간
+    "fit",          // ⑪+ (선택) 이런 분께 추천 / 맞지 않아요 — 솔직함으로 신뢰
     "offer",        // ⑫ 가치 먼저 → 가격·구성 → 희소성
     "guarantee",    // ⑬ 보증 (위험 제거)
     "faq",          // ⑭ 구매 전 망설임 해소
@@ -48,6 +50,9 @@
   /* 이미지 슬롯: src가 없으면 AI 생성 프롬프트를 보여주는 자리표시 */
   function img(o, extra) {
     if (!o) return "";
+    if (o.mock && MOCK[o.mock]) {
+      return '<figure class="mock-slot' + (extra ? " " + extra : "") + '" role="img" aria-label="' + esc(o.alt || o.label || "") + '">' + MOCK[o.mock](o) + "</figure>";
+    }
     var ratio = o.ratio || "1/1";
     var cls = "img-slot" + (extra ? " " + extra : "");
     if (o.src) {
@@ -63,16 +68,65 @@
     return '<section class="sec ' + (mod || "") + '"' + (id ? ' id="' + id + '"' : "") + ">" + inner + "</section>";
   }
 
+  /* ---------- 화면 목업 이미지 (image: { mock: "chat" | "rewrite" | "report" | "call" | "timeline", ... })
+     사진 대신 고객이 실제로 겪는 장면·서비스 결과물을 HTML로 그립니다. 한글이 정확하게 나옵니다. ---------- */
+  var MOCK = {
+    /* 메신저 대화창: msgs [{me:true, text, time, read}], draft(쓰다 만 메시지), alert(상단 알림), clock, title */
+    chat: function (o) {
+      return '<div class="mk-phone"><div class="mk-status"><span>' + esc(o.clock || "02:14") + '</span><span>▂▄▆ ▮▮▮</span></div>' +
+        '<div class="mk-head"><span>‹</span><b>' + esc(o.title || "그 사람") + '</b><span>☰</span></div>' +
+        '<div class="mk-body">' + (o.msgs || []).map(function (m) {
+          return '<div class="mk-msg' + (m.me ? " me" : "") + '">' + (m.me ? '<span class="mk-meta">' + (m.read ? "읽음<br>" : "") + esc(m.time || "") + "</span>" : "") +
+            "<p>" + esc(m.text) + "</p>" + (m.me ? "" : '<span class="mk-meta">' + esc(m.time || "") + "</span>") + "</div>";
+        }).join("") + (o.alert ? '<div class="mk-alert">' + esc(o.alert) + "</div>" : "") + "</div>" +
+        (o.draft ? '<div class="mk-input"><div class="mk-draft">' + esc(o.draft) + '<i class="mk-caret"></i></div><span class="mk-send">전송</span></div>' : "") +
+        "</div>";
+    },
+    /* 보내면 멀어지는 문장 vs 다듬은 문장 */
+    rewrite: function (o) {
+      return '<div class="mk-rewrite"><div class="rw bad"><span class="rw-tag">✕ 지금 보내면 멀어지는 문장</span><p>' + esc(o.bad) + "</p></div>" +
+        '<div class="rw-arrow">↓ 킹예나와 함께 다듬으면</div>' +
+        '<div class="rw good"><span class="rw-tag">✓ 마음은 전하고, 부담은 줄인 문장</span><p>' + esc(o.good) + "</p></div>" +
+        (o.tip ? '<div class="rw-tip">💡 ' + esc(o.tip) + "</div>" : "") + "</div>";
+    },
+    /* 상담 리포트 문서: title, sections [{h, text, hl, checks:[]}] */
+    report: function (o) {
+      return '<div class="mk-doc"><div class="doc-top"><span class="doc-badge">사연 리포트</span><span>' + esc(o.title || "") + "</span></div>" +
+        (o.sections || []).map(function (s) {
+          return '<div class="doc-sec"><b>' + esc(s.h) + "</b>" +
+            (s.text ? "<p>" + esc(s.text) + "</p>" : '<i class="doc-line"></i><i class="doc-line short"></i>') +
+            (s.hl ? '<p class="doc-hl">' + esc(s.hl) + "</p>" : "") +
+            (s.checks ? "<ul>" + s.checks.map(function (c) { return "<li>" + esc(c) + "</li>"; }).join("") + "</ul>" : "") + "</div>";
+        }).join("") + "</div>";
+    },
+    /* 통화 화면 + 통화 요약 메모 */
+    call: function (o) {
+      return '<div class="mk-call"><div class="call-av">' + esc(o.avatar || "예나") + '</div><b>' + esc(o.name || "킹예나 상담") + "</b>" +
+        '<span class="call-time">' + esc(o.time || "24:37") + '</span><div class="call-btns"><i>🔇</i><i>📝</i><i>🔊</i></div>' +
+        (o.memo ? '<div class="call-memo"><span>통화 요약 메모</span><ol>' + o.memo.map(function (m) { return "<li>" + esc(m) + "</li>"; }).join("") + "</ol></div>" : "") +
+        "</div>";
+    },
+    /* 기간 관리 타임라인: steps [{when, title, text, done}] */
+    timeline: function (o) {
+      return '<div class="mk-timeline">' + (o.title ? '<div class="tl-title">' + esc(o.title) + "</div>" : "") + (o.steps || []).map(function (s) {
+        return '<div class="tl-step' + (s.main ? " main" : "") + '"><span class="tl-dot">' + (s.main ? "★" : "✓") + '</span><div><small>' + esc(s.when) + "</small><b>" + esc(s.title) + "</b>" +
+          (s.text ? "<p>" + esc(s.text) + "</p>" : "") + "</div></div>";
+      }).join("") + "</div>";
+    }
+  };
+
   /* ---------- 섹션 렌더러 ---------- */
   var R = {
     hero: function (h) {
-      return '<header class="hero">' + img(h.image, "bleed") +
-        '<div class="hero-body">' +
+      var body = '<div class="hero-body">' +
         (h.callout ? '<span class="hero-callout">' + h.callout + "</span>" : "") +
         '<h1 class="hero-headline">' + h.headline + "</h1>" +
         (h.sub ? '<p class="hero-sub">' + h.sub + "</p>" : "") +
         (has(h.badges) ? '<div class="hero-badges">' + h.badges.map(function (b) { return "<span>" + b + "</span>"; }).join("") + "</div>" : "") +
-        "</div></header>";
+        "</div>";
+      /* style: "dark" → 어두운 배경, 문구 먼저(0.5초 후킹) + 목업 이미지 */
+      if (h.style === "dark") return '<header class="hero hero-dark">' + body + '<div class="hero-visual">' + img(h.image) + "</div></header>";
+      return '<header class="hero">' + img(h.image, "bleed") + body + "</header>";
     },
 
     proof: function (list) {
@@ -82,14 +136,35 @@
     },
 
     problem: function (p) {
+      /* results 가 있으면 누를 수 있는 자가진단 체크리스트 (스스로 체크 → 문제 인식·몰입) */
+      if (has(p.results)) {
+        return sec(head(p) + '<ul class="checklist selfcheck">' + p.items.map(function (i, n) {
+          return '<li><button type="button" class="sc-item" data-sc="' + n + '" aria-pressed="false">' + i + "</button></li>";
+        }).join("") + '</ul><div class="sc-result" aria-live="polite"><b class="sc-count">0 / ' + p.items.length + '</b><p class="sc-msg">' + p.results[0].text + "</p></div>" +
+          (p.bridge ? '<p class="bridge">' + p.bridge + "</p>" : ""), "", "problem");
+      }
       return sec(head(p) + '<ul class="checklist">' + p.items.map(function (i) { return "<li>" + i + "</li>"; }).join("") + "</ul>" +
         (p.bridge ? '<p class="bridge">' + p.bridge + "</p>" : ""), "", "problem");
     },
 
     pain: function (p) {
-      return sec(head(p) + '<div class="cases">' + p.cases.map(function (c) {
+      /* stat: 실제 조사 데이터 카드 (출처 필수) */
+      var stat = p.stat ? '<div class="stat-card"><b>' + p.stat.num + "</b><p>" + p.stat.label + '</p><small>출처: ' + p.stat.source + "</small></div>" : "";
+      return sec(head(p) + stat + '<div class="cases">' + p.cases.map(function (c) {
         return '<div class="case"><b>' + c.title + "</b><p>" + c.text + "</p></div>";
       }).join("") + "</div>", "dark");
+    },
+
+    change: function (c) {
+      return sec(head(c) + '<div class="change"><div class="ch-col before"><span class="ch-tag">' + (c.beforeLabel || "상담 전") + "</span><ul>" +
+        c.before.map(function (i) { return "<li>" + i + "</li>"; }).join("") + '</ul></div><div class="ch-col after"><span class="ch-tag">' + (c.afterLabel || "상담 후") + "</span><ul>" +
+        c.after.map(function (i) { return "<li>" + i + "</li>"; }).join("") + "</ul></div></div>", "alt");
+    },
+
+    fit: function (f) {
+      return sec(head(f) + '<div class="fit"><div class="fit-col yes"><b>' + (f.yesTitle || "이런 분께 추천해요") + "</b><ul>" +
+        f.yes.map(function (i) { return "<li>" + i + "</li>"; }).join("") + '</ul></div><div class="fit-col no"><b>' + (f.noTitle || "이런 분께는 맞지 않아요") + "</b><ul>" +
+        f.no.map(function (i) { return "<li>" + i + "</li>"; }).join("") + "</ul></div></div>");
     },
 
     alternatives: function (a) {
@@ -338,6 +413,16 @@
   root.addEventListener("click", function (e) {
     var el = e.target.closest("button, [data-close-sheet]");
     if (!el) return;
+    if (el.dataset.sc) {
+      var on = el.getAttribute("aria-pressed") !== "true";
+      el.setAttribute("aria-pressed", String(on));
+      var pr = P.problem, cnt = root.querySelectorAll('.sc-item[aria-pressed="true"]').length, msg = pr.results[0].text;
+      pr.results.forEach(function (r) { if (cnt >= (r.min || 0)) msg = r.text; });
+      root.querySelector(".sc-count").textContent = cnt + " / " + pr.items.length;
+      root.querySelector(".sc-msg").innerHTML = msg;
+      root.querySelector(".sc-result").classList.toggle("hot", cnt >= (pr.hotFrom || 3));
+      return;
+    }
     if (el.hasAttribute("data-open-sheet")) return open(el.dataset.plan);
     if (el.hasAttribute("data-close-sheet")) return close();
     if (el.dataset.pick) { state.plan = el.dataset.pick; return draw(); }
