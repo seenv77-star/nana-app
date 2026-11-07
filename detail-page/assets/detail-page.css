@@ -247,6 +247,15 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .plan li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 900; }
 .plan .btn { padding: 15px; font-size: 16px; }
 
+/* 프리미엄 플랜 (고가 상품): 어두운 카드로 차별화 */
+.plan.premium { background: var(--bg-dark); border: 0; color: #fff; box-shadow: 0 12px 30px rgba(0, 0, 0, .18); }
+.plan.premium .pl-badge { background: linear-gradient(90deg, #d4a24c, #f1d08a); color: #2a1a00; }
+.plan.premium .pl-name, .plan.premium .pl-price b { color: #fff; }
+.plan.premium .pl-desc, .plan.premium .pl-price s { color: rgba(255, 255, 255, .6); }
+.plan.premium .pl-note { color: #f1d08a; font-weight: 600; }
+.plan.premium li { color: rgba(255, 255, 255, .88); }
+.plan.premium li::before { color: #f1d08a; }
+
 /* 바텀시트 플랜 선택 */
 .plan-pick { display: grid; gap: 8px; }
 .chip.pick { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 14px 16px; text-align: left; }

@@ -176,14 +176,14 @@
         /* 상품이 여러 개(가격이 다른 플랜)일 때: 플랜 카드 */
         html += '<div class="plans">' + o.plans.map(function (pl) {
           var r = pl.original ? Math.round((1 - pl.price / pl.original) * 100) : 0;
-          return '<div class="plan' + (pl.featured ? " featured" : "") + '">' +
+          return '<div class="plan' + (pl.featured ? " featured" : "") + (pl.premium ? " premium" : "") + '">' +
             (pl.badge ? '<span class="pl-badge">' + pl.badge + "</span>" : "") +
             '<div class="pl-name">' + pl.name + "</div>" + (pl.desc ? '<div class="pl-desc">' + pl.desc + "</div>" : "") +
             '<div class="pl-price">' + (pl.original ? "<s>" + won(pl.original) + "</s>" : "") +
             (r > 0 ? '<span class="p-rate">' + r + "%</span>" : "") + "<b>" + won(pl.price) + "</b></div>" +
             (pl.note ? '<div class="pl-note">' + pl.note + "</div>" : "") +
             (has(pl.items) ? "<ul>" + pl.items.map(function (i) { return "<li>" + i + "</li>"; }).join("") + "</ul>" : "") +
-            '<button class="btn' + (pl.featured ? "" : " ghost") + '" data-open-sheet data-plan="' + esc(pl.id) + '">' + (pl.cta || "이걸로 신청하기") + "</button></div>";
+            '<button class="btn' + (pl.featured || pl.premium ? "" : " ghost") + '" data-open-sheet data-plan="' + esc(pl.id) + '">' + (pl.cta || "이걸로 신청하기") + "</button></div>";
         }).join("") + "</div>";
       } else {
         var rate = o.original ? Math.round((1 - o.price / o.original) * 100) : 0;
