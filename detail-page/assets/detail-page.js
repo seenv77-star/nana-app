@@ -20,6 +20,8 @@
     "pain",         // ④ 잘못 해결하면 생기는 손해
     "alternatives", // ⑤ 흔한 대안과 그 한계
     "solution",     // ⑥ 그래서 탄생한 솔루션 + USP + 한끗 디테일
+    "styles",       // ⑥+ (선택) 상담 스타일 고르기 (예: 공감 / 현실 코칭)
+    "method",       // ⑥+ (선택) 변화가 일어나는 원리·과정
     "types",        // ⑥+ (선택) 고민 유형 고르기 → 답을 찾는 질문 + 추천 상품
     "features",     // ⑦ 기능·특징 (일반적 특징도 빠짐없이)
     "change",       // ⑦+ (선택) 사용 전 → 사용 후 미래 그려 주기
@@ -249,9 +251,31 @@
       return sec(html, "", "reviews");
     },
 
+    /* 상담 스타일 카드: items [{ icon, tag, name, who:[], promise, sel:{}, cta, dark }] */
+    styles: function (s) {
+      return sec(head(s) + '<div class="styles">' + s.items.map(function (it) {
+        return '<div class="st-card' + (it.dark ? " dark" : "") + '"><span class="st-ic">' + it.icon + "</span>" +
+          (it.tag ? '<small class="st-tag">' + it.tag + "</small>" : "") + "<h3>" + it.name + "</h3>" +
+          "<ul>" + it.who.map(function (w) { return "<li>" + w + "</li>"; }).join("") + "</ul>" +
+          (it.promise ? '<p class="st-promise">' + it.promise + "</p>" : "") +
+          '<button class="btn' + (it.dark ? "" : " ghost") + '" data-open-sheet' + (it.sel ? " data-sel='" + esc(JSON.stringify(it.sel)) + "'" : "") + ">" + (it.cta || "이 스타일로 신청") + "</button></div>";
+      }).join("") + "</div>" + (s.note ? '<p class="st-note">' + s.note + "</p>" : ""), "", "styles");
+    },
+
+    /* 변화 원리: steps [{title, text}], quote {text, by} */
+    method: function (m) {
+      return sec(head(m) + '<ol class="method">' + m.steps.map(function (st, i) {
+        return '<li><span class="me-no">' + String(i + 1).padStart(2, "0") + "</span><div><b>" + st.title + "</b><p>" + st.text + "</p></div></li>";
+      }).join("") + "</ol>" +
+        (m.quote ? '<blockquote class="me-quote"><p>“' + m.quote.text + "”</p><small>" + (m.quote.by || "") + "</small></blockquote>" : ""), "dark", "method");
+    },
+
     trust: function (t) {
       return sec(head(t) + (t.image ? img(t.image) : "") +
         (t.story ? '<p class="trust-story" style="margin-top:' + (t.image ? "20px" : "0") + '">' + t.story + "</p>" : "") +
+        (has(t.people) ? '<div class="tr-people"><small>' + (t.peopleTitle || "가까이에서 지켜본 연애") + "</small><div>" +
+          t.people.map(function (x) { return "<span>" + x + "</span>"; }).join("") + "</div></div>" : "") +
+        (t.story2 ? '<p class="trust-story">' + t.story2 + "</p>" : "") +
         (has(t.badges) ? '<div class="trust-badges">' + t.badges.map(function (b) { return "<div>" + b + "</div>"; }).join("") + "</div>" : ""), "dark");
     },
 

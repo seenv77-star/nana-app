@@ -529,3 +529,41 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .sec.dark .img-slot.empty { background: linear-gradient(160deg, #3a2436, #2a1a28); border-color: rgba(255,255,255,.2); }
 .sec.dark .img-slot.empty .slot-label { color: #e8cfd8; }
 .sec.dark .img-slot.empty .slot-prompt { color: rgba(255,255,255,.55); }
+
+/* ---------- 상담 스타일 카드 ---------- */
+.styles { display: grid; gap: 14px; }
+.st-card { border-radius: 20px; padding: 24px 20px 20px; background: var(--bg-alt); border: 1.5px solid var(--accent); position: relative; }
+.st-card.dark { background: var(--bg-dark); border-color: var(--bg-dark); color: #fff; }
+.st-ic { font-size: 30px; }
+.st-tag { display: block; margin-top: 8px; font-size: 12.5px; font-weight: 800; color: var(--accent); }
+.st-card.dark .st-tag { color: var(--accent-light); }
+.st-card h3 { font-size: 21px; line-height: 1.35; color: var(--primary); margin-top: 2px; letter-spacing: -0.02em; }
+.st-card.dark h3 { color: #fff; }
+.st-card ul { margin: 14px 0; display: grid; gap: 7px; }
+.st-card li { list-style: none; font-size: 14.5px; padding-left: 22px; position: relative; }
+.st-card li::before { content: "“"; position: absolute; left: 2px; top: -2px; font-size: 20px; font-weight: 900; color: var(--accent); }
+.st-card.dark li { color: rgba(255, 255, 255, .88); }
+.st-card.dark li::before { color: var(--accent-light); }
+.st-promise { font-size: 14.5px; font-weight: 700; color: var(--primary); background: var(--accent-soft); border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; }
+.st-card.dark .st-promise { background: rgba(255, 255, 255, .08); color: #fff; }
+.st-note { margin-top: 14px; text-align: center; font-size: 13.5px; color: var(--muted); }
+
+/* ---------- 변화 원리 ---------- */
+.method { display: grid; gap: 12px; }
+.method li { list-style: none; display: grid; grid-template-columns: 42px 1fr; gap: 12px; padding: 18px; border-radius: 16px; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .12); }
+.me-no { font-size: 15px; font-weight: 900; color: var(--accent-light); padding-top: 1px; }
+.method b { font-size: 16.5px; color: #fff; }
+.method p { margin-top: 4px; font-size: 14.5px; color: rgba(255, 255, 255, .75); }
+.me-quote { margin: 18px 0 0; border-radius: 16px; padding: 20px; background: var(--accent); color: #fff; text-align: center; }
+.me-quote p { font-size: 16.5px; font-weight: 800; line-height: 1.55; }
+.me-quote small { display: block; margin-top: 8px; font-size: 12.5px; color: rgba(255, 255, 255, .8); }
+
+/* ---------- 소개: 지켜본 연애 유형 ---------- */
+.tr-people { margin: 22px 0; text-align: center; }
+.tr-people small { font-size: 12.5px; font-weight: 800; color: var(--accent-light); }
+.tr-people div { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.tr-people span { font-size: 13.5px; font-weight: 700; padding: 7px 12px; border-radius: 999px; background: rgba(255, 255, 255, .1); border: 1px solid rgba(255, 255, 255, .18); color: #fff; }
+
+.trust-story .hl-light { color: var(--accent-light); font-weight: 800; }
+.trust-story b { color: #fff; }
+.sec.dark .sec-title .hl { color: var(--accent-light); }
