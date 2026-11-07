@@ -107,7 +107,7 @@
     call: function (o) {
       return '<div class="mk-call"><div class="call-av">' + esc(o.avatar || "예나") + '</div><b>' + esc(o.name || "킹예나 상담") + "</b>" +
         '<span class="call-time">' + esc(o.time || "24:37") + '</span><div class="call-btns"><i>🔇</i><i>📝</i><i>🔊</i></div>' +
-        (o.memo ? '<div class="call-memo"><span>통화 요약 메모</span><ol>' + o.memo.map(function (m) { return "<li>" + esc(m) + "</li>"; }).join("") + "</ol></div>" : "") +
+        (o.memo ? '<div class="call-memo"><span>' + esc(o.memoTitle || "통화 요약 메모") + '</span><ol>' + o.memo.map(function (m) { return "<li>" + esc(m) + "</li>"; }).join("") + "</ol></div>" : "") +
         "</div>";
     },
     /* 기간 관리 타임라인: steps [{when, title, text, done}] */
@@ -185,6 +185,22 @@
             }).join("") + "</div>" : "") +
           "</div>";
       }).join(""), "alt", "types");
+    },
+
+    /* 특별한 점 나열: items [{icon, title, text, note}] */
+    points: function (m) {
+      return sec(head(m) + '<div class="points-list">' + m.items.map(function (it, i) {
+        return '<div class="pt-item"><div class="pt-top"><span class="pt-ic">' + (it.icon || "✦") + '</span><span class="pt-no">' + String(i + 1).padStart(2, "0") + "</span></div>" +
+          "<h3>" + it.title + "</h3><p>" + it.text + "</p>" + (it.note ? '<small class="pt-note">' + it.note + "</small>" : "") + "</div>";
+      }).join("") + "</div>" + (m.closing ? '<p class="pt-closing">' + m.closing + "</p>" : ""), "alt", "points");
+    },
+
+    /* 가치·메시지 섹션: lines [문단], highlight, closing */
+    manifesto: function (m) {
+      return '<section class="manifesto" id="manifesto">' + (m.eyebrow ? '<span class="eyebrow">' + m.eyebrow + "</span>" : "") +
+        m.lines.map(function (l) { return '<p class="mf-line">' + l + "</p>"; }).join("") +
+        (m.highlight ? '<p class="mf-hl">' + m.highlight + "</p>" : "") +
+        (m.closing ? '<p class="mf-closing">' + m.closing + "</p>" : "") + "</section>";
     },
 
     /* 한눈에 보기: rows [{k, v}] */

@@ -598,3 +598,24 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .notes li::before { content: "✓"; position: absolute; left: 16px; top: 15px; width: 18px; height: 18px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 11px; font-weight: 900; text-align: center; line-height: 18px; }
 .notes b { font-size: 15px; color: var(--primary); }
 .notes p { margin-top: 3px; font-size: 14px; color: var(--muted); }
+
+/* ---------- 특별한 점 나열 ---------- */
+.points-list { display: grid; gap: 12px; }
+.pt-item { background: var(--bg-alt); border: 1px solid var(--line); border-radius: 18px; padding: 20px 20px 18px; box-shadow: 0 4px 16px rgba(60, 20, 50, .05); }
+.pt-top { display: flex; justify-content: space-between; align-items: center; }
+.pt-ic { width: 44px; height: 44px; border-radius: 12px; background: var(--accent-soft); display: grid; place-items: center; font-size: 22px; }
+.pt-no { font-size: 13px; font-weight: 900; color: #e6cfd6; letter-spacing: .04em; }
+.pt-item h3 { margin-top: 12px; font-size: 18.5px; line-height: 1.4; color: var(--primary); letter-spacing: -0.02em; }
+.pt-item p { margin-top: 6px; font-size: 14.5px; color: var(--text); line-height: 1.65; }
+.pt-note { display: inline-block; margin-top: 10px; font-size: 12.5px; font-weight: 700; color: var(--accent); background: var(--accent-soft); padding: 4px 10px; border-radius: 999px; }
+.pt-closing { margin-top: 22px; text-align: center; font-size: 17px; font-weight: 800; color: var(--primary); line-height: 1.55; }
+
+/* ---------- 사랑의 가치 (메시지 섹션) ---------- */
+.manifesto { position: relative; padding: 76px 26px 80px; text-align: center; color: #fff; overflow: hidden;
+  background: radial-gradient(120% 60% at 50% 0%, #5a2546 0%, transparent 70%), radial-gradient(90% 50% at 50% 100%, #8a2f52 0%, transparent 70%), var(--bg-dark); }
+.manifesto::before { content: "♥"; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 340px; line-height: 1; color: rgba(255, 255, 255, .035); pointer-events: none; }
+.manifesto .eyebrow { color: var(--accent-light); position: relative; }
+.mf-line { position: relative; margin-top: 18px; font-size: 16.5px; line-height: 1.85; color: rgba(255, 255, 255, .72); }
+.mf-hl { position: relative; margin-top: 34px; font-size: 27px; font-weight: 900; line-height: 1.45; letter-spacing: -0.02em; color: #fff; }
+.mf-hl em { font-style: normal; color: var(--accent-light); }
+.mf-closing { position: relative; margin-top: 28px; font-size: 15px; line-height: 1.75; color: rgba(255, 255, 255, .8); }
