@@ -242,7 +242,7 @@
           (r.count ? '<div class="muted" style="font-size:13px;margin-top:4px">' + r.count + "</div>" : "") + "</div>";
       }
       html += '<div class="reviews">' + r.items.map(function (v) {
-        return '<div class="review"><div class="r-head"><span class="stars">' + "★★★★★".slice(0, v.stars || 5) + "</span><span>" + esc(v.name) + (v.meta ? " · " + esc(v.meta) : "") + "</span></div>" +
+        return '<div class="review"><div class="r-head"><span class="stars">' + (v.stars === 0 ? "" : "★★★★★".slice(0, v.stars || 5)) + "</span><span>" + esc(v.name) + (v.meta ? " · " + esc(v.meta) : "") + "</span></div>" +
           (v.title ? '<div class="r-title">' + v.title + "</div>" : "") + "<p>" + v.text + "</p>" + (v.image ? img(v.image) : "") + "</div>";
       }).join("") + "</div>";
       if (r.notice) html += '<div class="notice-card"><b>' + r.notice.title + "</b><p>" + r.notice.text + "</p></div>";
