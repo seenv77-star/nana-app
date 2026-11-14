@@ -33,7 +33,7 @@ export const site = {
     titleLines: ["공간을 바꾸는 것이 아니라,", "삶의 품격을 설계합니다."],
     subtitle: "Timeless Spaces, Thoughtfully Designed.",
     image: "/images/hero.webp",
-    imageAlt: "트래버틴 바닥과 월넛 벽면, 아이보리 소파가 놓인 넓은 거실에 오후 햇살이 드는 모습 (데모 이미지)",
+    imageAlt: "크리스털 샹들리에 아래 아이보리 소파와 대리석 바닥, 창밖으로 저녁 도시 야경이 보이는 호텔 스위트풍 거실 (데모 이미지)",
     primary: { href: "#portfolio", label: "프로젝트 살펴보기" },
     secondary: { href: "#contact", label: "상담 문의하기" },
   },
@@ -42,7 +42,7 @@ export const site = {
     title: "A Space That Reflects You.",
     subtitle: "당신의 삶을 닮은 공간을 만듭니다.",
     image: "/images/about.webp",
-    imageAlt: "트래버틴 상판과 월넛 수납장이 만나는 모서리 디테일 (데모 이미지)",
+    imageAlt: "대리석 상판과 월넛 패널, 황동 인레이가 만나는 디테일 (데모 이미지)",
     story: [
       "집은 단순히 머무는 장소가 아닙니다. 하루를 시작하는 순간부터 가장 편안한 나로 돌아오는 시간까지, 우리의 모든 일상이 쌓이는 공간입니다.",
       "KING YENA INTERIOR는 유행을 따라가는 디자인보다 그 공간에 머무는 사람의 취향과 생활 방식에 집중합니다. 눈에 보이는 아름다움은 물론, 보이지 않는 동선과 빛의 흐름, 소재의 질감, 오래 사용해도 변하지 않는 편안함까지.",

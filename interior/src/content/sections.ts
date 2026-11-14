@@ -7,10 +7,10 @@ export const services = {
   title: "Our Expertise",
   subtitle: "공간의 목적과 삶의 방식에 맞는 디자인 솔루션.",
   items: [
-    { no: "01", en: "Residential Interior", ko: "주거공간 인테리어", text: "아파트, 주택 등 주거공간의 취향과 생활 패턴을 고려한 맞춤형 디자인.", image: "/images/p1-cover.webp", imageAlt: "아파트 거실 (데모 이미지)" },
-    { no: "02", en: "Premium Remodeling", ko: "프리미엄 리모델링", text: "기존 공간의 구조와 기능을 재해석하는 고급 리모델링.", image: "/images/p4-cover.webp", imageAlt: "리모델링한 다이닝 (데모 이미지)" },
-    { no: "03", en: "Commercial Interior", ko: "상업공간 인테리어", text: "브랜드의 정체성과 고객 경험을 고려한 상업공간 디자인.", image: "/images/p3-cover.webp", imageAlt: "부티크 매장 (데모 이미지)" },
-    { no: "04", en: "Space Styling", ko: "공간 스타일링", text: "가구, 조명, 소재, 컬러를 조화롭게 구성하는 공간 스타일링.", image: "/images/p6-detail.webp", imageAlt: "라운지 스타일링 (데모 이미지)" },
+    { no: "01", en: "Residential Interior", ko: "주거공간 인테리어", text: "아파트, 주택 등 주거공간의 취향과 생활 패턴을 고려한 맞춤형 디자인.", image: "/images/p1-cover.webp", imageAlt: "호텔 스위트풍 거실 (데모 이미지)" },
+    { no: "02", en: "Premium Remodeling", ko: "프리미엄 리모델링", text: "기존 공간의 구조와 기능을 재해석하는 고급 리모델링.", image: "/images/p4-cover.webp", imageAlt: "호텔 레스토랑풍 다이닝 (데모 이미지)" },
+    { no: "03", en: "Commercial Interior", ko: "상업공간 인테리어", text: "브랜드의 정체성과 고객 경험을 고려한 상업공간 디자인.", image: "/images/p3-cover.webp", imageAlt: "호텔 로비풍 부티크 (데모 이미지)" },
+    { no: "04", en: "Space Styling", ko: "공간 스타일링", text: "가구, 조명, 소재, 컬러를 조화롭게 구성하는 공간 스타일링.", image: "/images/p6-detail.webp", imageAlt: "호텔 라운지풍 스타일링 (데모 이미지)" },
   ],
 };
 
@@ -22,7 +22,7 @@ export const reasons = {
     { title: "생활 방식에서 시작하는 기획", text: "도면보다 먼저, 그 공간에서 누가 어떤 하루를 보내는지 묻는 것으로 설계를 시작합니다." },
     { title: "유행보다 오래가는 디자인", text: "몇 년 뒤에도 질리지 않도록 형태와 소재를 절제하고, 시간이 지날수록 자연스러워지는 마감을 고릅니다." },
     { title: "조명, 동선, 수납까지", text: "보이는 면만이 아니라 빛의 방향, 움직이는 길, 물건이 놓일 자리를 함께 계획합니다." },
-    { title: "소재와 마감의 완성도", text: "트래버틴, 월넛, 패브릭처럼 손에 닿는 소재의 질감과 이음새의 마감까지 확인합니다." },
+    { title: "소재와 마감의 완성도", text: "대리석, 월넛, 황동, 패브릭처럼 손에 닿는 소재의 질감과 이음새의 마감까지 확인합니다." },
     { title: "충분한 소통과 투명한 진행", text: "결정이 필요한 순간마다 선택지와 이유를 설명하고, 진행 상황을 단계별로 공유합니다." },
   ],
 };
