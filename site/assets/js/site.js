@@ -140,6 +140,79 @@
   });
 
   /* =========================================================
+     자주 묻는 질문: 질문마다 따로 열리는 페이지 (#q-... 주소로 직접 열 수도 있어요)
+     ========================================================= */
+  var qaView = $("[data-qa-view]"), qaPanel = $("[data-qa-panel]"), qaScroll = $("[data-qa-scroll]");
+  var qaList = $$(".qa", qaView), qaPager = $("[data-qa-pager]");
+  var qaReturn = null, qaOpenNow = false;
+  function qaShow(id, fromClick) {
+    var art = document.getElementById(id);
+    if (!art || !art.classList.contains("qa")) return;
+    qaList.forEach(function (a) { a.classList.toggle("is-on", a === art); });
+    var i = qaList.indexOf(art), prev = qaList[i - 1], next = qaList[i + 1];
+    var t = function (a) { return a.querySelector(".qa-title").textContent; };
+    qaPager.innerHTML = (prev ? '<a class="prev" href="#' + prev.id + '"><small>이전 질문</small><span></span></a>' : "") +
+      (next ? '<a class="next" href="#' + next.id + '"><small>다음 질문</small><span></span></a>' : "");
+    if (prev) qaPager.querySelector(".prev span").textContent = t(prev);
+    if (next) qaPager.querySelector(".next span").textContent = t(next);
+    qaScroll.scrollTop = 0;
+    if (!qaOpenNow) {
+      qaOpenNow = true;
+      qaReturn = fromClick || document.activeElement;
+      qaView.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+      if (window.gsap && !reduce) {
+        gsap.fromTo(qaPanel, { xPercent: 100 }, { xPercent: 0, duration: .7, ease: "expo.out" });
+        gsap.fromTo(".qa-backdrop", { opacity: 0 }, { opacity: 1, duration: .5 });
+      }
+    }
+    if (window.gsap && !reduce) gsap.from(art.children, { opacity: 0, y: 22, duration: .7, stagger: .06, ease: "power3.out", delay: .12, clearProps: "all" });
+    art.focus({ preventScroll: true });
+  }
+  function qaClose(goTo) {
+    if (!qaOpenNow) return;
+    var done = function () {
+      qaView.classList.remove("is-open");
+      qaList.forEach(function (a) { a.classList.remove("is-on"); });
+      document.body.style.overflow = "";
+      qaOpenNow = false;
+      history.replaceState(null, "", location.pathname + location.search + (goTo || ""));
+      if (goTo) { var t = document.querySelector(goTo); if (t) t.scrollIntoView({ behavior: reduce ? "auto" : "smooth" }); }
+      else if (qaReturn && qaReturn.focus) qaReturn.focus({ preventScroll: true });
+    };
+    if (window.gsap && !reduce) gsap.to(qaPanel, { xPercent: 100, duration: .45, ease: "power2.in", onComplete: function () { gsap.set(qaPanel, { clearProps: "all" }); done(); } });
+    else done();
+  }
+  function qaRoute() {
+    var id = location.hash.slice(1);
+    if (/^q-/.test(id)) qaShow(id);
+    else if (qaOpenNow) qaClose();
+  }
+  $$(".qa-row").forEach(function (r) {
+    r.addEventListener("click", function (e) { e.preventDefault(); history.pushState(null, "", r.getAttribute("href")); qaShow(r.getAttribute("href").slice(1), r); });
+  });
+  qaPager.addEventListener("click", function (e) {
+    var a = e.target.closest("a"); if (!a) return;
+    e.preventDefault(); history.replaceState(null, "", a.getAttribute("href")); qaShow(a.getAttribute("href").slice(1));
+  });
+  $$("[data-qa-close]", qaView).forEach(function (c) {
+    c.addEventListener("click", function (e) { e.preventDefault(); qaClose(c.getAttribute("href") === "#apply" ? "#apply" : ""); });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (!qaOpenNow) return;
+    if (e.key === "Escape") { e.preventDefault(); qaClose(); }
+    if (e.key === "Tab") {   // 열린 페이지 안에서만 포커스가 돌도록
+      var f = $$("a[href], button:not([disabled])", qaPanel).filter(function (x) { return x.offsetParent !== null; });
+      if (!f.length) return;
+      if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+    }
+  });
+  window.addEventListener("popstate", qaRoute);
+  window.addEventListener("hashchange", qaRoute);
+  if (/^#q-/.test(location.hash)) qaShow(location.hash.slice(1));
+
+  /* =========================================================
      비공개 상담 신청 (3단계)
      ========================================================= */
   var form = $("[data-apply-form]");
@@ -150,6 +223,7 @@
   // 상담 안내 목록에서 고르면 신청 폼에 미리 선택하고 이동
   $$("[data-pick-plan]").forEach(function (row) {
     row.addEventListener("click", function () {
+      if (row.closest("[data-qa-view]")) { qaView.classList.remove("is-open"); qaList.forEach(function (a) { a.classList.remove("is-on"); }); document.body.style.overflow = ""; qaOpenNow = false; history.replaceState(null, "", location.pathname + location.search); }
       var r = $('input[data-plan="' + row.dataset.pickPlan + '"]', form);
       if (r) { r.checked = true; clearErr("plan"); }
       goStep(0, false);
