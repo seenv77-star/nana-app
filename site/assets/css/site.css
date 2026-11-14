@@ -487,3 +487,41 @@ html[data-tone="dawn"] .err { color: #B3261E; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-delay: 0s !important; }
   .curtain { display: none; }
 }
+
+/* ---------- v2: 상담 그룹 / 집중관리 / FAQ / 상담 신청 버튼 ---------- */
+.pr-group { border-top: 0 !important; padding: 34px 6px 10px; font-size: .8125rem; font-weight: 600; color: var(--fg-soft); letter-spacing: .02em; }
+.prog li.pr-group + li { border-top: 1px solid var(--fg); }
+.pr-name em.em-soft { color: var(--fg-soft); }
+.pr-list { display: grid; gap: 4px; font-size: .875rem; color: var(--fg); }
+.pr-list span { position: relative; padding-left: 14px; }
+.pr-list span::before { content: ""; position: absolute; left: 0; top: .72em; width: 6px; height: 1px; background: var(--accent); }
+.pr-ask { font-family: var(--sans); font-size: 1rem; font-weight: 600; color: var(--fg-soft); }
+.btn svg path[d^="M4 20"], .float-cta svg path { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; }
+.float-cta { background: var(--pearl); color: var(--ink); }
+html[data-tone="dawn"] .float-cta { background: var(--garnet); color: #fff; }
+
+.faq-wrap { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: clamp(16px, 2vw, 32px); }
+.faq-wrap h2 { grid-column: 1 / span 5; align-self: start; position: sticky; top: calc(var(--hd-h) + 32px); }
+.faq { grid-column: 7 / span 6; border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { list-style: none; cursor: pointer; padding: 22px 40px 22px 0; position: relative; font-family: var(--serif); font-weight: 400; font-size: 1.1875rem; line-height: 1.5; letter-spacing: -0.01em; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: ""; position: absolute; right: 6px; top: 50%; width: 12px; height: 12px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-70%) rotate(45deg); transition: transform .35s var(--ease); }
+.faq details[open] summary::after { transform: translateY(-30%) rotate(-135deg); }
+.faq details p { padding: 0 40px 24px 0; color: var(--fg-soft); font-size: .9688rem; }
+@media (max-width: 860px) {
+  .faq-wrap { display: block; }
+  .faq-wrap h2 { position: static; margin-bottom: 32px; }
+  .pr-group { padding: 28px 0 8px; }
+  .prog-care .pr-list { grid-column: 1 / -1; }
+}
+
+/* 등장 모션의 좌우 이동·확대가 가로 스크롤을 만들지 않도록 (clip은 sticky를 깨지 않음) */
+main, .ft { overflow-x: hidden; }
+@supports (overflow: clip) { main, .ft { overflow-x: clip; } }
+
+/* JS로 톤을 바꿀 때는 글자색도 배경과 같은 전역 톤을 따른다 (장 경계에서 어두운 배경에 어두운 글자가 남지 않도록) */
+html.tone-js .ch[data-tone]:not(.hero):not(.ch-styles):not(.ch-value) { --bg: inherit; --fg: inherit; --fg-soft: inherit; --line: inherit; --accent: inherit; --surface: inherit; transition: color .7s var(--ease); }
+html.tone-js .ch[data-tone="dawn"] .btn-pearl { background: var(--pearl); color: var(--ink); }
+html.tone-js[data-tone="dawn"] .ch .btn-pearl { background: var(--garnet); color: #fff; }
+body { transition-duration: .8s; }
