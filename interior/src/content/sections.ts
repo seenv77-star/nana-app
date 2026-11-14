@@ -9,7 +9,7 @@ export const services = {
   items: [
     { no: "01", en: "Residential Interior", ko: "주거공간 인테리어", text: "아파트, 주택 등 주거공간의 취향과 생활 패턴을 고려한 맞춤형 디자인.", image: "/images/p1-cover.webp", imageAlt: "호텔 스위트풍 거실 (데모 이미지)" },
     { no: "02", en: "Premium Remodeling", ko: "프리미엄 리모델링", text: "기존 공간의 구조와 기능을 재해석하는 고급 리모델링.", image: "/images/p4-cover.webp", imageAlt: "호텔 레스토랑풍 다이닝 (데모 이미지)" },
-    { no: "03", en: "Commercial Interior", ko: "상업공간 인테리어", text: "브랜드의 정체성과 고객 경험을 고려한 상업공간 디자인.", image: "/images/p3-cover.webp", imageAlt: "호텔 로비풍 부티크 (데모 이미지)" },
+    { no: "03", en: "Commercial Interior", ko: "상업공간 인테리어", text: "브랜드의 정체성과 고객 경험을 고려한 상업공간 디자인.", image: "/images/p3-cover.webp", imageAlt: "호텔 살롱풍 부티크 라운지 (데모 이미지)" },
     { no: "04", en: "Space Styling", ko: "공간 스타일링", text: "가구, 조명, 소재, 컬러를 조화롭게 구성하는 공간 스타일링.", image: "/images/p6-detail.webp", imageAlt: "호텔 라운지풍 스타일링 (데모 이미지)" },
   ],
 };
