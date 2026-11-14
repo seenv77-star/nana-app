@@ -45,7 +45,7 @@ export const projects: Project[] = [
       "대리석과 황동, 월넛을 절제해 섞고 천장 간접조명과 펜던트로 호텔 라운지 같은 저녁 분위기를 만들었습니다.",
     ],
     images: [
-      { src: "/images/p1-cover.webp", alt: "호텔 스위트처럼 꾸민 거실과 다이닝, 대리석 식탁과 황동 펜던트, 저녁 도시 풍경 (데모 이미지)" },
+      { src: "/images/p1-cover.webp", alt: "크리스털 샹들리에 아래 대리석 원형 식탁과 월넛 문이 있는 호텔 스위트풍 다이닝 (데모 이미지)" },
       { src: "/images/p1-detail.webp", alt: "대리석 아일랜드와 월넛 수납장이 있는 호텔풍 주방 (데모 이미지)" },
     ],
     demo: true,
@@ -66,7 +66,7 @@ export const projects: Project[] = [
     ],
     images: [
       { src: "/images/p2-cover.webp", alt: "두 층 높이 천장과 석재 벽난로, 정원을 향한 큰 창이 있는 리조트형 거실 (데모 이미지)" },
-      { src: "/images/p2-detail.webp", alt: "트래버틴 디딤판과 월넛 난간의 곡선 계단 (데모 이미지)" },
+      { src: "/images/p2-detail.webp", alt: "샹들리에 아래로 휘어 오르는 대리석 곡선 계단 (데모 이미지)" },
     ],
     demo: true,
   },
@@ -86,7 +86,7 @@ export const projects: Project[] = [
     ],
     images: [
       { src: "/images/p3-cover.webp", alt: "호텔 로비처럼 꾸민 부티크, 트래버틴 진열대와 황동 행거 (데모 이미지)" },
-      { src: "/images/p3-detail.webp", alt: "아이보리 벨벳 커튼과 황동 원형 거울이 있는 피팅 라운지 (데모 이미지)" },
+      { src: "/images/p3-detail.webp", alt: "터프티드 소파와 큰 거울, 황동 벽등이 있는 피팅 라운지 (데모 이미지)" },
     ],
     demo: true,
   },
@@ -102,11 +102,11 @@ export const projects: Project[] = [
     scope: "전체 리모델링, 욕실, 구조 변경",
     intent: [
       "막혀 있던 주방 벽을 열어 식탁에서 거실과 창이 한 번에 보이도록 구조를 바꿨습니다.",
-      "욕실은 대리석으로 벽 전체를 감싸 호텔 스파처럼 한 덩어리로 느껴지도록 했습니다.",
+      "욕실은 대리석과 황동으로 마감해 호텔 스파처럼 한 덩어리로 느껴지도록 했습니다.",
     ],
     images: [
-      { src: "/images/p4-cover.webp", alt: "호텔 레스토랑처럼 꾸민 다이닝, 월넛 원형 식탁과 황동 샹들리에 (데모 이미지)" },
-      { src: "/images/p4-detail.webp", alt: "대리석 벽과 독립형 욕조가 있는 호텔 스파형 욕실 (데모 이미지)" },
+      { src: "/images/p4-cover.webp", alt: "짙은 월넛 패널 벽과 황동 샹들리에, 대리석 원형 식탁이 있는 다이닝 (데모 이미지)" },
+      { src: "/images/p4-detail.webp", alt: "황동 다리의 독립형 욕조와 대리석 바닥이 있는 호텔풍 욕실 (데모 이미지)" },
     ],
     demo: true,
   },
@@ -122,11 +122,11 @@ export const projects: Project[] = [
     scope: "침실·드레스룸 부분 인테리어",
     intent: [
       "침실은 커튼과 헤드보드에 패브릭을 써서 소리가 부드럽게 흡수되도록 했습니다.",
-      "드레스룸 수납은 자주 쓰는 순서대로 높이를 나눠 매일의 동선을 줄였습니다.",
+      "드레스룸은 복도형으로 길게 이어 양쪽 수납을 자주 쓰는 순서대로 높이를 나눠 매일의 동선을 줄였습니다.",
     ],
     images: [
-      { src: "/images/p5-cover.webp", alt: "높은 패브릭 헤드보드 벽과 황동 벽등이 있는 스위트룸형 침실 (데모 이미지)" },
-      { src: "/images/p5-detail.webp", alt: "월넛 유리장과 대리석 아일랜드가 있는 드레스룸 (데모 이미지)" },
+      { src: "/images/p5-cover.webp", alt: "터프티드 헤드보드와 양쪽 테이블 램프, 샹들리에가 있는 스위트룸형 침실 (데모 이미지)" },
+      { src: "/images/p5-detail.webp", alt: "월넛 수납장이 양쪽으로 이어지는 대리석 바닥의 드레스룸 복도 (데모 이미지)" },
     ],
     demo: true,
   },
@@ -145,8 +145,8 @@ export const projects: Project[] = [
       "대기 의자는 서로 시선이 겹치지 않게 배치해 머무는 동안의 불편함을 줄였습니다.",
     ],
     images: [
-      { src: "/images/p6-cover.webp", alt: "호텔 로비처럼 꾸민 클리닉 리셉션, 곡선 트래버틴 데스크와 대리석 바닥 (데모 이미지)" },
-      { src: "/images/p6-detail.webp", alt: "부클레 암체어와 대리석 사이드 테이블이 있는 라운지 코너 (데모 이미지)" },
+      { src: "/images/p6-cover.webp", alt: "원형 천장과 샹들리에, 곡선 리셉션 데스크가 있는 호텔 로비풍 클리닉 (데모 이미지)" },
+      { src: "/images/p6-detail.webp", alt: "가죽 암체어와 대리석 테이블, 플로어 램프가 있는 라운지 코너 (데모 이미지)" },
     ],
     demo: true,
   },
