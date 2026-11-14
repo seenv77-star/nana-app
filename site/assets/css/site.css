@@ -525,3 +525,16 @@ html.tone-js .ch[data-tone]:not(.hero):not(.ch-styles):not(.ch-value) { --bg: in
 html.tone-js .ch[data-tone="dawn"] .btn-pearl { background: var(--pearl); color: var(--ink); }
 html.tone-js[data-tone="dawn"] .ch .btn-pearl { background: var(--garnet); color: #fff; }
 body { transition-duration: .8s; }
+
+.pr-price s.s-note { text-decoration: none; }
+
+/* ---------- v3: 집중관리 계산 근거 / 필독 / 사연 작성 가이드 ---------- */
+.pr-list .pr-calc { padding-left: 0; margin-top: 6px; color: var(--fg-soft); font-size: .8125rem; }
+.pr-list .pr-calc::before { display: none; }
+.must { display: inline-block; margin-right: 10px; padding: 2px 9px; border-radius: 999px; background: var(--accent); color: #fff; font-family: var(--sans); font-size: .75rem; font-weight: 700; vertical-align: 3px; }
+html.tone-js[data-tone="night"] .must { color: var(--ink); }
+.guide { font-size: .875rem; color: var(--fg-soft); }
+.guide summary { cursor: pointer; width: fit-content; font-weight: 600; color: var(--fg); }
+.guide ul { margin-top: 8px; padding-left: 18px; list-style: disc; display: grid; gap: 4px; }
+.pr-list .pr-calc, .prog-note, .help { text-wrap: pretty; }
+.pr-list .pr-calc { text-wrap: balance; }
