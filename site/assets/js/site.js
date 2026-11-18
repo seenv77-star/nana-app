@@ -1,5 +1,5 @@
 /* =========================================================
-   킹예나 연애상담 — 사이트 동작
+   KY연애코칭 (KING YOURSELF) — 사이트 동작
    - 카카오톡 채널 주소는 아래 CONFIG.kakaoChannel 하나만 바꾸면 모든 버튼에 적용돼요.
    - 상담 신청 폼은 Netlify Forms로 전송돼요(배포 시 사이트 관리자만 열람 가능 = 비공개).
    - GSAP가 없거나 '동작 줄이기' 설정이면 모든 내용이 처음부터 그대로 보여요.
@@ -9,7 +9,7 @@
 
   var CONFIG = {
     kakaoChannel: "",            // 예: "https://pf.kakao.com/_xxxxxx/chat"
-    kakaoTitle: "킹예나 비공개 상담 신청"
+    kakaoTitle: "KY연애코칭 비공개 상담 신청"
   };
 
   var root = document.documentElement;

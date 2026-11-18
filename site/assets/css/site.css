@@ -1,5 +1,5 @@
 /* =========================================================
-   킹예나 연애상담 — 사이트 스타일
+   KY연애코칭 (KING YOURSELF) — 사이트 스타일
    콘셉트: 밤에서 새벽으로. 스크롤할수록 배경이 깊은 오디(밤)에서 진주빛(새벽)으로 바뀐다.
    서체: Hahmlet(제목) + Asta Sans(본문)
    ========================================================= */
@@ -16,6 +16,9 @@
   --rose: #E3B5AE;          /* 밤 위 포인트 */
   --garnet: #9B2F4E;        /* 새벽 위 버튼 */
   --kakao: #FEE500;
+  --gold: #D9BC86;          /* 밤 위 골드 포인트 */
+  --gold-deep: #7E5C2A;     /* 새벽 위 골드 글자 (4.5:1 이상) */
+  --gold-ink: var(--gold);
 
   /* tone (JS가 화면 중앙 장의 톤으로 바꿈) */
   --bg: var(--mulberry);
@@ -48,6 +51,7 @@ html[data-tone="dawn"], .ch[data-tone="dawn"] {
   --line: rgba(42, 26, 38, .14);
   --accent: var(--garnet);
   --surface: #EBE2E0;
+  --gold-ink: var(--gold-deep);
 }
 .ch[data-tone="night"], .ft {
   --bg: var(--mulberry);
@@ -56,6 +60,7 @@ html[data-tone="dawn"], .ch[data-tone="dawn"] {
   --line: rgba(246, 239, 238, .16);
   --accent: var(--rose);
   --surface: var(--mulberry-2);
+  --gold-ink: var(--gold);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -292,7 +297,7 @@ html.motion .curtain { animation: none; }
 .prog-row.is-rec .pr-price { color: var(--accent); }
 .prog-note { margin-top: 28px; font-size: .9375rem; color: var(--fg-soft); max-width: 46em; }
 
-/* ---------- 5장: 킹예나 ---------- */
+/* ---------- (이전) 5장 소개: 현재 2장 KY로 통합 ---------- */
 .ch-about { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: clamp(16px, 2vw, 32px); }
 .ch-about .plate { grid-column: 1 / -1; }
 .about-media { grid-column: 1 / span 5; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 2px; align-self: start; position: sticky; top: calc(var(--hd-h) + 24px); }
@@ -660,3 +665,131 @@ html.tone-js[data-tone="night"] .must { color: var(--ink); }
 /* JS가 동작하면 열림 상태는 JS가 관리 (주소의 :target과 겹치지 않게) */
 html.tone-js .qa:target:not(.is-on) { display: none; }
 html.tone-js .qa-view:has(.qa:target):not(.is-open) { display: none; }
+
+
+/* =========================================================
+   v5: KY연애코칭 — KING YOURSELF
+   ========================================================= */
+.brand-name { letter-spacing: .06em; font-weight: 400; }
+.curtain-mark { letter-spacing: .12em; }
+
+/* 첫 장면: '존재만으로 특별해요'를 맨 앞에 */
+.hero-kicker { letter-spacing: .14em; }
+.hk-mark { font-family: var(--serif); font-weight: 500; letter-spacing: .1em; color: var(--gold); margin-right: 2px; }
+.hero-h { font-size: clamp(2.25rem, 4.7vw, 4.75rem); line-height: 1.22; }
+.hero-warm { display: block; margin-bottom: 10px; font-family: var(--serif); font-weight: 400; font-size: clamp(1.25rem, 1.9vw, 1.75rem); letter-spacing: -0.015em; color: var(--gold); }
+
+/* 공통 라벨 */
+.ky-label { display: flex; align-items: center; gap: 14px; font-size: .8125rem; font-weight: 600; letter-spacing: .16em; color: var(--gold-ink); }
+.ky-label::before { content: ""; width: 28px; height: 1px; background: currentColor; }
+
+/* 2장 KY */
+.ch-ky .ky-crest { grid-column: 1 / span 4; align-self: start; display: grid; gap: 18px; padding-top: 6px; }
+.ky-mono { font-family: var(--serif); font-weight: 200; font-size: clamp(6.5rem, 13vw, 12.5rem); line-height: .82; letter-spacing: -0.05em; color: var(--gold-ink); }
+.ky-word { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; font-size: .75rem; letter-spacing: .3em; }
+.ky-old { color: var(--fg-soft); text-decoration: line-through; text-decoration-thickness: 1px; }
+.ky-arrow { width: 28px; height: 1px; background: var(--fg-soft); }
+.ky-new { color: var(--fg); font-weight: 600; }
+.ky-intro { grid-column: 6 / span 7; display: grid; gap: 26px; align-content: start; }
+.ky-sign { font-family: var(--serif); font-weight: 400; font-size: clamp(1.125rem, 1.5vw, 1.375rem); letter-spacing: -0.01em; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+.ky-letter { display: grid; gap: 16px; }
+.ky-letter p { color: var(--fg-soft); line-height: 1.95; max-width: 36em; }
+.ky-letter b { color: var(--fg); font-weight: 600; letter-spacing: .06em; }
+.ky-letter .ky-close { margin-top: 8px; font-family: var(--serif); font-size: clamp(1.25rem, 1.7vw, 1.5rem); line-height: 1.5; color: var(--fg); }
+
+.ky-story { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(12, 1fr); column-gap: clamp(16px, 2vw, 32px); margin-top: clamp(104px, 15vh, 176px); }
+.ky-story-media { grid-column: 1 / span 5; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 2px; }
+.ky-story-media img { width: 100%; height: 100%; object-fit: cover; }
+.ky-story-copy { grid-column: 7 / span 6; display: grid; gap: 22px; align-content: center; }
+.ky-story-copy p:not(.ky-label) { color: var(--fg-soft); line-height: 1.9; }
+.ky-h3 { font-family: var(--serif); font-weight: 300; font-size: clamp(1.75rem, 3vw, 2.75rem); line-height: 1.3; letter-spacing: -0.025em; }
+
+.ky-principle { grid-column: 1 / span 9; display: grid; gap: 24px; margin-top: clamp(104px, 15vh, 176px); }
+.ky-statement { font-family: var(--serif); font-weight: 300; font-size: clamp(2rem, 3.9vw, 3.5rem); line-height: 1.3; letter-spacing: -0.03em; }
+.ky-principle .lead { color: var(--fg-soft); max-width: 38em; }
+.selfpath-body .selfpath-key { margin-top: 10px; padding-top: 22px; border-top: 1px solid var(--line); font-family: var(--serif); font-weight: 400; font-size: clamp(1.25rem, 1.9vw, 1.75rem); line-height: 1.55; letter-spacing: -0.015em; color: var(--fg); }
+
+/* 후기 인용: 반투명 유리 상자 */
+.pull { position: relative; isolation: isolate; padding: clamp(36px, 4.4vw, 64px) clamp(24px, 4vw, 64px); border-radius: 6px;
+  background: rgba(255, 255, 255, .46); border: 1px solid rgba(255, 255, 255, .85);
+  box-shadow: 0 40px 80px -40px rgba(42, 26, 38, .32), inset 0 1px 0 rgba(255, 255, 255, .9);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2); backdrop-filter: blur(16px) saturate(1.2); }
+.pull::before { content: ""; position: absolute; inset: -12% -6%; z-index: -1; pointer-events: none; filter: blur(46px); opacity: .7;
+  background: radial-gradient(38% 60% at 18% 30%, rgba(227, 181, 174, .9), transparent 70%), radial-gradient(34% 56% at 84% 72%, rgba(217, 188, 134, .75), transparent 70%); }
+.pull-tag { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 24px; padding: 7px 16px; border-radius: 999px; background: rgba(255, 255, 255, .7); border: 1px solid var(--line); font-size: .8125rem; font-weight: 600; letter-spacing: .06em; color: var(--fg); }
+.pull-stars { color: var(--gold-deep); letter-spacing: .12em; font-size: .75rem; }
+.pull blockquote p { font-family: var(--serif); }
+.pull .pull-who { margin-top: 20px; font-family: var(--sans); font-size: var(--fs-small); font-weight: 400; color: var(--fg-soft); line-height: 1.6; }
+
+/* 5장 30일 집중관리 · 6장 대면상담 */
+.ch-care, .ch-meet { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: clamp(16px, 2vw, 32px); }
+.ch-care .plate, .ch-meet .plate { grid-column: 1 / -1; }
+.care-head { grid-column: 1 / span 6; display: grid; gap: 24px; align-content: start; }
+.care-head .lead, .meet-head .lead { color: var(--fg-soft); }
+.care-get { grid-column: 8 / span 5; align-self: start; padding-top: 8px; }
+.care-h3 { font-family: var(--serif); font-weight: 400; font-size: var(--fs-h3); letter-spacing: -0.015em; margin-bottom: 18px; }
+.care-list li { display: grid; gap: 6px; padding: 20px 0; border-top: 1px solid var(--line); }
+.care-list li:last-child { border-bottom: 1px solid var(--line); }
+.care-list b, .flow b, .meet-steps b { font-family: var(--serif); font-weight: 400; font-size: 1.125rem; }
+.care-list span, .flow span:not(.fl-wk), .meet-steps span { font-size: .9375rem; line-height: 1.75; color: var(--fg-soft); }
+
+.care-price, .meet-price { display: grid; gap: 8px; justify-items: start; margin-top: 12px; padding: 28px 28px 30px; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); }
+.cp-tag { font-size: .75rem; font-weight: 600; letter-spacing: .16em; color: var(--gold-ink); }
+.cp-num { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 14px; }
+.cp-num s { font-size: 1rem; color: var(--fg-soft); }
+.cp-num b { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 3.2vw, 2.75rem); letter-spacing: -0.02em; }
+.cp-note { font-size: .875rem; color: var(--fg-soft); }
+.care-price .btn, .meet-price .btn { margin-top: 12px; }
+
+.care-flow { grid-column: 1 / -1; margin-top: clamp(80px, 12vh, 136px); }
+.flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(16px, 2vw, 32px); }
+.flow li { display: grid; gap: 8px; align-content: start; padding-top: 22px; border-top: 1px solid var(--fg); }
+.fl-wk { font-family: var(--serif); font-weight: 200; font-size: 2.5rem; line-height: 1; color: var(--gold-ink); }
+
+.fit { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2vw, 32px); margin-top: clamp(64px, 9vh, 104px); }
+.fit > div { padding: 30px clamp(22px, 2.6vw, 40px); border: 1px solid var(--line); border-radius: 4px; }
+.fit-yes { background: var(--surface); }
+.fit h3 { font-family: var(--serif); font-weight: 400; font-size: 1.25rem; margin-bottom: 16px; }
+.fit li { position: relative; padding: 8px 0 8px 26px; font-size: .9688rem; line-height: 1.7; color: var(--fg-soft); }
+.fit-yes li::before { content: ""; position: absolute; left: 0; top: 15px; width: 11px; height: 11px; border: 1.5px solid var(--gold-ink); border-radius: 50%; }
+.fit-no li::before { content: ""; position: absolute; left: 1px; top: 20px; width: 10px; height: 1.5px; background: var(--fg-soft); }
+.fit a { color: var(--fg); text-decoration: underline; text-underline-offset: 4px; }
+
+.meet-head { grid-column: 1 / span 7; display: grid; gap: 24px; align-content: start; }
+.meet-media { grid-column: 9 / span 4; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 2px; align-self: start; margin-top: 8vh; }
+.meet-media img { width: 100%; height: 100%; object-fit: cover; }
+.meet-facts { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2vw, 32px); margin-top: clamp(64px, 9vh, 104px); padding-top: 30px; border-top: 1px solid var(--fg); }
+.meet-facts dt { font-family: var(--serif); font-weight: 300; font-size: clamp(2rem, 3.6vw, 3.25rem); line-height: 1.1; color: var(--gold-ink); }
+.meet-facts dd { margin-top: 8px; font-size: .9375rem; color: var(--fg-soft); }
+.meet-body { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 112px); margin-top: clamp(72px, 10vh, 120px); }
+.meet-steps { counter-reset: ms; }
+.meet-steps li { counter-increment: ms; position: relative; display: grid; gap: 6px; padding: 20px 0 20px 46px; border-top: 1px solid var(--line); }
+.meet-steps li::before { content: counter(ms, decimal-leading-zero); position: absolute; left: 0; top: 22px; font-family: var(--serif); font-size: .9375rem; color: var(--gold-ink); }
+.meet-for li { position: relative; padding: 14px 0 14px 26px; border-top: 1px solid var(--line); font-size: 1rem; line-height: 1.7; }
+.meet-for li::before { content: ""; position: absolute; left: 0; top: 23px; width: 11px; height: 11px; border: 1.5px solid var(--gold-ink); border-radius: 50%; }
+.meet-price { margin-top: 32px; }
+
+/* 맺음: KING YOURSELF */
+.value-mark { font-size: .75rem; letter-spacing: .5em; color: var(--gold) !important; }
+.ft-ky { display: block; margin-top: 8px; font-family: var(--sans); font-size: .6875rem; letter-spacing: .36em; color: var(--gold); }
+.prog-note b { color: var(--fg); font-weight: 600; }
+
+@media (max-width: 860px) {
+  .ch-ky, .ch-care, .ch-meet, .ky-story { display: block; }
+  .ch-ky .ky-crest { position: static; margin-bottom: 40px; }
+  .ky-mono { font-size: clamp(5.5rem, 28vw, 8rem); }
+  .ky-story { margin-top: 88px; }
+  .ky-story-media { margin-bottom: 36px; aspect-ratio: 4 / 4.4; }
+  .ky-principle { margin-top: 88px; }
+  .pull { margin-top: 72px; }
+  .care-head, .meet-head { margin-bottom: 0; }
+  .care-get { margin-top: 64px; }
+  .flow { grid-template-columns: 1fr 1fr; row-gap: 32px; }
+  .fit { grid-template-columns: 1fr; }
+  .meet-media { margin: 48px 0 0; aspect-ratio: 4 / 4.4; }
+  .meet-facts { gap: 10px; }
+  .meet-facts dt { font-size: 1.75rem; }
+  .meet-facts dd { font-size: .8125rem; }
+  .meet-body { grid-template-columns: 1fr; gap: 56px; }
+  .meet-media, .care-get, .care-flow, .fit, .meet-facts, .meet-body { width: 100%; }
+}
