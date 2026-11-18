@@ -1075,3 +1075,12 @@ html.tone-js .qa-view:has(.qa:target):not(.is-open) { display: none; }
   .st-grid { grid-template-columns: 1fr; }
   .st-media { aspect-ratio: 16 / 9; }
 }
+
+/* v10: 90% 재회 카드의 단서 문장 */
+.why-grid .wg-but { font-family: var(--serif); font-size: 1.0625rem; color: var(--fg); max-width: none; margin-top: -2px; }
+/* v11: 문장마다 줄을 바꾼 글이 좁은 화면에서 한 단어만 남지 않도록 */
+.why-grid p, .help-grid p, .st-body p, .hs-head .lead, .st-head .lead, .before-list span, .h-process .proc span,
+.voice-grid blockquote, .cc > p, .cc-head .lead, .care-list span, .pr-desc, .qa-lead, .hfaq details p, .value-copy p { text-wrap: balance; }
+@media (max-width: 860px) {
+  .why-grid p, .help-grid p, .st-body p, .care-list span, .pr-desc, .qa-lead, .hfaq details p { text-wrap: pretty; }
+}
