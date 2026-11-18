@@ -526,7 +526,7 @@ main, .ft { overflow-x: hidden; }
 @supports (overflow: clip) { main, .ft { overflow-x: clip; } }
 
 /* JS로 톤을 바꿀 때는 글자색도 배경과 같은 전역 톤을 따른다 (장 경계에서 어두운 배경에 어두운 글자가 남지 않도록) */
-html.tone-js .ch[data-tone]:not(.hero):not(.ch-styles):not(.ch-value) { --bg: inherit; --fg: inherit; --fg-soft: inherit; --line: inherit; --accent: inherit; --surface: inherit; transition: color .7s var(--ease); }
+html.tone-js .ch[data-tone]:not(.hero):not(.ch-styles):not(.ch-value) { --bg: inherit; --fg: inherit; --fg-soft: inherit; --line: inherit; --accent: inherit; --surface: inherit; --gold-ink: inherit; transition: color .7s var(--ease); }
 html.tone-js .ch[data-tone="dawn"] .btn-pearl { background: var(--pearl); color: var(--ink); }
 html.tone-js[data-tone="dawn"] .ch .btn-pearl { background: var(--garnet); color: #fff; }
 body { transition-duration: .8s; }
@@ -1204,3 +1204,42 @@ html.tone-js .qa-view:has(.qa:target):not(.is-open) { display: none; }
 .qa-groups .qa-row-q { font-size: 1.125rem; }
 .qa-choose .qc-when { text-wrap: pretty; }
 .qa-lead, .qa-note, .qa-promise span, .qa-two span, .qa-timeline span { text-wrap: pretty; }
+
+/* =========================================================
+   v15: 선택적 고도화 (polish)
+   ========================================================= */
+/* 좁은 화면에서 마지막 줄에 한 단어만 남지 않도록 (기본값: 구체적인 규칙이 있으면 그 규칙이 우선) */
+:where(main, .ft, .qa-view) :where(p, li, dd, dt, blockquote, figcaption) { text-wrap: pretty; }
+:where(main, .qa-view) :where(h1, h2, h3, h4) { text-wrap: balance; }
+/* 가운데 정렬 글은 줄 길이를 고르게 */
+.hero-sub, .mf-text, .mf-fun, .pm-text p, .steps2 span, .st-choose p, .vip-band p, .vip-letter p, .value-copy p, .h-voices blockquote { text-wrap: balance; }
+/* 모바일에서만 쓰는 줄바꿈 (제목의 절 경계) */
+.br-m { display: none; }
+/* 작은 영문 라벨 가독성 */
+.st-k, .vb-k { font-size: .75rem; }
+/* 글 링크의 터치 영역 넓히기 (모양은 그대로) */
+.hp-link, .st-down, .ladder-list a { position: relative; }
+.hp-link::before, .st-down::before, .ladder-list a::before { content: ""; position: absolute; inset: -12px -10px; }
+@media (max-width: 600px) {
+  .br-m { display: inline; }
+  /* 장 사이 여백: 휴대폰 화면의 3분의 1이 비지 않도록 조금 줄임 */
+  :root { --ch-pad: clamp(80px, 11vh, 112px); }
+}
+@media (max-width: 860px) {
+  /* 원 안의 제목이 세 줄로 쪼개지지 않도록 */
+  .pm-circle { width: 200px; }
+}
+/* 375px에서 'to KING YOURSELF'가 두 줄로 쪼개지지 않도록 */
+@media (max-width: 400px) { #philo-title { font-size: 1.9375rem; } }
+.steps2 b { text-wrap: balance; }
+/* 모바일 상담 신청: 사연 작성 → 카카오톡 순서가 화면 순서와 같도록 고객센터를 신청서 아래로 */
+@media (max-width: 860px) {
+  .ch-apply { display: flex; flex-direction: column; }
+  .apply-intro { display: contents; }
+  .apply-head, .apply-done { order: 1; margin-bottom: 40px; }
+  .apply-form, .apply-receipt { order: 2; }
+  .support { order: 3; margin-top: 48px; }
+}
+/* 가운데 정렬 짧은 글: 모바일에서 절 단위로만 줄이 바뀌도록 (index.html의 span.kp) */
+@media (max-width: 600px) { .kp { display: inline-block; } }
+.nw { white-space: nowrap; }
