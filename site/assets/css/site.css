@@ -1084,3 +1084,112 @@ html.tone-js .qa-view:has(.qa:target):not(.is-open) { display: none; }
 @media (max-width: 860px) {
   .why-grid p, .help-grid p, .st-body p, .care-list span, .pr-desc, .qa-lead, .hfaq details p { text-wrap: pretty; }
 }
+
+/* =========================================================
+   v12: KY만의 메인 — 선언 · 목록 · 원형 약속 · 솔직함 · 대표 후기
+   ========================================================= */
+/* 첫 화면 아래 흐르는 키워드 띠 */
+.hero-ky { justify-content: center; }
+.marquee { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; overflow: hidden; border-top: 1px solid rgba(217, 188, 134, .28); background: rgba(23, 13, 20, .55); }
+.mq-track { display: flex; width: max-content; animation: mq 38s linear infinite; }
+.mq-track span { display: inline-flex; align-items: center; gap: 28px; padding: 16px 0 16px 28px; font-family: var(--serif); font-size: .9375rem; letter-spacing: .06em; color: var(--moon-soft); white-space: nowrap; }
+.mq-track span::after { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+@keyframes mq { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .mq-track { animation: none; } }
+
+/* KING YOURSELF 선언 */
+.h-manifesto { display: grid; justify-items: center; gap: 22px; }
+.mf-k { font-size: .75rem; letter-spacing: .5em; padding-left: .5em; color: var(--gold-ink); max-width: none; }
+.mf-title { font-family: var(--serif); font-weight: 300; font-size: clamp(2rem, 4.2vw, 3.75rem); line-height: 1.32; letter-spacing: -0.03em; }
+.mf-text { color: var(--fg-soft); font-size: 1.0625rem; line-height: 1.9; max-width: none; }
+.mf-fun { margin-top: 10px; padding: 18px 28px; border-radius: 999px; border: 1px dashed var(--gold-ink); color: var(--fg-soft); line-height: 1.7; max-width: none; }
+.mf-fun b { color: var(--gold-ink); font-weight: 600; }
+
+/* 이런 순간에 (목록) */
+.h-moments { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: clamp(16px, 2vw, 32px); }
+.mo-head { grid-column: 1 / span 4; align-self: start; position: sticky; top: calc(var(--hd-h) + 40px); display: grid; gap: 20px; }
+.mo-list { grid-column: 6 / span 7; border-top: 1px solid var(--fg); }
+.mo-list li { display: grid; grid-template-columns: 3.4rem 1fr; gap: 6px 18px; padding: 22px 0 24px; border-bottom: 1px solid var(--line); transition: padding .35s var(--ease); }
+.mo-list li:hover { padding-left: 8px; }
+.mo-no { grid-row: span 2; font-family: var(--serif); font-weight: 200; font-size: 2rem; line-height: 1; color: var(--gold-ink); }
+.mo-list b { font-family: var(--serif); font-weight: 400; font-size: clamp(1.125rem, 1.5vw, 1.3125rem); letter-spacing: -0.015em; }
+.mo-list span:not(.mo-no) { font-size: .9375rem; line-height: 1.75; color: var(--fg-soft); text-wrap: pretty; }
+
+/* 현실적인 관계 코치: 원형 */
+.pm-row { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(14px, 2vw, 28px); max-width: 1280px; margin: 0 auto; }
+.pm-row::before { content: ""; position: absolute; left: 8%; right: 8%; top: calc(clamp(180px, 17vw, 236px) / 2); height: 1px; background: linear-gradient(90deg, transparent, rgba(217, 188, 134, .6), transparent); }
+.pm { display: grid; justify-items: center; gap: 22px; align-content: start; }
+.pm-circle { position: relative; width: clamp(180px, 17vw, 236px); aspect-ratio: 1; border-radius: 50%; display: grid; place-content: center; gap: 10px; text-align: center; padding: 18px;
+  border: 1px solid rgba(217, 188, 134, .6); background: radial-gradient(circle at 50% 35%, #3B2433 0%, var(--mulberry) 72%); box-shadow: 0 0 0 8px rgba(217, 188, 134, .06), 0 24px 50px -24px rgba(0, 0, 0, .6); }
+.pm-no { font-family: var(--serif); font-size: .875rem; letter-spacing: .2em; color: var(--gold); }
+.pm-circle h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.0625rem, 1.35vw, 1.25rem); line-height: 1.45; letter-spacing: -0.015em; }
+.pm-text { display: grid; gap: 12px; text-align: center; }
+.pm-text p { font-size: .9375rem; line-height: 1.8; color: var(--fg-soft); max-width: none; }
+.pm-text b { color: var(--fg); font-weight: 600; }
+.pm-text .pm-sub { padding-top: 12px; border-top: 1px solid var(--line); color: var(--gold); }
+
+/* 혼자 해결할 수 있다면 */
+.h-self { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: clamp(16px, 2vw, 32px); }
+.sf-head { grid-column: 1 / span 5; align-self: start; display: grid; gap: 20px; }
+.sf-body { grid-column: 7 / span 6; display: grid; gap: 22px; padding-top: 6px; }
+.sf-body p { font-size: 1.0625rem; line-height: 1.9; color: var(--fg-soft); max-width: none; }
+.sf-body .sf-em { font-family: var(--serif); font-size: clamp(1.1875rem, 1.6vw, 1.4375rem); line-height: 1.6; color: var(--fg); padding-left: 18px; border-left: 2px solid var(--gold-ink); }
+.sf-body .sf-last { font-weight: 600; color: var(--fg); }
+
+/* 대표 후기 */
+.h-voices { display: grid; justify-items: center; gap: 26px; }
+.h-voices .ky-label { justify-content: center; }
+.vf { display: grid; gap: 18px; justify-items: center; max-width: 900px; }
+.vf-stars { color: var(--gold); letter-spacing: .2em; font-size: .875rem; }
+.vf blockquote { font-family: var(--serif); font-weight: 300; font-size: clamp(1.5rem, 2.8vw, 2.375rem); line-height: 1.5; letter-spacing: -0.02em; }
+.vf blockquote::before, .vf blockquote::after { color: var(--gold); }
+.vf blockquote::before { content: "“"; }
+.vf blockquote::after { content: "”"; }
+.vf figcaption, .vf-more figcaption { font-size: .875rem; color: var(--fg-soft); }
+.vf-more { display: grid; grid-template-columns: 1fr 1fr; max-width: 980px; margin-top: 12px; border-top: 1px solid var(--line); }
+.vf-more figure { display: grid; gap: 10px; padding: 26px clamp(16px, 3vw, 40px); }
+.vf-more figure + figure { border-left: 1px solid var(--line); }
+.vf-more blockquote { font-family: var(--serif); font-size: 1.0625rem; line-height: 1.75; }
+
+/* 진행 방법 */
+.steps2 { display: grid; grid-template-columns: repeat(4, 1fr); max-width: 1240px; margin: 0 auto; border-top: 1px solid var(--fg); }
+.steps2 li { display: grid; gap: 10px; align-content: start; justify-items: center; padding: 30px clamp(14px, 2vw, 28px) 10px; text-align: center; }
+.steps2 li + li { border-left: 1px solid var(--line); }
+.s2-no { font-family: var(--serif); font-weight: 200; font-style: italic; font-size: clamp(2.75rem, 4vw, 3.75rem); line-height: 1; color: var(--gold-ink); }
+.steps2 b { font-family: var(--serif); font-weight: 400; font-size: 1.1875rem; }
+.steps2 span:not(.s2-no) { font-size: .9375rem; line-height: 1.75; color: var(--fg-soft); }
+
+/* KY 소개: 유쾌한 마무리 */
+.ky-letter .ky-turn { margin-top: 18px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--fg); font-family: var(--serif); font-size: 1.125rem; }
+
+/* 줄바꿈: 가운데 정렬 글만 균형 맞추고, 왼쪽 정렬 글은 자연스럽게 */
+.pr-desc, .care-list span, .cc > p, .cc-head .lead, .qa-lead, .st-body p, .hfaq details p { text-wrap: pretty; }
+
+@media (max-width: 1080px) {
+  .pm-row { grid-template-columns: 1fr 1fr; row-gap: 56px; }
+  .pm-row::before { display: none; }
+}
+@media (max-width: 860px) {
+  .marquee .mq-track span { font-size: .8125rem; padding: 12px 0 12px 20px; gap: 20px; }
+  .hero-ky .hero-copy { padding-bottom: 72px; }
+  .h-moments, .h-self { display: block; }
+  .mo-head { position: static; margin-bottom: 32px; }
+  .sf-head { margin-bottom: 32px; }
+  .pm-row { grid-template-columns: 1fr; row-gap: 52px; }
+  .pm-text br, .sf-body br, .vf br, .vf-more br, .steps2 br, .mf-text br { display: none; }
+  .vf-more { grid-template-columns: 1fr; }
+  .vf-more figure + figure { border-left: 0; border-top: 1px solid var(--line); }
+  .steps2 { grid-template-columns: 1fr 1fr; }
+  .steps2 li:nth-child(3) { border-left: 0; }
+  .steps2 li:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .mf-fun { border-radius: 18px; }
+}
+/* v12b: 제목 줄바꿈 다듬기 */
+.display .ln, .mf-title, .vf blockquote, .pm-circle h3 { text-wrap: balance; }
+.h-moments .display, .h-self .display { font-size: clamp(2rem, 3.3vw, 3.25rem); }
+.mo-head { grid-column: 1 / span 5; }
+.mo-list { grid-column: 7 / span 6; }
+@media (max-width: 860px) {
+  .hsec .display-l, .h-moments .display, .h-self .display { font-size: clamp(1.75rem, 7.4vw, 2.25rem); }
+  .mf-title { font-size: clamp(1.625rem, 7vw, 2.125rem); }
+}
