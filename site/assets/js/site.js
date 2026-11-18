@@ -55,13 +55,13 @@
   var progress = $(".progress i");
   var floatK = $(".float-kakao");
   var hero = $(".hero");
-  var ticking = false;
+  var ticking = false, onHome = true;
   function onScroll() {
     var y = window.scrollY;
-    header.classList.toggle("scrolled", y > 24);
+    header.classList.toggle("scrolled", y > 24 || !onHome);
     var max = document.documentElement.scrollHeight - window.innerHeight;
     progress.style.transform = "scaleX(" + (max > 0 ? y / max : 0) + ")";
-    floatK.classList.toggle("on", y > hero.offsetHeight * 0.7);
+    floatK.classList.toggle("on", !onHome || y > hero.offsetHeight * 0.7);
     ticking = false;
   }
   window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
@@ -79,6 +79,45 @@
   $$("a", mm).forEach(function (a) { a.addEventListener("click", function () { setMenu(false); }); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !mm.hidden) { setMenu(false); menuBtn.focus(); } });
 
+  /* ---------- 화면 전환: 메뉴를 누르면 해당 화면만 보여 준다 (#주소로 이동) ----------
+     JS가 없으면 모든 화면이 위에서 아래로 이어져 보여요. */
+  var views = $$("[data-view]");
+  var homeView = $('[data-view="home"]');
+  var navLinks = $$(".hd-nav a, .mm nav a");
+  var currentView = null;
+  function viewOf(id) { var el = id && document.getElementById(id); return el ? el.closest("[data-view]") : null; }
+  function setView(v) {
+    if (currentView === v) return false;
+    views.forEach(function (x) { x.hidden = x !== v; });
+    currentView = v; onHome = v === homeView;
+    root.dataset.screen = v.dataset.view;
+    navLinks.forEach(function (a) {
+      var on = viewOf(a.getAttribute("href").slice(1)) === v;
+      a.classList.toggle("is-current", on);
+      if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+    var firstTone = v.querySelector("[data-tone]");
+    root.dataset.tone = firstTone ? firstTone.dataset.tone : "night";
+    onScroll();
+    if (window.ScrollTrigger) requestAnimationFrame(function () { ScrollTrigger.refresh(); });
+    return true;
+  }
+  function routeView() {
+    var id = decodeURIComponent(location.hash.slice(1));
+    if (/^q-/.test(id)) { setView($('[data-view="faq"]')); return; }
+    var v = viewOf(id) || homeView;
+    var changed = setView(v);
+    var el = id && document.getElementById(id);
+    var first = v.querySelector(".ch");
+    if (el && el !== first && el !== v) {
+      requestAnimationFrame(function () { el.scrollIntoView({ behavior: changed || reduce ? "auto" : "smooth", block: "start" }); });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }
+  window.addEventListener("hashchange", routeView);
+  routeView();
+
   /* ---------- 밤 → 새벽: 화면 가운데에 걸린 장의 톤으로 배경이 바뀐다 ---------- */
   root.classList.add("tone-js");
   var toneSections = $$("[data-tone]");
@@ -88,7 +127,7 @@
     }, { rootMargin: "-48% 0px -48% 0px" });
     toneSections.forEach(function (s) { toneIO.observe(s); });
   }
-  root.dataset.tone = "night";
+  if (!currentView || onHome) root.dataset.tone = "night";
 
   /* ---------- 상담 스타일: 사진 교차 전환 + 글 바꾸기 ---------- */
   var tabs = $$('[role="tab"]');
@@ -176,8 +215,8 @@
       qaList.forEach(function (a) { a.classList.remove("is-on"); });
       document.body.style.overflow = "";
       qaOpenNow = false;
-      history.replaceState(null, "", location.pathname + location.search + (goTo || ""));
-      if (goTo) { var t = document.querySelector(goTo); if (t) t.scrollIntoView({ behavior: reduce ? "auto" : "smooth" }); }
+      history.replaceState(null, "", location.pathname + location.search + (goTo ? "" : "#faq"));
+      if (goTo) location.hash = goTo;
       else if (qaReturn && qaReturn.focus) qaReturn.focus({ preventScroll: true });
     };
     if (window.gsap && !reduce) gsap.to(qaPanel, { xPercent: 100, duration: .45, ease: "power2.in", onComplete: function () { gsap.set(qaPanel, { clearProps: "all" }); done(); } });
@@ -227,8 +266,8 @@
       var r = $('input[data-plan="' + row.dataset.pickPlan + '"]', form);
       if (r) { r.checked = true; clearErr("plan"); }
       goStep(0, false);
-      $("#apply").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-      setTimeout(function () { (r || $('input[name="style"]', form)).focus({ preventScroll: true }); }, reduce ? 0 : 700);
+      if (location.hash === "#apply") routeView(); else location.hash = "#apply";
+      setTimeout(function () { (r || $('input[name="style"]', form)).focus({ preventScroll: true }); }, reduce ? 0 : 500);
     });
   });
 
