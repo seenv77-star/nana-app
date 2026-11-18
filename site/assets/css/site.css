@@ -1195,3 +1195,12 @@ html.tone-js .qa-view:has(.qa:target):not(.is-open) { display: none; }
 }
 /* v13: 키워드 띠가 넓은 화면에서도 끊기지 않게 (같은 묶음 3개씩 두 번) */
 .mq-track { animation-duration: 110s; }
+
+/* v14: FAQ 상담 종류별 묶음 */
+.qa-groups { display: grid; gap: clamp(28px, 4vh, 44px); }
+.qa-group-h { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; font-family: var(--sans); font-size: .8125rem; font-weight: 600; letter-spacing: .06em; color: var(--accent); }
+.qa-group-h small { font-size: .75rem; font-weight: 500; letter-spacing: 0; color: var(--fg-soft); }
+.qa-groups .qa-row { grid-template-columns: 1fr 24px; padding: 18px 4px; }
+.qa-groups .qa-row-q { font-size: 1.125rem; }
+.qa-choose .qc-when { text-wrap: pretty; }
+.qa-lead, .qa-note, .qa-promise span, .qa-two span, .qa-timeline span { text-wrap: pretty; }

@@ -767,24 +767,75 @@
       </h2>
       <div class="faq-side">
         <p class="faq-hint rise">궁금한 질문을 누르면 자세한 안내가 열려요.</p>
-        <ol class="qa-index rise" role="list">
-        <li><a class="qa-row is-must" href="#q-process" data-qa="process"><span class="qa-row-cat">필독</span><span class="qa-row-q">상담은 어떻게 진행되나요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
-        <li><a class="qa-row is-must" href="#q-price" data-qa="price"><span class="qa-row-cat">필독</span><span class="qa-row-q">상담 종류와 비용이 궁금해요.</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
-        <li><a class="qa-row is-must" href="#q-care" data-qa="care"><span class="qa-row-cat">필독</span><span class="qa-row-q">VIP 집중관리는 무엇이 다른가요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
-        <li><a class="qa-row" href="#q-topics" data-qa="topics"><span class="qa-row-cat">상담 분야</span><span class="qa-row-q">꼭 재회 상담만 하나요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
-        <li><a class="qa-row" href="#q-hopeless" data-qa="hopeless"><span class="qa-row-cat">상담 안내</span><span class="qa-row-q">제 상황은 도저히 안 될 것 같아요.</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
-        <li><a class="qa-row" href="#q-urgent" data-qa="urgent"><span class="qa-row-cat">빠른 상담</span><span class="qa-row-q">급한 상황인데 빨리 상담받을 수 있나요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
-        <li><a class="qa-row" href="#q-vvip" data-qa="vvip"><span class="qa-row-cat">VVIP</span><span class="qa-row-q">VVIP 컨설팅은 무엇을 하나요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
-        <li><a class="qa-row" href="#q-private" data-qa="private"><span class="qa-row-cat">비공개</span><span class="qa-row-q">제 사연은 정말 비공개인가요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
-        <li><a class="qa-row" href="#q-choose" data-qa="choose"><span class="qa-row-cat">상담 고르기</span><span class="qa-row-q">어떤 상담을 골라야 할지 모르겠어요.</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
-        <li><a class="qa-row" href="#q-report" data-qa="report"><span class="qa-row-cat">사연 리포트</span><span class="qa-row-q">사연 리포트는 어떻게 받나요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
-        <li><a class="qa-row" href="#q-kakao" data-qa="kakao"><span class="qa-row-cat">카톡 상담</span><span class="qa-row-q">카톡 상담은 어떻게 진행되나요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
-                <li><a class="qa-row" href="#q-reunion" data-qa="reunion"><span class="qa-row-cat">상담 안내</span><span class="qa-row-q">재회할 수 있는지 알려 주시나요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
-        <li><a class="qa-row" href="#q-pay" data-qa="pay"><span class="qa-row-cat">결제</span><span class="qa-row-q">결제는 어떻게 하나요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
-        <li><a class="qa-row" href="#q-after" data-qa="after"><span class="qa-row-cat">상담 이후</span><span class="qa-row-q">상담이 끝난 뒤 더 궁금한 게 생기면요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
-        <li><a class="qa-row" href="#q-prepare" data-qa="prepare"><span class="qa-row-cat">사연 작성</span><span class="qa-row-q">미리 준비할 게 있나요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
-        <li><a class="qa-row" href="#q-cancel" data-qa="cancel"><span class="qa-row-cat">취소·환불</span><span class="qa-row-q">취소하거나 일정을 바꿀 수 있나요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
-        </ol>
+        <div class="qa-groups">
+          <section class="qa-group rise" aria-label="처음이라면">
+            <h3 class="qa-group-h">처음이라면<small>필독</small></h3>
+            <ol class="qa-index" role="list">
+              <li><a class="qa-row is-must" href="#q-process" data-qa="process"><span class="qa-row-q">상담은 어떻게 진행되나요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
+              <li><a class="qa-row is-must" href="#q-choose" data-qa="choose"><span class="qa-row-q">어떤 상담을 받아야 할지 모르겠어요.</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
+              <li><a class="qa-row is-must" href="#q-style" data-qa="style"><span class="qa-row-q">공감 상담과 현실 코칭은 무엇이 다른가요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
+              <li><a class="qa-row is-must" href="#q-price" data-qa="price"><span class="qa-row-q">상담 종류와 비용이 궁금해요.</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
+            </ol>
+          </section>
+          <section class="qa-group rise" aria-label="사연 리포트">
+            <h3 class="qa-group-h">사연 리포트</h3>
+            <ol class="qa-index" role="list">
+              <li><a class="qa-row" href="#q-report" data-qa="report"><span class="qa-row-q">사연 리포트는 어떻게 받나요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
+              <li><a class="qa-row" href="#q-workday" data-qa="workday"><span class="qa-row-q">‘영업일 기준 24시간’은 언제까지인가요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
+            </ol>
+          </section>
+          <section class="qa-group rise" aria-label="카톡 상담">
+            <h3 class="qa-group-h">카톡 상담</h3>
+            <ol class="qa-index" role="list">
+              <li><a class="qa-row" href="#q-kakao" data-qa="kakao"><span class="qa-row-q">카톡 상담은 어떻게 진행되나요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
+              <li><a class="qa-row" href="#q-kakao-call" data-qa="kakao-call"><span class="qa-row-q">카톡 상담과 전화 상담, 무엇이 다른가요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
+            </ol>
+          </section>
+          <section class="qa-group rise" aria-label="전화 상담">
+            <h3 class="qa-group-h">전화 상담</h3>
+            <ol class="qa-index" role="list">
+              <li><a class="qa-row" href="#q-call" data-qa="call"><span class="qa-row-q">전화 상담은 어떻게 진행되나요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
+              <li><a class="qa-row" href="#q-summary" data-qa="summary"><span class="qa-row-q">전화 상담 후 받는 성향 정리는 무엇인가요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
+            </ol>
+          </section>
+          <section class="qa-group rise" aria-label="VIP 집중관리">
+            <h3 class="qa-group-h">VIP 집중관리</h3>
+            <ol class="qa-index" role="list">
+              <li><a class="qa-row" href="#q-care" data-qa="care"><span class="qa-row-q">VIP 집중관리는 무엇이 다른가요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
+              <li><a class="qa-row" href="#q-care-use" data-qa="care-use"><span class="qa-row-q">30일 동안 카톡과 전화는 어떻게 쓰나요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
+            </ol>
+          </section>
+          <section class="qa-group rise" aria-label="VVIP 컨설팅">
+            <h3 class="qa-group-h">VVIP 컨설팅</h3>
+            <ol class="qa-index" role="list">
+              <li><a class="qa-row" href="#q-vvip" data-qa="vvip"><span class="qa-row-q">VVIP 컨설팅은 무엇을 하나요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
+            </ol>
+          </section>
+          <section class="qa-group rise" aria-label="재회·관계 고민">
+            <h3 class="qa-group-h">재회·관계 고민</h3>
+            <ol class="qa-index" role="list">
+              <li><a class="qa-row" href="#q-topics" data-qa="topics"><span class="qa-row-q">꼭 재회 상담만 하나요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
+              <li><a class="qa-row" href="#q-reunion" data-qa="reunion"><span class="qa-row-q">재회 가능성은 어떻게 판단하나요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
+              <li><a class="qa-row" href="#q-hopeless" data-qa="hopeless"><span class="qa-row-q">제 상황은 도저히 안 될 것 같아요.</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
+            </ol>
+          </section>
+          <section class="qa-group rise" aria-label="신청·결제·취소">
+            <h3 class="qa-group-h">신청·결제·취소</h3>
+            <ol class="qa-index" role="list">
+              <li><a class="qa-row" href="#q-prepare" data-qa="prepare"><span class="qa-row-q">사연은 어떻게 쓰면 되나요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
+              <li><a class="qa-row" href="#q-urgent" data-qa="urgent"><span class="qa-row-q">급한 상황인데 빨리 상담받을 수 있나요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
+              <li><a class="qa-row" href="#q-pay" data-qa="pay"><span class="qa-row-q">결제는 어떻게 하나요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
+              <li><a class="qa-row" href="#q-cancel" data-qa="cancel"><span class="qa-row-q">취소하거나 일정을 바꿀 수 있나요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
+            </ol>
+          </section>
+          <section class="qa-group rise" aria-label="비밀 보장·상담 이후">
+            <h3 class="qa-group-h">비밀 보장·상담 이후</h3>
+            <ol class="qa-index" role="list">
+              <li><a class="qa-row" href="#q-private" data-qa="private"><span class="qa-row-q">제 사연은 정말 비공개인가요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
+              <li><a class="qa-row" href="#q-after" data-qa="after"><span class="qa-row-q">상담이 끝난 뒤 더 궁금한 게 생기면요?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a></li>
+            </ol>
+          </section>
+        </div>
       </div>
     </div>
   </section>
@@ -1000,22 +1051,49 @@
     <div class="qa-scroll" data-qa-scroll>
 
       <article class="qa" id="q-process" tabindex="-1" aria-labelledby="q-process-t">
-        <p class="qa-cat"><span class="must">필독</span>상담 안내</p>
-        <h3 class="qa-title" id="q-process-t">상담은 어떻게<br>진행되나요?</h3>
-        <p class="qa-lead">사연을 먼저 작성하고, <br>카카오톡 채널에서 상담 일정을 예약한 뒤 닉네임을 남기면 신청이 끝나요. <br>이후 과정은 이렇게 이어져요.</p>
+        <p class="qa-cat"><span class="must">필독</span>처음이라면</p>
+        <h3 class="qa-title" id="q-process-t">상담은 어떻게 <br>진행되나요?</h3>
+        <p class="qa-lead">신청부터 상담까지 네 단계로 이어져요. <br>신청만으로는 비용이 나가지 않아요.</p>
         <ol class="qa-timeline">
-          <li><b>사연 작성 후 상담 신청</b><span>홈페이지에서 사연을 비공개로 작성해요. <br>자세할수록 정확하게 볼 수 있어요.</span></li>
-          <li><b>카카오톡 채널에서 상담 일정 예약 후, 닉네임 남기기</b><span>원하는 상담 일정을 예약하고, 신청할 때 쓴 닉네임을 남겨 주세요.</span></li>
-          <li><b>결제 안내</b><span>정예나 코치가 예약과 사연을 확인한 뒤 결제 방법을 안내해 드려요.</span></li>
-          <li><b>상담</b><span>약속한 시간에 공감 상담이나 현실 코칭으로 이야기를 나눠요.</span></li>
-          <li><b>성향 정리 받기</b><span>전화 상담이 끝나면 간단한 성향 파악과 느낀 점을 정리해 보내 드려요.</span></li>
+          <li><b>사연 작성 후 상담 신청</b><span>신청서에서 상담 종류와 스타일을 고르고, <br>사연을 비공개로 적어요. <br>실명 없이 닉네임으로 신청할 수 있어요.</span></li>
+          <li><b>카카오톡 채널에서 상담 일정 예약 후, 닉네임 남기기</b><span>원하는 날짜와 시간을 예약하고, <br>신청서에 쓴 닉네임을 남겨 주세요. <br>닉네임으로 사연을 찾아 연결해요.</span></li>
+          <li><b>결제 안내</b><span>정예나 코치가 예약과 사연을 확인한 뒤, <br>카카오톡 채널로 결제 방법을 안내해 드려요.</span></li>
+          <li><b>상담</b><span>예약한 시간에 카톡이나 전화로 이야기를 나눠요. <br>사연 리포트는 영업일 기준 24시간 이내에 글로 답변해요.</span></li>
+          <li><b>성향 정리 받기</b><span>전화 상담이 끝나면 간단한 성향 파악과 코치가 느낀 점을 정리해 보내 드려요.</span></li>
         </ol>
+        <p class="qa-note">코치가 사연을 미리 읽고 상담에 들어가요. <br>상황을 처음부터 다시 설명하지 않아도, <br>바로 본론부터 이야기할 수 있어요.</p>
+      </article>
+
+      <article class="qa" id="q-choose" tabindex="-1" aria-labelledby="q-choose-t">
+        <p class="qa-cat"><span class="must">필독</span>처음이라면</p>
+        <h3 class="qa-title" id="q-choose-t">어떤 상담을 받아야 할지 <br>모르겠어요</h3>
+        <p class="qa-lead">고민의 크기와 편한 대화 방식, 두 가지만 보면 쉬워요. <br>지금 나와 가장 가까운 것을 누르면, <br>신청서에 바로 선택돼요.</p>
+        <div class="qa-choose">
+          <button type="button" data-pick-plan="report"><span class="qc-when">아직 말로 꺼내기 어렵고, 글로 먼저 정리받고 싶어요</span><b>사연 리포트</b><span class="qc-price">15,000원</span></button>
+          <button type="button" data-pick-plan="kakao30"><span class="qc-when">통화는 부담스럽고, 궁금한 게 한두 가지예요</span><b>카톡 상담 30분</b><span class="qc-price">39,000원</span></button>
+          <button type="button" data-pick-plan="kakao60"><span class="qc-when">글이 편하지만, 관계 전체를 충분히 이야기하고 싶어요</span><b>카톡 상담 60분</b><span class="qc-price">69,000원</span></button>
+          <button type="button" data-pick-plan="call30"><span class="qc-when">고민 한 가지를 목소리로 빠르게 확인하고 싶어요</span><b>전화 상담 30분</b><span class="qc-price">59,000원</span></button>
+          <button type="button" data-pick-plan="call60" class="is-rec"><span class="qc-when">처음이라 할 이야기가 많아요</span><b>전화 상담 60분</b><span class="qc-price">99,000원</span></button>
+          <button type="button" data-pick-plan="care30"><span class="qc-when">연락이 오가는 30일 동안, 그때그때 판단받고 싶어요</span><b>VIP 집중관리</b><span class="qc-price">490,000원</span></button>
+        </div>
+        <p class="qa-note">그래도 고르기 어렵다면 전화 상담 60분을 권해요. <br>두 사람의 성향과 지금까지의 흐름을 함께 봐야 해서, <br>첫 상담은 시간이 넉넉할 때 가장 정확해요.</p>
+      </article>
+
+      <article class="qa" id="q-style" tabindex="-1" aria-labelledby="q-style-t">
+        <p class="qa-cat"><span class="must">필독</span>처음이라면</p>
+        <h3 class="qa-title" id="q-style-t">공감 상담과 현실 코칭은 <br>무엇이 다른가요?</h3>
+        <p class="qa-lead">무엇을 이야기하느냐보다, <br>어떤 방식으로 대화하고 싶은지의 차이예요. <br>두 스타일 모두 가격은 같고, 신청서 첫 단계에서 골라요.</p>
+        <div class="qa-two">
+          <div><b>공감 상담</b><span>마음껏 털어놓고, 충분히 공감받고 싶을 때. <br>말을 끊지 않고 판단하지 않고 끝까지 들어요. <br>마음이 가라앉은 뒤에 다음 걸음을 함께 봐요.</span></div>
+          <div><b>현실 코칭</b><span>위로보다, 진짜 달라지고 싶을 때. <br>지금 상황을 있는 그대로 보고, 내 잘못이 있다면 정확히 짚어요. <br>내가 바꿀 행동을 구체적으로 정해 드려요.</span></div>
+        </div>
+        <p class="qa-note">고르기 어렵다면, 지금 가장 필요한 게 위로인지 답인지 떠올려 보세요. <br>위로가 먼저라면 공감 상담, <br>다음 행동이 궁금하다면 현실 코칭이에요.</p>
       </article>
 
       <article class="qa" id="q-price" tabindex="-1" aria-labelledby="q-price-t">
-        <p class="qa-cat"><span class="must">필독</span>비용</p>
-        <h3 class="qa-title" id="q-price-t">상담 종류와 비용이<br>궁금해요</h3>
-        <p class="qa-lead">모두 오픈 이벤트 할인가예요. <br>상담 스타일(공감 상담, 현실 코칭)에 따라 가격이 달라지지 않아요.</p>
+        <p class="qa-cat"><span class="must">필독</span>처음이라면</p>
+        <h3 class="qa-title" id="q-price-t">상담 종류와 비용이 <br>궁금해요</h3>
+        <p class="qa-lead">모두 12월까지 적용되는 오픈 이벤트 할인가예요. <br>상담 스타일(공감 상담, 현실 코칭)에 따라 가격이 달라지지 않아요.</p>
         <table class="qa-table">
           <caption class="sr-only">상담 종류별 가격</caption>
           <thead><tr><th scope="col">상담</th><th scope="col">방식</th><th scope="col">정가</th><th scope="col">할인가</th></tr></thead>
@@ -1029,25 +1107,140 @@
             <tr><th scope="row">VVIP 컨설팅</th><td>1:1 대면, 헤어숍·쇼핑 동행</td><td>-</td><td>추후 오픈</td></tr>
           </tbody>
         </table>
-        <p class="qa-note">오픈 이벤트가는 12월까지 적용돼요.</p>
+        <p class="qa-note">결제는 사연과 예약을 확인한 뒤에 안내해 드려요. <br>VIP 집중관리는 통화 220분만 전화 상담 정가로 계산해도 55만 원이에요.</p>
+      </article>
+
+      <article class="qa" id="q-report" tabindex="-1" aria-labelledby="q-report-t">
+        <p class="qa-cat">사연 리포트</p>
+        <h3 class="qa-title" id="q-report-t">사연 리포트는 <br>어떻게 받나요?</h3>
+        <p class="qa-lead">보내 주신 사연을 정예나 코치가 직접 읽고, <br>글로 한 번 답장해 드리는 1회성 상담이에요.</p>
+        <dl class="qa-facts">
+          <div><dt>15,000원</dt><dd>사연 리포트 가격</dd></div>
+          <div><dt>24시간</dt><dd>영업일 기준 이내 답변</dd></div>
+          <div><dt>1회</dt><dd>글로 받는 답변</dd></div>
+        </dl>
+        <ol class="qa-timeline qa-timeline-sm">
+          <li><b>신청서에서 ‘사연 리포트’를 고르고 사연 작성</b><span>자세히 적을수록 답변도 구체적이에요.</span></li>
+          <li><b>카카오톡 채널에 닉네임 남기기</b><span>신청할 때 쓴 닉네임을 남겨 주세요.</span></li>
+          <li><b>결제 안내</b><span>사연을 확인한 뒤 결제 방법을 안내해 드려요.</span></li>
+          <li><b>답변 받기</b><span>결제가 확인된 때부터 영업일 기준 24시간 이내에, <br>카카오톡 채널로 답변을 보내 드려요.</span></li>
+        </ol>
+        <ul class="qa-checks">
+          <li>지금 관계가 어디쯤 와 있는지</li>
+          <li>상대의 마음과 두 사람 관계의 흐름</li>
+          <li>지금 해야 할 행동과 하지 말아야 할 행동</li>
+        </ul>
+        <p class="qa-note">1회성 답변이라, 답장을 받은 뒤 이어지는 질문은 받지 않아요. <br>더 이야기하고 싶다면 카톡 상담이나 전화 상담을 신청해 주세요. <br>사연을 보낸 뒤에는 환불이 불가해요.</p>
+      </article>
+
+      <article class="qa" id="q-workday" tabindex="-1" aria-labelledby="q-workday-t">
+        <p class="qa-cat">사연 리포트</p>
+        <h3 class="qa-title" id="q-workday-t">‘영업일 기준 24시간’은 <br>언제까지인가요?</h3>
+        <p class="qa-lead">주말과 공휴일을 빼고, <br>평일만 세어 24시간 이내에 답변한다는 뜻이에요.</p>
+        <ul class="qa-promise">
+          <li><b>화요일 저녁 8시 접수</b><span>수요일 저녁 8시까지 답변</span></li>
+          <li><b>금요일 저녁 8시 접수</b><span>주말을 건너뛰고, 다음 주 월요일 저녁 8시까지 답변</span></li>
+          <li><b>토요일·일요일 접수</b><span>월요일부터 세어 24시간 이내에 답변</span></li>
+          <li><b>공휴일 앞날 접수</b><span>공휴일은 빼고 다음 평일까지 이어서 세요</span></li>
+        </ul>
+        <p class="qa-note">접수 시점은 결제가 확인된 때예요.</p>
+      </article>
+
+      <article class="qa" id="q-kakao" tabindex="-1" aria-labelledby="q-kakao-t">
+        <p class="qa-cat">카톡 상담</p>
+        <h3 class="qa-title" id="q-kakao-t">카톡 상담은 <br>어떻게 진행되나요?</h3>
+        <p class="qa-lead">예약한 시간에 카카오톡 1:1 채팅으로, <br>정예나 코치와 실시간으로 대화해요. <br>목소리를 내기 어려운 상황이거나 글이 편한 분께 맞아요.</p>
+        <ol class="qa-timeline qa-timeline-sm">
+          <li><b>예약 시간에 대화 시작</b><span>코치가 사연을 미리 읽고 들어가서, <br>상황을 처음부터 다시 설명하지 않아도 돼요.</span></li>
+          <li><b>실시간으로 주고받기</b><span>상대와 나눈 대화나 받은 메시지가 있다면, <br>그 자리에서 함께 보며 이야기해요.</span></li>
+          <li><b>마무리</b><span>끝나기 전에 오늘 이야기의 핵심과 다음 행동을 정리해요.</span></li>
+        </ol>
+        <div class="qa-two">
+          <div><b>카톡 상담 30분</b><p><s>50,000원</s> 39,000원</p><span>한두 가지 고민을 빠르게</span></div>
+          <div><b>카톡 상담 60분</b><p><s>90,000원</s> 69,000원</p><span>관계의 흐름까지 충분히</span></div>
+        </div>
+        <p class="qa-note">대화가 채팅으로 남아서, 상담이 끝난 뒤에도 다시 읽어 볼 수 있어요. <br>예약 시간에 늦으면 남은 시간 동안만 상담이 진행돼요.</p>
+      </article>
+
+      <article class="qa" id="q-kakao-call" tabindex="-1" aria-labelledby="q-kakao-call-t">
+        <p class="qa-cat">카톡 상담</p>
+        <h3 class="qa-title" id="q-kakao-call-t">카톡 상담과 전화 상담, <br>무엇이 다른가요?</h3>
+        <p class="qa-lead">상담의 깊이는 같아요. <br>다른 것은 대화 방식과, <br>같은 시간 안에 나눌 수 있는 이야기의 양이에요.</p>
+        <div class="qa-two">
+          <div><b>카톡 상담</b><span>글로 차분하게. <br>주변에 사람이 있어 통화가 어렵거나, <br>생각을 정리하며 말하고 싶을 때 맞아요. <br>대화가 채팅으로 남아요.</span></div>
+          <div><b>전화 상담</b><span>목소리로 깊이. <br>같은 시간에 더 많은 이야기를 나눌 수 있고, <br>말투에 담긴 감정까지 함께 봐요. <br>상담 후 성향 정리를 보내 드려요.</span></div>
+        </div>
+        <p class="qa-note">처음이고 할 이야기가 많다면 전화 상담 60분을 권해요.</p>
+      </article>
+
+      <article class="qa" id="q-call" tabindex="-1" aria-labelledby="q-call-t">
+        <p class="qa-cat">전화 상담</p>
+        <h3 class="qa-title" id="q-call-t">전화 상담은 <br>어떻게 진행되나요?</h3>
+        <p class="qa-lead">예약한 시간에 정예나 코치와 1:1로 통화해요. <br>미리 읽은 사연을 바탕으로, <br>두 사람의 성향과 관계의 흐름을 함께 짚어요.</p>
+        <ol class="qa-timeline qa-timeline-sm">
+          <li><b>예약 시간에 통화 시작</b><span>신청할 때 남겨 주신 연락처로 연결해요.</span></li>
+          <li><b>사연을 바탕으로 깊이 이야기하기</b><span>공감 상담이라면 충분히 듣고, <br>현실 코칭이라면 지금 할 행동을 구체적으로 정해요.</span></li>
+          <li><b>성향 정리 받기</b><span>통화가 끝나면 간단한 성향 파악과 코치가 느낀 점을 정리해 보내 드려요.</span></li>
+        </ol>
+        <div class="qa-two">
+          <div><b>전화 상담 30분</b><p><s>80,000원</s> 59,000원</p><span>고민 한 가지를 빠르게</span></div>
+          <div><b>전화 상담 60분</b><p><s>150,000원</s> 99,000원</p><span>처음이라면 이 상담. <br>관계 전체의 흐름과 방향까지</span></div>
+        </div>
+        <p class="qa-note">조용하고 편하게 이야기할 수 있는 곳에서 받아 주세요. <br>예약 시간에 늦으면 남은 시간 동안만 상담이 진행돼요. <br>상담 내용의 녹음과 외부 공유는 삼가 주세요.</p>
+      </article>
+
+      <article class="qa" id="q-summary" tabindex="-1" aria-labelledby="q-summary-t">
+        <p class="qa-cat">전화 상담</p>
+        <h3 class="qa-title" id="q-summary-t">전화 상담 후 받는 <br>성향 정리는 무엇인가요?</h3>
+        <p class="qa-lead">전화 상담이 끝난 뒤 보내 드리는 짧은 정리예요. <br>통화로 들은 이야기를 두고두고 다시 꺼내 볼 수 있어요.</p>
+        <ul class="qa-checks">
+          <li>나의 연애 성향</li>
+          <li>상대의 성향과 두 사람이 자주 부딪히는 지점</li>
+          <li>상담하며 코치가 느낀 점</li>
+        </ul>
+        <p class="qa-note">반복해서 상담받는다면 성향 정리는 3개월에 한 번 보내 드려요. <br>VIP 집중관리는 30일이 끝날 때 마무리 정리를 따로 보내 드려요.</p>
       </article>
 
       <article class="qa" id="q-care" tabindex="-1" aria-labelledby="q-care-t">
-        <p class="qa-cat"><span class="must">필독</span>VIP 집중관리</p>
-        <h3 class="qa-title" id="q-care-t">VIP 집중관리는<br>무엇이 다른가요?</h3>
+        <p class="qa-cat">VIP 집중관리</p>
+        <h3 class="qa-title" id="q-care-t">VIP 집중관리는 <br>무엇이 다른가요?</h3>
         <p class="qa-lead">단건 상담이 ‘앞으로 어떻게 할지’를 설계한다면, <br>VIP 집중관리는 ‘실제로 해 나가는 30일’을 곁에서 함께해요. <br>그리고 관계뿐 아니라 나의 성장까지 다뤄요.</p>
         <ul class="qa-promise">
-          <li><b>30일 전담 카톡</b><span>오전 9시부터 밤 10시까지, 평균 1시간 이내 답변을 목표로 해요.</span></li>
+          <li><b>30일 전담 카톡</b><span>궁금한 게 생길 때마다 다시 예약할 필요가 없어요.</span></li>
           <li><b>220분 전화 제공</b><span>필요한 순간에 나눠서 깊이 통화해요.</span></li>
           <li><b>나를 위한 성장 코칭</b><span>자존감, 매력, 사랑하는 방식까지 함께 돌아봐요.</span></li>
-          <li><b>30일 마무리 정리</b><span>달라진 것과 앞으로의 방향을 정리해 보내 드려요.</span></li>
+          <li><b>30일 마무리 정리</b><span>한 달 동안 달라진 것과 나의 성향, <br>앞으로의 방향을 정리해 보내 드려요.</span></li>
         </ul>
         <p class="qa-note">정가 990,000원, 12월까지 오픈 할인가 490,000원. <br>예약제로 운영하고, 시작한 뒤에는 환불이 불가해요.</p>
       </article>
 
+      <article class="qa" id="q-care-use" tabindex="-1" aria-labelledby="q-care-use-t">
+        <p class="qa-cat">VIP 집중관리</p>
+        <h3 class="qa-title" id="q-care-use-t">30일 동안 카톡과 전화는 <br>어떻게 쓰나요?</h3>
+        <p class="qa-lead">30일 동안은 따로 예약하지 않아도, <br>궁금한 게 생길 때마다 바로 물어볼 수 있어요.</p>
+        <ul class="qa-promise">
+          <li><b>전담 카톡</b><span>오전 9시부터 밤 10시까지, 평균 1시간 이내 답변을 목표로 해요. <br>상대에게 보낼 메시지, 받은 답장의 의미처럼 그때그때 판단이 필요할 때 써요.</span></li>
+          <li><b>밤 10시 이후</b><span>남겨 두시면 다음 날 오전 9시부터 순서대로 답변해요.</span></li>
+          <li><b>220분 전화</b><span>복잡한 상황을 정리하거나 중요한 결정을 앞두었을 때, <br>필요한 만큼 나눠서 통화해요. <br>통화는 미리 시간을 맞춰 진행해요.</span></li>
+        </ul>
+        <p class="qa-note">시작일 1일 전까지 취소하면 전액 환불돼요. <br>시작한 뒤에는 환불이 불가해요.</p>
+      </article>
+
+      <article class="qa" id="q-vvip" tabindex="-1" aria-labelledby="q-vvip-t">
+        <p class="qa-cat">VVIP 컨설팅</p>
+        <h3 class="qa-title" id="q-vvip-t">VVIP 컨설팅은 <br>무엇을 하나요?</h3>
+        <p class="qa-lead">정예나 코치가 하루를 온전히 함께하며, <br>첫인상과 매력을 처음부터 다시 설계하는 1:1 대면 컨설팅이에요. <br>지금은 오픈을 준비하고 있어요.</p>
+        <ul class="qa-promise">
+          <li><b>1:1 진단</b><span>성격의 장단점과 연애 패턴을 보고, 업그레이드할 부분을 찾아요.</span></li>
+          <li><b>헤어숍·쇼핑 동행</b><span>어울리는 헤어와 옷차림을 현장에서 함께 정해요.</span></li>
+          <li><b>단계별 행동 변화</b><span>보이는 나, 말하는 나, 다가가는 나로 나눠 실천할 것을 정리해요.</span></li>
+        </ul>
+        <p class="qa-note">수도권에서 대면으로 진행해요. <br>가격과 일정은 오픈 때 안내해 드리고, <br>신청서에서 ‘VVIP 컨설팅’을 고르면 오픈 소식을 먼저 받을 수 있어요.</p>
+      </article>
+
       <article class="qa" id="q-topics" tabindex="-1" aria-labelledby="q-topics-t">
-        <p class="qa-cat">상담 분야</p>
-        <h3 class="qa-title" id="q-topics-t">꼭 재회 상담만<br>하나요?</h3>
+        <p class="qa-cat">재회·관계 고민</p>
+        <h3 class="qa-title" id="q-topics-t">꼭 재회 상담만 <br>하나요?</h3>
         <p class="qa-lead">아니요. <br>KY는 재회를 포기시키는 곳도, 무조건 재회시키는 곳도 아니에요. <br>지금 나에게 맞는 선택을 함께 찾아요.</p>
         <ul class="qa-checks">
           <li>이별 위기: 관계를 이어 갈지 정리할지</li>
@@ -1058,117 +1251,31 @@
         </ul>
       </article>
 
-      <article class="qa" id="q-hopeless" tabindex="-1" aria-labelledby="q-hopeless-t">
-        <p class="qa-cat">상담 안내</p>
-        <h3 class="qa-title" id="q-hopeless-t">제 상황은 도저히<br>안 될 것 같아요</h3>
-        <p class="qa-lead">그렇게 느끼는 분이 정말 많아요. <br>혼자 볼 때는 끝난 것 같던 관계도, <br>두 사람의 성향과 흐름을 함께 보면 아직 남아 있는 선택지가 보이기도 해요.</p>
-        <div class="qa-two">
-          <div><b>가능성이 남아 있다면</b><span>무엇을 하고, 무엇을 하지 말아야 하는지 구체적으로 알려 드려요.</span></div>
-          <div><b>정리가 나은 관계라면</b><span>그 이유를 솔직하게 말씀드리고, 내가 다시 일어설 방향을 함께 찾아요.</span></div>
-        </div>
-        <p class="qa-note">이별 원인과 상대방의 심리, 관계의 흐름을 10점 만점으로 진단하고, <br>재회 가능성이 2점 이하로 판단되면 상담을 진행하지 않아요.</p>
-      </article>
-
-      <article class="qa" id="q-urgent" tabindex="-1" aria-labelledby="q-urgent-t">
-        <p class="qa-cat">빠른 상담</p>
-        <h3 class="qa-title" id="q-urgent-t">급한 상황인데 빨리<br>상담받을 수 있나요?</h3>
-        <p class="qa-lead">KY는 예약제로 운영해요. <br>사연을 작성하고 카카오톡 채널에 남겨 주시면, <br>가장 빠른 상담 시간을 안내해 드려요.</p>
-        <p class="qa-note">연락이 자주 오가며 그때그때 판단이 필요한 상황이라면 VIP 집중관리가 더 맞아요. <br>30일 동안 전담 카톡으로 오전 9시부터 밤 10시까지, <br>평균 1시간 이내 답변을 목표로 해요.</p>
-      </article>
-
-      <article class="qa" id="q-vvip" tabindex="-1" aria-labelledby="q-vvip-t">
-        <p class="qa-cat">VVIP</p>
-        <h3 class="qa-title" id="q-vvip-t">VVIP 컨설팅은<br>무엇을 하나요?</h3>
-        <p class="qa-lead">정예나 코치가 하루를 온전히 함께하며, <br>첫인상과 매력을 처음부터 다시 설계하는 1:1 대면 컨설팅이에요. <br>지금은 오픈을 준비하고 있어요.</p>
-        <ul class="qa-promise">
-          <li><b>1:1 진단</b><span>성격의 장단점과 연애 패턴을 보고, 업그레이드할 부분을 찾아요.</span></li>
-          <li><b>헤어숍·쇼핑 동행</b><span>어울리는 헤어와 옷차림을 현장에서 함께 정해요.</span></li>
-          <li><b>단계별 행동 변화</b><span>보이는 나, 말하는 나, 다가가는 나로 나눠 실천할 것을 정리해요.</span></li>
-        </ul>
-        <p class="qa-note">수도권에서 대면으로 진행해요. <br>가격과 일정은 오픈 때 안내해 드리고, <br>신청서에서 'VVIP 컨설팅'을 고르면 오픈 소식을 먼저 받을 수 있어요.</p>
-      </article>
-
-      <article class="qa" id="q-private" tabindex="-1" aria-labelledby="q-private-t">
-        <p class="qa-cat">비공개</p>
-        <h3 class="qa-title" id="q-private-t">제 사연은 정말<br>비공개인가요?</h3>
-        <p class="qa-lead">네. <br>꺼내기 어려운 이야기일수록 안전해야 하니까요. <br>KY는 세 가지를 지켜요.</p>
-        <ul class="qa-promise">
-          <li><b>코치만 읽어요</b><span>작성한 사연은 정예나 코치 외에 다른 사람에게 공개되지 않아요.</span></li>
-          <li><b>닉네임이면 충분해요</b><span>실명 없이 닉네임으로 신청할 수 있어요.</span></li>
-          <li><b>상담 내용은 비밀로</b><span>상담에서 나눈 이야기는 외부에 공개하거나 다른 사람에게 전달하지 않아요.</span></li>
-          <li><b>상담에만 써요</b><span>사연은 상담 말고는 어디에도 쓰지 않고, <br>마지막 상담일로부터 1년간 보관한 뒤 파기해요. <br>원하시면 언제든 바로 삭제해 드려요.</span></li>
-        </ul>
-      </article>
-
-      <article class="qa" id="q-choose" tabindex="-1" aria-labelledby="q-choose-t">
-        <p class="qa-cat">상담 고르기</p>
-        <h3 class="qa-title" id="q-choose-t">어떤 상담을 골라야 할지<br>모르겠어요</h3>
-        <p class="qa-lead">지금 내 상황과 가장 가까운 것을 골라 보세요. <br>누르면 신청서에 바로 선택돼요.</p>
-        <div class="qa-choose">
-          <button type="button" data-pick-plan="report"><span class="qc-when">한 번의 글 답변이면 충분해요</span><b>사연 리포트</b><span class="qc-price">15,000원</span></button>
-          <button type="button" data-pick-plan="kakao60"><span class="qc-when">통화는 부담스럽지만 충분히 이야기하고 싶어요</span><b>카톡 상담 60분</b><span class="qc-price">69,000원</span></button>
-          <button type="button" data-pick-plan="call60" class="is-rec"><span class="qc-when">처음이라 할 이야기가 많아요</span><b>전화 상담 60분</b><span class="qc-price">99,000원</span></button>
-          <button type="button" data-pick-plan="care30"><span class="qc-when">30일 동안 곁에서 판단받고, 나까지 성장하고 싶어요</span><b>VIP 집중관리</b><span class="qc-price">490,000원</span></button>
-        </div>
-      </article>
-
-      <article class="qa" id="q-report" tabindex="-1" aria-labelledby="q-report-t">
-        <p class="qa-cat">사연 리포트</p>
-        <h3 class="qa-title" id="q-report-t">사연 리포트는<br>어떻게 받나요?</h3>
-        <p class="qa-lead">보내 주신 사연을 읽고 글로 한 번 답장해 드리는 1회성 상담이에요.</p>
-        <dl class="qa-facts">
-          <div><dt>15,000원</dt><dd>사연 리포트 가격</dd></div>
-          <div><dt>24시간</dt><dd>영업일 기준 이내에 답변</dd></div>
-          <div><dt>1회</dt><dd>글로 주고받는 답변</dd></div>
-        </dl>
-        <p class="qa-note">이어서 더 이야기하고 싶다면 카톡 상담이나 전화 상담을 신청해 주세요.</p>
-      </article>
-
-      <article class="qa" id="q-kakao" tabindex="-1" aria-labelledby="q-kakao-t">
-        <p class="qa-cat">카톡 상담</p>
-        <h3 class="qa-title" id="q-kakao-t">카톡 상담은<br>어떻게 진행되나요?</h3>
-        <p class="qa-lead">예약한 시간에 카카오톡 1:1 채팅으로 실시간 대화해요. <br>목소리를 내기 어려운 상황이나 글이 편한 분께 맞아요.</p>
-        <div class="qa-two">
-          <div><b>카톡 상담 30분</b><p><s>50,000원</s> 39,000원</p><span>한두 가지 고민을 빠르게</span></div>
-          <div><b>카톡 상담 60분</b><p><s>90,000원</s> 69,000원</p><span>관계의 흐름까지 충분히</span></div>
-        </div>
-      </article>
-
       <article class="qa" id="q-reunion" tabindex="-1" aria-labelledby="q-reunion-t">
-        <p class="qa-cat">상담 안내</p>
-        <h3 class="qa-title" id="q-reunion-t">재회할 수 있는지<br>알려 주시나요?</h3>
-        <p class="qa-lead">결과를 장담하는 상담은 하지 않아요. <br>대신 지금 상황을 있는 그대로 보고, <br>무엇을 해야 하고 무엇을 하지 말아야 하는지 구체적으로 알려 드려요.</p>
+        <p class="qa-cat">재회·관계 고민</p>
+        <h3 class="qa-title" id="q-reunion-t">재회 가능성은 <br>어떻게 판단하나요?</h3>
+        <p class="qa-lead">이별 원인과 상대방의 심리, 관계의 흐름을 함께 보고, <br>10점 만점으로 진단해요. <br>가능성이 없는 재회에 희망을 팔지 않기 위해서예요.</p>
+        <div class="qa-two">
+          <div><b>가능성이 남아 있다면</b><span>그 가능성을 최대한 끌어올릴 전략을 함께 만들어요. <br>연락 타이밍, 말투, 첫 반응까지 두 사람의 성향에 맞춰 정해요.</span></div>
+          <div><b>2점 이하로 판단되면</b><span>상담을 진행하지 않아요. <br>그 이유를 솔직하게 말씀드려요.</span></div>
+        </div>
+      </article>
+
+      <article class="qa" id="q-hopeless" tabindex="-1" aria-labelledby="q-hopeless-t">
+        <p class="qa-cat">재회·관계 고민</p>
+        <h3 class="qa-title" id="q-hopeless-t">제 상황은 도저히 <br>안 될 것 같아요</h3>
+        <p class="qa-lead">그렇게 느끼는 분이 정말 많아요. <br>혼자 볼 때는 끝난 것 같던 관계도, <br>두 사람의 성향과 흐름을 함께 보면 아직 남은 선택지가 보이기도 해요.</p>
         <div class="qa-two">
           <div><b>가능성을 높이는 행동</b><span>두 사람의 성향에 맞춘 연락 타이밍, 말투, 첫 반응</span></div>
           <div><b>오히려 멀어지게 하는 행동</b><span>감정이 앞선 연락, 상대를 몰아붙이는 확인, 같은 실수의 반복</span></div>
         </div>
-      </article>
-
-      <article class="qa" id="q-pay" tabindex="-1" aria-labelledby="q-pay-t">
-        <p class="qa-cat">결제</p>
-        <h3 class="qa-title" id="q-pay-t">결제는<br>어떻게 하나요?</h3>
-        <p class="qa-lead">사연을 확인한 뒤에 결제를 안내해 드려요. <br>신청만으로는 비용이 나가지 않아요.</p>
-        <ol class="qa-timeline qa-timeline-sm">
-          <li><b>사연 작성 후 상담 신청</b></li>
-          <li><b>카카오톡 채널에서 상담 일정 예약 후, 닉네임 남기기</b></li>
-          <li><b>결제 안내</b><span>예약과 사연을 확인한 뒤 카카오톡 채널로 알려 드려요.</span></li>
-        </ol>
-      </article>
-
-      <article class="qa" id="q-after" tabindex="-1" aria-labelledby="q-after-t">
-        <p class="qa-cat">상담 이후</p>
-        <h3 class="qa-title" id="q-after-t">상담이 끝난 뒤<br>더 궁금한 게 생기면요?</h3>
-        <p class="qa-lead">상황이 바뀌거나 새로 궁금한 게 생기면 다시 상담을 신청해 주세요.</p>
-        <ul class="qa-promise">
-          <li><b>같은 닉네임으로 신청해 주세요</b><span>지난 상담을 이어서 볼 수 있어요.</span></li>
-          <li><b>성향 정리는 3개월에 한 번</b><span>반복 상담이라면 성향 정리는 3개월에 한 번 보내 드려요.</span></li>
-        </ul>
+        <p class="qa-note">정리하는 편이 나은 관계라면, 그 이유도 솔직하게 말씀드려요. <br>그리고 내가 다시 일어설 방향을 함께 찾아요.</p>
       </article>
 
       <article class="qa" id="q-prepare" tabindex="-1" aria-labelledby="q-prepare-t">
-        <p class="qa-cat">사연 작성</p>
-        <h3 class="qa-title" id="q-prepare-t">미리 준비할 게<br>있나요?</h3>
-        <p class="qa-lead">없어요. <br>정리가 안 된 이야기 그대로 괜찮아요. <br>아래 내용이 들어가면 더 정확하게 볼 수 있어요.</p>
+        <p class="qa-cat">신청·결제·취소</p>
+        <h3 class="qa-title" id="q-prepare-t">사연은 어떻게 <br>쓰면 되나요?</h3>
+        <p class="qa-lead">정리가 안 된 이야기 그대로 괜찮아요. <br>아래 내용이 들어가면 더 정확하게 볼 수 있어요.</p>
         <ul class="qa-checks">
           <li>두 사람의 나이, 만난 계기와 기간</li>
           <li>지금 상황 (연애 중, 썸, 헤어진 지 얼마나 됐는지)</li>
@@ -1177,18 +1284,66 @@
           <li>나와 상대의 성격, 연애할 때 버릇</li>
           <li>이번 상담에서 가장 알고 싶은 것</li>
         </ul>
-        <p class="qa-note">대화 캡처가 있으면 함께 올려 주세요. <br>이름과 사진은 가려 주세요.</p>
+        <p class="qa-note">대화 캡처가 있으면 함께 올려 주세요. <br>이름과 프로필 사진은 가려 주세요.</p>
+      </article>
+
+      <article class="qa" id="q-urgent" tabindex="-1" aria-labelledby="q-urgent-t">
+        <p class="qa-cat">신청·결제·취소</p>
+        <h3 class="qa-title" id="q-urgent-t">급한 상황인데 빨리 <br>상담받을 수 있나요?</h3>
+        <p class="qa-lead">KY는 예약제로 운영해요. <br>사연을 작성하고 카카오톡 채널에서 예약해 주시면, <br>가능한 가장 빠른 시간을 안내해 드려요.</p>
+        <p class="qa-note">연락이 자주 오가며 그때그때 판단이 필요한 상황이라면 VIP 집중관리가 더 맞아요. <br>30일 동안 전담 카톡으로 오전 9시부터 밤 10시까지, <br>평균 1시간 이내 답변을 목표로 해요.</p>
+      </article>
+
+      <article class="qa" id="q-pay" tabindex="-1" aria-labelledby="q-pay-t">
+        <p class="qa-cat">신청·결제·취소</p>
+        <h3 class="qa-title" id="q-pay-t">결제는 <br>어떻게 하나요?</h3>
+        <p class="qa-lead">사연과 예약을 확인한 뒤에 결제를 안내해 드려요. <br>신청만으로는 비용이 나가지 않아요.</p>
+        <ol class="qa-timeline qa-timeline-sm">
+          <li><b>사연 작성 후 상담 신청</b></li>
+          <li><b>카카오톡 채널에서 상담 일정 예약 후, 닉네임 남기기</b></li>
+          <li><b>결제 안내</b><span>정예나 코치가 확인한 뒤 카카오톡 채널로 결제 방법을 보내 드려요.</span></li>
+          <li><b>예약 확정</b><span>결제가 확인되면 예약이 확정돼요.</span></li>
+        </ol>
       </article>
 
       <article class="qa" id="q-cancel" tabindex="-1" aria-labelledby="q-cancel-t">
-        <p class="qa-cat">취소·환불</p>
-        <h3 class="qa-title" id="q-cancel-t">취소하거나 일정을<br>바꿀 수 있나요?</h3>
+        <p class="qa-cat">신청·결제·취소</p>
+        <h3 class="qa-title" id="q-cancel-t">취소하거나 일정을 <br>바꿀 수 있나요?</h3>
         <p class="qa-lead">예약일 1일 전까지는 부담 없이 취소하거나 바꿀 수 있어요.</p>
         <div class="qa-two">
           <div><b>예약일 1일 전까지</b><span>전액 환불, 일정 변경 가능</span></div>
           <div><b>예약 당일, 연락 없이 불참</b><span>환불이 어려워요</span></div>
         </div>
-        <p class="qa-note">사연 리포트는 사연을 보낸 뒤에는 환불이 불가해요. <br>VIP 집중관리는 시작한 뒤에는 환불이 불가해요. <br>자세한 기준은 페이지 맨 아래 취소 및 환불 규정에 있어요.</p>
+        <ul class="qa-promise">
+          <li><b>사연 리포트</b><span>사연을 보낸 뒤에는 환불이 불가해요.</span></li>
+          <li><b>VIP 집중관리</b><span>시작한 뒤에는 환불이 불가해요.</span></li>
+          <li><b>예약 시간에 늦으면</b><span>남은 시간 동안만 상담이 진행돼요.</span></li>
+          <li><b>코치 사정으로 어려워지면</b><span>일정을 바꾸거나 전액 환불해 드려요.</span></li>
+        </ul>
+        <p class="qa-note">자세한 기준은 페이지 맨 아래 취소 및 환불 규정에 있어요.</p>
+      </article>
+
+      <article class="qa" id="q-private" tabindex="-1" aria-labelledby="q-private-t">
+        <p class="qa-cat">비밀 보장·상담 이후</p>
+        <h3 class="qa-title" id="q-private-t">제 사연은 정말 <br>비공개인가요?</h3>
+        <p class="qa-lead">네. <br>꺼내기 어려운 이야기일수록 안전해야 하니까요. <br>KY는 네 가지를 지켜요.</p>
+        <ul class="qa-promise">
+          <li><b>코치만 읽어요</b><span>작성한 사연은 정예나 코치 외에 다른 사람에게 공개되지 않아요.</span></li>
+          <li><b>닉네임이면 충분해요</b><span>실명 없이 닉네임으로 신청할 수 있어요.</span></li>
+          <li><b>상담 내용은 비밀로</b><span>상담에서 나눈 이야기는 외부에 공개하거나 다른 사람에게 전달하지 않아요.</span></li>
+          <li><b>상담에만 써요</b><span>사연은 상담 말고는 어디에도 쓰지 않고, <br>마지막 상담일로부터 1년간 보관한 뒤 파기해요. <br>원하시면 언제든 바로 삭제해 드려요.</span></li>
+        </ul>
+      </article>
+
+      <article class="qa" id="q-after" tabindex="-1" aria-labelledby="q-after-t">
+        <p class="qa-cat">비밀 보장·상담 이후</p>
+        <h3 class="qa-title" id="q-after-t">상담이 끝난 뒤 <br>더 궁금한 게 생기면요?</h3>
+        <p class="qa-lead">상황이 바뀌거나 새로 궁금한 게 생기면, <br>언제든 다시 상담을 신청해 주세요.</p>
+        <ul class="qa-promise">
+          <li><b>같은 닉네임으로 신청해 주세요</b><span>사연은 마지막 상담일로부터 1년간 보관돼서, <br>지난 상담을 이어서 볼 수 있어요.</span></li>
+          <li><b>성향 정리는 3개월에 한 번</b><span>반복해서 상담받는다면 성향 정리는 3개월에 한 번 보내 드려요.</span></li>
+          <li><b>자주 물어볼 일이 생긴다면</b><span>30일 동안 곁에서 판단받는 VIP 집중관리가 더 맞을 수 있어요.</span></li>
+        </ul>
       </article>
 
       <div class="qa-cta">
