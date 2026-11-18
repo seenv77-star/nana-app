@@ -1,0 +1,14 @@
+# KY연애코칭 Netlify 설정
+# 접속 제한(Edge Function)은 Git 연결 배포나 Netlify CLI 배포에서 동작해요.
+# (app.netlify.com/drop 에 폴더를 끌어다 놓는 방식은 Edge Function을 지원하지 않아요 → README 참고)
+[build]
+  publish = "."
+  edge_functions = "netlify/edge-functions"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"

@@ -3,11 +3,19 @@
 `site/` 폴더 전체가 홈페이지예요. 빌드 과정 없이 이 폴더를 그대로 올리면 됩니다.
 
 ## 1. Netlify에 올리기
+
+> ⚠️ **접속 제한 기능(아래 6장)은 "폴더 끌어다 놓기(Drop)" 배포에서는 동작하지 않아요.**
+> 접속 제한까지 쓰려면 아래 **방법 A(GitHub 연결)**로 배포하세요.
+
+### 방법 A. GitHub 연결 (추천: 접속 제한 동작)
+1. [app.netlify.com](https://app.netlify.com) → **Add new site → Import an existing project → GitHub** → 이 저장소 선택
+2. **Base directory: `site`** 만 입력하고 배포 (나머지는 `netlify.toml`에 들어 있어요)
+3. **Site configuration → Forms → Form detection → Enable** 을 켜고 한 번 더 배포
+4. **Forms → consult → Form notifications** 에서 새 신청을 이메일로 받도록 설정
+
+### 방법 B. 폴더 끌어다 놓기 (간단하지만 접속 제한 없음)
 1. [app.netlify.com/drop](https://app.netlify.com/drop)에 `site` 폴더를 통째로 끌어다 놓아요.
-2. 생성된 사이트 → **Site configuration → Forms → Form detection → Enable** 을 켜요.
-   (새 사이트는 기본으로 꺼져 있어서, 켜지 않으면 상담 신청이 저장되지 않아요.)
-3. 같은 폴더를 한 번 더 끌어다 놓아 다시 배포해요. 이제 `consult` 폼이 잡혀요.
-4. **Forms → consult → Form notifications** 에서 새 신청이 오면 이메일로 받도록 설정해요.
+2. 위 3~4번처럼 Forms를 켜고 다시 한 번 끌어다 놓아요.
 
 신청 내용(사연 포함)은 Netlify 관리 화면에서 **사이트 주인만** 볼 수 있어요. 이것이 '비공개 상담 신청'이에요.
 
@@ -36,3 +44,26 @@
 - '동작 줄이기' 설정이면 모든 모션 없이 처음부터 내용이 보여요.
 - 자바스크립트가 꺼져 있어도 모든 내용이 보이고, 첫 커튼은 스스로 걷혀요.
 - 키보드만으로 메뉴, 상담 스타일 탭(좌우 화살표), 신청 폼을 모두 쓸 수 있어요.
+
+## 6. 접속 제한 (우회 차단)
+`netlify/edge-functions/access-guard.js` 가 모든 접속을 먼저 확인해요. 설정은 파일 맨 위 `CONFIG` 에서 바꿔요.
+
+| 접속 | 결과 |
+|---|---|
+| 한국에서 접속한 일반 방문자 | 통과 |
+| 한국 밖에서 접속 | '접근 제한' 화면 (해외 거주자는 카카오톡 문의 안내) |
+| 구글·네이버·다음·빙 검색엔진 | 통과 (검색 노출 유지) |
+| 카카오톡·페이스북 등 링크 미리보기 | 통과 |
+| AI 수집 봇 (GPTBot, ClaudeBot, CCBot 등) | 차단 (+ `robots.txt` 에서도 거부) |
+| 자동 수집 도구 (curl, python, 헤드리스 브라우저 등) | 차단 |
+
+- 해외 교민도 받으려면 `allowCountries: ["KR", "US", "JP", "CA", "AU"]` 처럼 나라를 추가해요.
+- `kakaoChannel` 에 채널 주소를 넣으면 접근 제한 화면에 문의 버튼이 생겨요.
+- 잠시 끄려면 `enabled: false`.
+- 다른 사이트 안에 몰래 넣어 보여 주는 것(iframe)도 `netlify.toml` 의 헤더로 막아 두었어요.
+
+**한계 (꼭 알아 두세요)**
+- 한국 VPN을 쓰거나, 봇이 검색엔진 이름을 흉내 내면 완벽히 막을 수는 없어요. 화면에 보이는 글은 사람이 직접 복사할 수 있어요.
+- Netlify 무료 플랜에는 월 사용량 한도가 있어요. 방문자가 많아지면 Netlify 사용량 화면을 확인하세요.
+- 더 강하게 막으려면 도메인을 **Cloudflare(무료)** 에 연결하고 **Security → WAF → Custom rules** 에서
+  `국가가 KR이 아니면 차단(또는 Managed Challenge)` 규칙과 **Bot Fight Mode** 를 켜면 돼요.
