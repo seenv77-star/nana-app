@@ -1032,3 +1032,5 @@ html.tone-js .qa-view:has(.qa:target):not(.is-open) { display: none; }
 .hero-ky .hero-h { margin-top: clamp(24px, 4vh, 44px); font-size: clamp(1.625rem, 3vw, 2.875rem); }
 .hero-ctas { margin-top: 28px; }
 .hero-stats { margin-top: clamp(32px, 5vh, 56px); padding: 24px 0 32px; }
+.inline-link { color: var(--fg); border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+.hd-nav { gap: clamp(14px, 1.8vw, 30px); }

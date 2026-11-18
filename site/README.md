@@ -32,7 +32,7 @@
 - `index.html` — 화면별로 나뉜 한 페이지예요. 메뉴를 누르면 주소(#)에 맞는 화면만 보여요 (자바스크립트가 꺼져 있으면 모든 화면이 차례로 보여요).
   - **메인 (`#top`)**: 띠 배너, 첫 화면(KY · KING YOURSELF, 핵심 숫자 4개), 마음, 이런 분들께, KY가 다른 이유 4가지, KING YOURSELF 철학, 아직 상담 신청하지 마세요(오늘 밤 해 볼 3가지), 후기 일부, 진행 방법, 자주 묻는 질문 일부, 마무리
   - **KY 소개 (`#philosophy`)**: From King Yena to KING YOURSELF, 수많은 사랑을 지켜보며 깨달은 것, 상담 철학
-  - **함께하는 고민 (`#concerns`)**, **상담 안내 (`#programs`, 상담 스타일 포함)**, **VIP 집중관리 (`#care`)**, **VVIP 컨설팅 (`#meet`)**, **후기 (`#reviews`)**, **FAQ (`#faq`)**, **상담 신청 (`#apply`)**
+  - **함께하는 고민 (`#concerns`)**, **상담 스타일 (`#styles`, 공감 상담 / 현실 코칭)**, **상담 안내 (`#programs`)**, **VIP 집중관리 (`#care`)**, **VVIP 컨설팅 (`#meet`)**, **후기 (`#reviews`)**, **FAQ (`#faq`)**, **상담 신청 (`#apply`)**
 - `assets/css/site.css` — 디자인 (밤 → 새벽 톤, Hahmlet + Asta Sans)
 - `assets/js/site.js` — 모션, 톤 전환, 상담 스타일 전환, 후기 넘기기, 신청 폼, 카카오톡 연결
 - `assets/vendor/` — GSAP 3.13 (GreenSock 무료 'no charge' 라이선스, 상업적 이용 가능)
