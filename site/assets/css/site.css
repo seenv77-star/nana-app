@@ -1193,3 +1193,5 @@ html.tone-js .qa-view:has(.qa:target):not(.is-open) { display: none; }
   .hsec .display-l, .h-moments .display, .h-self .display { font-size: clamp(1.75rem, 7.4vw, 2.25rem); }
   .mf-title { font-size: clamp(1.625rem, 7vw, 2.125rem); }
 }
+/* v13: 키워드 띠가 넓은 화면에서도 끊기지 않게 (같은 묶음 3개씩 두 번) */
+.mq-track { animation-duration: 110s; }
