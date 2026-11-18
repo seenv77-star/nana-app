@@ -459,7 +459,7 @@
       gsap.fromTo(img, { scale: 1.16 }, { scale: 1, ease: "none",
         scrollTrigger: { trigger: img.closest("[data-media]"), start: "top bottom", end: "bottom top", scrub: true } });
     });
-    gsap.fromTo(".styles-media", { scale: 1.08 }, { scale: 1, ease: "none", scrollTrigger: { trigger: ".ch-styles", start: "top bottom", end: "bottom top", scrub: true } });
+    if ($(".styles-media")) gsap.fromTo(".styles-media", { scale: 1.08 }, { scale: 1, ease: "none", scrollTrigger: { trigger: ".ch-styles", start: "top bottom", end: "bottom top", scrub: true } });
 
     window.addEventListener("load", function () { ScrollTrigger.refresh(); });
   }

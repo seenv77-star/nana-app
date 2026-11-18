@@ -1046,3 +1046,32 @@ html.tone-js .qa-view:has(.qa:target):not(.is-open) { display: none; }
 @media (max-width: 860px) { .float-talk { width: 56px; height: 56px; } .float-talk svg { width: 38px; height: 38px; } }
 .float-talk, .float-talk.on { transform: none; opacity: 1; visibility: visible; pointer-events: auto; }
 .float-talk:hover { transform: translateY(-2px); }
+
+/* =========================================================
+   v9: 화면 상단 여백 줄이기 · 상담 스타일 두 가지를 한눈에
+   ========================================================= */
+.view .plate { display: none; }
+.view > .ch:first-child:not(.hero):not(.ch-styles) { padding-top: calc(var(--hd-h) + clamp(28px, 4.5vh, 56px)); }
+.ch-styles2 { display: grid; gap: clamp(28px, 4vh, 48px); }
+.st-head { display: grid; justify-items: center; gap: 16px; text-align: center; max-width: 860px; margin: 0 auto; }
+.st-head .ky-label { justify-content: center; }
+.st-head .ky-label::after { content: ""; width: 28px; height: 1px; background: currentColor; }
+.st-head .lead { color: var(--fg-soft); margin: 0 auto; }
+.st-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 1.8vw, 24px); max-width: 1180px; width: 100%; margin: 0 auto; }
+.st-card { display: grid; grid-template-rows: auto 1fr; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--surface); }
+.st-media { aspect-ratio: 16 / 8; overflow: hidden; }
+.st-media img { width: 100%; height: 100%; object-fit: cover; }
+.st-body { display: grid; gap: 10px; align-content: start; padding: clamp(22px, 2.6vw, 34px); }
+.st-k { font-size: .6875rem; letter-spacing: .3em; color: var(--gold-ink); }
+.st-body h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.5rem, 2.2vw, 1.875rem); letter-spacing: -0.02em; }
+.st-lead { font-family: var(--serif); font-size: 1.0625rem; color: var(--fg); }
+.st-body p:last-child { font-size: .9688rem; line-height: 1.85; color: var(--fg-soft); }
+.st-choose { display: grid; justify-items: center; gap: 16px; text-align: center; max-width: 860px; margin: 0 auto; padding: 22px 26px; border: 1px solid rgba(217, 188, 134, .45); border-radius: 6px; }
+.st-choose p { color: var(--fg-soft); max-width: none; }
+.st-choose b { color: var(--gold-ink); font-weight: 600; }
+.st-down { font-size: .9375rem; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+.st-down::after { content: " ↓"; }
+@media (max-width: 860px) {
+  .st-grid { grid-template-columns: 1fr; }
+  .st-media { aspect-ratio: 16 / 9; }
+}
