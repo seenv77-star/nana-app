@@ -368,6 +368,37 @@
 
   <!-- ═════════ 화면: 상담 안내 ═════════ -->
   <div class="view" data-view="programs">
+  <!-- 상담 스타일 (위) -->
+  <section class="ch ch-styles" id="styles" data-tone="night" aria-labelledby="styles-title">
+    <div class="styles-media" aria-hidden="true">
+      <img class="sm-a is-on" src="assets/img/comfort.jpg" alt="">
+      <img class="sm-b" src="assets/img/coach.jpg" alt="">
+    </div>
+    <div class="styles-shade" aria-hidden="true"></div>
+    <div class="plate" aria-hidden="true"><span class="plate-no">4</span><span class="plate-name">두 가지 상담</span></div>
+    <div class="styles-copy">
+      <h2 class="display display-l" id="styles-title">
+        <span class="ln">오늘 나에게</span>
+        <span class="ln">필요한 대화로</span>
+      </h2>
+      <div class="tabs" role="tablist" aria-label="상담 스타일">
+        <button role="tab" id="tab-comfort" aria-selected="true" aria-controls="panel-style" data-style="comfort" data-img="assets/img/comfort.jpg">공감 상담</button>
+        <button role="tab" id="tab-coach" aria-selected="false" aria-controls="panel-style" data-style="coach" data-img="assets/img/coach.jpg" tabindex="-1">현실 코칭</button>
+      </div>
+      <div class="style-panel" id="panel-style" role="tabpanel" aria-labelledby="tab-comfort" aria-live="polite">
+        <div data-style-body="comfort">
+          <p class="style-lead">마음껏 털어놓고, 충분히 공감받고 싶을 때</p>
+          <p>정리되지 않은 말이어도, 울면서 이야기해도 괜찮아요. 말을 끊지 않고 판단하지 않고 끝까지 들어요. 다 털어놓고 나면 숨이 쉬어지고, 그때서야 다음 걸음이 보여요.</p>
+        </div>
+        <div data-style-body="coach" hidden>
+          <p class="style-lead">위로보다, 진짜 달라지고 싶을 때</p>
+          <p>듣기 좋은 말 대신 지금 상황을 있는 그대로 봐요. 내 잘못이 있다면 정확히 짚고, 내가 바꿀 작은 행동을 구체적으로 정해 드려요. 희망 고문도, 겁주기도 없이요.</p>
+        </div>
+        <p class="style-note">두 스타일 모두 가격은 같아요. 신청할 때 골라 주세요.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ───────── 4장 상담 안내 ───────── -->
   <section class="ch ch-programs" id="programs" data-tone="dawn" aria-labelledby="programs-title">
     <div class="plate" aria-hidden="true"><span class="plate-no">5</span><span class="plate-name">상담 안내</span></div>
@@ -376,7 +407,7 @@
         <span class="ln">이야기의 길이에 맞춰</span>
         <span class="ln">고르세요</span>
       </h2>
-      <p class="rise">처음이라면 전화 상담 60분을 권해요. 두 사람의 성향과 지금까지의 흐름을 함께 봐야 해서, 30분은 간단한 고민 한 가지에 맞아요. 통화가 부담스럽다면 같은 깊이로 카톡 상담을 고르세요. 공감 상담과 현실 코칭 중 무엇이 맞을지 궁금하다면 <a class="inline-link" href="#styles">상담 스타일</a>을 먼저 확인해 보세요.</p>
+      <p class="rise">처음이라면 전화 상담 60분을 권해요. 두 사람의 성향과 지금까지의 흐름을 함께 봐야 해서, 30분은 간단한 고민 한 가지에 맞아요. 통화가 부담스럽다면 같은 깊이로 카톡 상담을 고르세요.</p>
     </div>
     <ul class="prog" role="list">
       <li class="rise">
@@ -448,40 +479,6 @@
       </li>
     </ul>
     <p class="prog-note rise">전화 상담이 끝나면 간단한 성향 파악과 코치가 느낀 점을 정리해서 보내 드려요. 반복 상담이라면 3개월에 한 번 보내 드려요. <b>오픈 이벤트가는 12월까지 적용돼요.</b></p>
-  </section>
-  </div>
-
-  <!-- ═════════ 화면: 상담 스타일 ═════════ -->
-  <div class="view" data-view="styles">
-  <!-- ───────── 3장 상담 스타일 ───────── -->
-  <section class="ch ch-styles" id="styles" data-tone="night" aria-labelledby="styles-title">
-    <div class="styles-media" aria-hidden="true">
-      <img class="sm-a is-on" src="assets/img/comfort.jpg" alt="">
-      <img class="sm-b" src="assets/img/coach.jpg" alt="">
-    </div>
-    <div class="styles-shade" aria-hidden="true"></div>
-    <div class="plate" aria-hidden="true"><span class="plate-no">4</span><span class="plate-name">두 가지 상담</span></div>
-    <div class="styles-copy">
-      <h2 class="display display-l" id="styles-title">
-        <span class="ln">오늘 나에게</span>
-        <span class="ln">필요한 대화로</span>
-      </h2>
-      <div class="tabs" role="tablist" aria-label="상담 스타일">
-        <button role="tab" id="tab-comfort" aria-selected="true" aria-controls="panel-style" data-style="comfort" data-img="assets/img/comfort.jpg">공감 상담</button>
-        <button role="tab" id="tab-coach" aria-selected="false" aria-controls="panel-style" data-style="coach" data-img="assets/img/coach.jpg" tabindex="-1">현실 코칭</button>
-      </div>
-      <div class="style-panel" id="panel-style" role="tabpanel" aria-labelledby="tab-comfort" aria-live="polite">
-        <div data-style-body="comfort">
-          <p class="style-lead">마음껏 털어놓고, 충분히 공감받고 싶을 때</p>
-          <p>정리되지 않은 말이어도, 울면서 이야기해도 괜찮아요. 말을 끊지 않고 판단하지 않고 끝까지 들어요. 다 털어놓고 나면 숨이 쉬어지고, 그때서야 다음 걸음이 보여요.</p>
-        </div>
-        <div data-style-body="coach" hidden>
-          <p class="style-lead">위로보다, 진짜 달라지고 싶을 때</p>
-          <p>듣기 좋은 말 대신 지금 상황을 있는 그대로 봐요. 내 잘못이 있다면 정확히 짚고, 내가 바꿀 작은 행동을 구체적으로 정해 드려요. 희망 고문도, 겁주기도 없이요.</p>
-        </div>
-        <p class="style-note">두 스타일 모두 가격은 같아요. 신청할 때 골라 주세요.</p>
-      </div>
-    </div>
   </section>
   </div>
 
@@ -948,11 +945,9 @@
     </details>
   </div>
   <dl class="ft-biz">
-    <div><dt>상호</dt><dd>{{상호}}</dd></div>
-    <div><dt>대표자</dt><dd>{{대표자명}}</dd></div>
-    <div><dt>사업자등록번호</dt><dd>{{000-00-00000}}</dd></div>
-    <div><dt>통신판매업 신고</dt><dd>{{제0000-지역-0000호}}</dd></div>
-    <div><dt>연락처</dt><dd>{{이메일, 전화번호}}</dd></div>
+    <div><dt>상호</dt><dd>빛나는샤인</dd></div>
+    <div><dt>대표자</dt><dd>정예나</dd></div>
+    <div><dt>E-mail</dt><dd><a href="mailto:ylovenaa@gmail.com">ylovenaa@gmail.com</a></dd></div>
   </dl>
   <p class="ft-copy">© 2026 KY연애코칭 · KING YOURSELF</p>
 </footer>
@@ -1167,9 +1162,8 @@
   </div>
 </div>
 
-<a class="float-kakao float-cta" href="#apply" aria-label="사연 작성 후 상담 신청">
-  <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4zM14 6l4 4"/></svg>
-  <span>상담 신청</span>
+<a class="float-kakao float-talk" data-kakao href="#support" aria-label="카카오톡 채널로 문의하기">
+  <svg aria-hidden="true" viewBox="0 0 64 64"><path class="tk-bubble" d="M32 11C17.6 11 6 20.2 6 31.6c0 7.3 4.8 13.7 12 17.4l-2.4 8.9c-.2.8.7 1.5 1.4 1l10.6-7c1.4.2 2.9.3 4.4.3 14.4 0 26-9.2 26-20.6S46.4 11 32 11z"/><text class="tk-text" x="32" y="36.2" text-anchor="middle">TALK</text></svg>
 </a>
 
 <div class="toast" role="status" aria-live="polite" hidden></div>

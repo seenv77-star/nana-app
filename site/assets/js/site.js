@@ -91,8 +91,11 @@
     views.forEach(function (x) { x.hidden = x !== v; });
     currentView = v; onHome = v === homeView;
     root.dataset.screen = v.dataset.view;
+    var marked = {};
     navLinks.forEach(function (a) {
-      var on = viewOf(a.getAttribute("href").slice(1)) === v;
+      var box = a.closest("nav");
+      var on = viewOf(a.getAttribute("href").slice(1)) === v && !marked[box.className];
+      if (on) marked[box.className] = true;
       a.classList.toggle("is-current", on);
       if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
     });

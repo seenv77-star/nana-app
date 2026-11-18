@@ -22,8 +22,8 @@
 ## 2. 꼭 바꿔야 하는 것
 | 항목 | 위치 |
 |---|---|
-| 카카오톡 채널 주소 | `assets/js/site.js` 맨 위 `CONFIG.kakaoChannel` (예: `https://pf.kakao.com/_xxxxxx/chat`) |
-| 사업자 정보 5개 | `index.html` 바닥글의 `{{ }}` |
+| 카카오톡 채널 주소 | `assets/js/site.js` 맨 위 `CONFIG.kakaoChannel` (예: `https://pf.kakao.com/_xxxxxx/chat`). 오른쪽 아래 TALK 버튼·고객센터 버튼이 이 주소로 연결돼요. 접근 제한 화면용으로 `netlify/edge-functions/access-guard.js` 의 `kakaoChannel` 에도 같은 주소를 넣어요 |
+| 사업자 정보 | `index.html` 바닥글 `ft-biz` (현재: 상호 빛나는샤인, 대표자 정예나, E-mail). 사업자등록번호·통신판매업 신고번호가 생기면 같은 곳에 추가 |
 | 정예나 코치 프로필 사진 | `assets/img/studio.jpg` 를 프로필 사진으로 바꾸고, `index.html` 2장 KY의 `.ky-story-media` 사진 `alt` 수정 |
 
 카카오톡 채널 주소를 넣으면 고객센터와 신청 완료 후의 "카카오톡으로 상담 신청" 버튼이 채널로 연결돼요. 머리말·첫 화면·떠 있는 버튼은 "사연 작성 후 상담 신청" 폼으로 이어져요.
@@ -32,7 +32,7 @@
 - `index.html` — 화면별로 나뉜 한 페이지예요. 메뉴를 누르면 주소(#)에 맞는 화면만 보여요 (자바스크립트가 꺼져 있으면 모든 화면이 차례로 보여요).
   - **메인 (`#top`)**: 띠 배너, 첫 화면(KY · KING YOURSELF, 핵심 숫자 4개), 마음, 이런 분들께, KY가 다른 이유 4가지, KING YOURSELF 철학, 아직 상담 신청하지 마세요(오늘 밤 해 볼 3가지), 후기 일부, 진행 방법, 자주 묻는 질문 일부, 마무리
   - **KY 소개 (`#philosophy`)**: From King Yena to KING YOURSELF, 수많은 사랑을 지켜보며 깨달은 것, 상담 철학
-  - **함께하는 고민 (`#concerns`)**, **상담 스타일 (`#styles`, 공감 상담 / 현실 코칭)**, **상담 안내 (`#programs`)**, **VIP 집중관리 (`#care`)**, **VVIP 컨설팅 (`#meet`)**, **후기 (`#reviews`)**, **FAQ (`#faq`)**, **상담 신청 (`#apply`)**
+  - **함께하는 고민 (`#concerns`)**, **상담 안내 (`#styles` 상담 스타일이 위, `#programs` 상담 종류와 가격이 아래)**, **VIP 집중관리 (`#care`)**, **VVIP 컨설팅 (`#meet`)**, **후기 (`#reviews`)**, **FAQ (`#faq`)**, **상담 신청 (`#apply`)**
 - `assets/css/site.css` — 디자인 (밤 → 새벽 톤, Hahmlet + Asta Sans)
 - `assets/js/site.js` — 모션, 톤 전환, 상담 스타일 전환, 후기 넘기기, 신청 폼, 카카오톡 연결
 - `assets/vendor/` — GSAP 3.13 (GreenSock 무료 'no charge' 라이선스, 상업적 이용 가능)

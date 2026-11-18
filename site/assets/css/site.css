@@ -1034,3 +1034,15 @@ html.tone-js .qa-view:has(.qa:target):not(.is-open) { display: none; }
 .hero-stats { margin-top: clamp(32px, 5vh, 56px); padding: 24px 0 32px; }
 .inline-link { color: var(--fg); border-bottom: 1px solid currentColor; padding-bottom: 1px; }
 .hd-nav { gap: clamp(14px, 1.8vw, 30px); }
+
+/* 오른쪽 아래 카카오톡 채널 버튼 */
+.float-talk { right: clamp(14px, 2vw, 28px); bottom: clamp(14px, 2vw, 28px); width: 64px; height: 64px; padding: 0; border-radius: 50%;
+  justify-content: center; background: var(--kakao) !important; color: #3C1E1E !important; box-shadow: 0 10px 28px -8px rgba(0, 0, 0, .45); }
+.float-talk svg { width: 44px; height: 44px; }
+.float-talk .tk-bubble { fill: #3C1E1E; }
+.float-talk .tk-text { fill: var(--kakao); font: 800 13px/1 "Asta Sans", -apple-system, sans-serif; letter-spacing: .02em; }
+.float-talk:hover { transform: translateY(-2px); }
+.ft-biz a { color: inherit; border-bottom: 1px solid currentColor; }
+@media (max-width: 860px) { .float-talk { width: 56px; height: 56px; } .float-talk svg { width: 38px; height: 38px; } }
+.float-talk, .float-talk.on { transform: none; opacity: 1; visibility: visible; pointer-events: auto; }
+.float-talk:hover { transform: translateY(-2px); }
