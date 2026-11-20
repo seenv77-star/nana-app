@@ -45,7 +45,7 @@
         e.preventDefault();
         toast("카카오톡 채널 주소가 아직 연결되지 않았어요.");
       } else if (a.hasAttribute("data-kakao-copy")) {
-        toast("신청 내용을 복사했어요. 채팅방에 붙여넣어 보내 주세요.");
+        toast("닉네임이 담긴 메시지를 복사했어요. 채팅방에 붙여 넣어 보내 주세요.");
       }
     });
   });
@@ -346,8 +346,8 @@
 
   function summary() {
     var v = function (n) { var el = $('[name="' + n + '"]:checked', form) || $('[name="' + n + '"]', form); return el ? el.value : ""; };
-    return ["[" + CONFIG.kakaoTitle + "]", "상담: " + v("plan"), "스타일: " + v("style"), "고민 유형: " + v("topic"),
-      "닉네임: " + $("#nickname").value.trim(), "희망 시간: " + $("#when").value, "홈페이지에서 사연을 비공개로 작성했어요."].join("\n");
+    return ["[" + CONFIG.kakaoTitle + "]", "닉네임: " + $("#nickname").value.trim(), "상담: " + v("plan"), "스타일: " + v("style"),
+      "고민 유형: " + v("topic"), "희망 시간: " + $("#when").value, "홈페이지에서 사연을 비공개로 작성했어요."].join("\n");
   }
 
   form.addEventListener("submit", function (e) {
@@ -361,7 +361,7 @@
     var preview = location.protocol === "file:" || /claude|localhost|127\.0\.0\.1/.test(location.hostname);
     var done = function (isPreview) {
       var head = $("[data-apply-head]"), ok = $("[data-apply-done]");
-      if (isPreview) { var dt = $("[data-done-text]"); if (!dt.dataset.preview) { dt.dataset.preview = "1"; dt.textContent = "미리보기 화면이라 실제로 전송되지는 않았어요. 배포하면 이 단계에서 사연이 비공개로 전달돼요. " + dt.textContent; } }
+      if (isPreview) { var dt = $("[data-done-text]"); if (!dt.dataset.preview) { dt.dataset.preview = "1"; dt.insertAdjacentHTML("afterbegin", "미리보기 화면이라 실제로 전송되지는 않았어요. <br>배포하면 이 단계에서 사연이 비공개로 전달돼요. <br>"); } }
       var rows = [["상담", "plan"], ["스타일", "style"], ["고민 유형", "topic"], ["닉네임", "nickname"], ["희망 시간", "when"]];
       var list = $("[data-receipt-list]");
       list.innerHTML = "";

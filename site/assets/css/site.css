@@ -1244,3 +1244,9 @@ html.tone-js .qa-view:has(.qa:target):not(.is-open) { display: none; }
 /* 가운데 정렬 짧은 글: 모바일에서 절 단위로만 줄이 바뀌도록 (index.html의 span.kp) */
 @media (max-width: 600px) { .kp { display: inline-block; } }
 .nw { white-space: nowrap; }
+
+/* 신청 완료: 다음 단계(카카오톡에서 닉네임 전달) */
+.done-next { display: grid; gap: 16px; margin-top: 8px; padding-top: 28px; border-top: 1px solid var(--line); }
+.done-next .btn { justify-self: start; }
+.apply-done .done-hint { font-size: .875rem; line-height: 1.7; text-wrap: pretty; }
+@media (max-width: 600px) { .done-next .btn { justify-self: stretch; } }
