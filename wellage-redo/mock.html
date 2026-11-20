@@ -1,0 +1,97 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,sans-serif;background:#ddd;padding:20px;color:#0b1f3a}
+.frame{position:relative;overflow:hidden;margin-bottom:30px;background:#fff}
+.sq{width:1000px;height:1000px}
+.hero{width:1464px;height:600px}
+.blue{color:#1557ff}
+.tag{display:inline-block;background:#1557ff;color:#fff;font-weight:700;font-size:20px;padding:8px 16px;border-radius:999px;letter-spacing:.5px}
+.note{position:absolute;bottom:22px;left:60px;right:60px;font-size:15px;color:#6b7a90}
+.chip{display:inline-flex;align-items:center;gap:10px;background:#eef3ff;border:2px solid #cfdcff;border-radius:16px;padding:14px 20px;font-size:24px;font-weight:600;margin:0 10px 12px 0}
+</style></head><body>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+<linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#8fc4ff"/><stop offset=".5" stop-color="#d8ecff"/><stop offset="1" stop-color="#5aa2ff"/></linearGradient>
+<linearGradient id="liq" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe0ff"/><stop offset="1" stop-color="#2f7dff"/></linearGradient>
+<symbol id="bottle" viewBox="0 0 200 420">
+ <rect x="80" y="0" width="40" height="70" rx="18" fill="#f4f6fa" stroke="#cfd6e2"/>
+ <rect x="68" y="62" width="64" height="40" rx="6" fill="#e9edf3" stroke="#cfd6e2"/>
+ <path d="M60 100 h80 q30 10 34 50 v230 q0 30 -30 30 h-88 q-30 0 -30 -30 v-230 q4 -40 34 -50z" fill="url(#liq)" opacity=".92"/>
+ <path d="M60 100 h80 q30 10 34 50 v230 q0 30 -30 30 h-88 q-30 0 -30 -30 v-230 q4 -40 34 -50z" fill="url(#g)" opacity=".35"/>
+ <rect x="40" y="190" width="120" height="150" rx="6" fill="#f7f9fc"/>
+ <text x="50" y="215" font-family="Inter" font-weight="700" font-size="13" fill="#0b1f3a">REAL</text>
+ <text x="50" y="232" font-family="Inter" font-weight="700" font-size="13" fill="#0b1f3a">HYALURONIC</text>
+ <line x1="50" y1="245" x2="150" y2="245" stroke="#0b1f3a" stroke-width="1"/>
+ <text x="50" y="268" font-family="Inter" font-weight="600" font-size="11" fill="#1557ff">BLUE</text>
+ <text x="50" y="282" font-family="Inter" font-weight="600" font-size="11" fill="#1557ff">AMPOULE</text>
+ <text x="112" y="284" font-family="Inter" font-weight="800" font-size="24" fill="#1557ff">100</text>
+ <text x="50" y="318" font-family="Inter" font-size="7" fill="#55657d">Real HA · HA WATER 100 · Panthenol</text>
+ <ellipse cx="62" cy="180" rx="6" ry="70" fill="#fff" opacity=".35"/>
+</symbol></defs></svg>
+
+<!-- Image #2: benefit hero -->
+<div class="frame sq" id="img2" style="background:linear-gradient(160deg,#f3f8ff 0%,#dbeaff 100%)">
+ <div style="position:absolute;left:60px;top:70px;width:520px">
+  <span class="tag">HYALURONIC ACID SERUM</span>
+  <h1 style="font-size:64px;line-height:1.05;margin:26px 0 18px;font-weight:800">A Big Drink of<br>Water for<br><span class="blue">Thirsty Skin</span></h1>
+  <p style="font-size:26px;line-height:1.4;color:#33465f">Watery, fast-absorbing ampoule for a dewy glass-skin finish. Never sticky.</p>
+ </div>
+ <svg style="position:absolute;right:70px;top:120px" width="330" height="700"><use href="#bottle"/></svg>
+ <div style="position:absolute;left:60px;bottom:120px;display:flex;gap:18px">
+  <div style="text-align:center;width:150px"><div style="font-size:40px">💧</div><div style="font-size:21px;font-weight:700;margin-top:6px">Deep<br>Hydration</div></div>
+  <div style="text-align:center;width:150px"><div style="font-size:40px">✨</div><div style="font-size:21px;font-weight:700;margin-top:6px">Dewy<br>Glass Skin</div></div>
+  <div style="text-align:center;width:150px"><div style="font-size:40px">🪶</div><div style="font-size:21px;font-weight:700;margin-top:6px">Zero<br>Stickiness</div></div>
+ </div>
+ <div class="note">Results may vary by skin type.</div>
+</div>
+
+<!-- Image #3: why it works -->
+<div class="frame sq" id="img3">
+ <div style="padding:70px 60px 0">
+  <div style="font-size:24px;font-weight:600;color:#1557ff">WHY IT WORKS</div>
+  <h2 style="font-size:52px;font-weight:800;line-height:1.1;margin-top:10px">3 Ingredients.<br>One Job: Hydrate.</h2>
+ </div>
+ <div style="display:flex;gap:24px;padding:50px 60px 0">
+  <div style="flex:1;background:#f3f8ff;border-radius:24px;padding:30px">
+   <div style="font-size:46px;font-weight:800;color:#1557ff">01</div>
+   <div style="font-size:28px;font-weight:800;margin:10px 0">Real HA™</div>
+   <div style="font-size:21px;line-height:1.45;color:#33465f">100% high-purity hyaluronic acid that pulls moisture into dry skin</div></div>
+  <div style="flex:1;background:#f3f8ff;border-radius:24px;padding:30px">
+   <div style="font-size:46px;font-weight:800;color:#1557ff">02</div>
+   <div style="font-size:28px;font-weight:800;margin:10px 0">HA WATER 100™</div>
+   <div style="font-size:21px;line-height:1.45;color:#33465f">A hyaluronic water base instead of plain water, for lightweight, layerable hydration</div></div>
+  <div style="flex:1;background:#f3f8ff;border-radius:24px;padding:30px">
+   <div style="font-size:46px;font-weight:800;color:#1557ff">03</div>
+   <div style="font-size:28px;font-weight:800;margin:10px 0">Panthenol</div>
+   <div style="font-size:21px;line-height:1.45;color:#33465f">Vitamin B5 that helps comfort dry, sensitive-feeling skin</div></div>
+ </div>
+ <div style="margin:40px 60px 0;background:#0b1f3a;color:#fff;border-radius:24px;padding:28px 34px;display:flex;align-items:center;gap:24px">
+  <span class="tag" style="font-size:18px">HA-AMINOSOME</span>
+  <span style="font-size:24px;line-height:1.4">Delivery technology designed for rapid moisture delivery, so skin feels plump from the first drops</span>
+ </div>
+ <div style="margin:36px 60px 0;display:flex;gap:12px;align-items:center;font-size:22px;font-weight:700">
+  <span style="color:#6b7a90;font-weight:600">HOW TO USE</span>
+  <span class="chip" style="margin:0">1 Cleanse</span>→<span class="chip" style="margin:0">2 Tone</span>→<span class="chip" style="margin:0;background:#1557ff;color:#fff;border-color:#1557ff">3 Ampoule</span>→<span class="chip" style="margin:0">4 Moisturize</span></div>
+ <div class="note">Hypoallergenic tested. Formulated for dry and sensitive skin types.</div>
+</div>
+
+<!-- A+ hero module 1464x600 -->
+<div class="frame hero" id="aplus" style="background:linear-gradient(100deg,#0f3bd6 0%,#2f7dff 55%,#bfe0ff 100%);color:#fff">
+ <div style="position:absolute;left:90px;top:95px;width:760px">
+  <div style="font-size:26px;font-weight:600;opacity:.9">Loved in Korea. Made for thirsty skin everywhere.</div>
+  <h1 style="font-size:78px;font-weight:800;line-height:1.02;margin:18px 0 26px">Hydration You Can<br>See and Feel</h1>
+  <div style="display:flex;gap:14px;flex-wrap:wrap">
+   <span style="background:rgba(255,255,255,.18);border:2px solid rgba(255,255,255,.5);border-radius:999px;padding:12px 22px;font-size:22px;font-weight:600">100% High-Purity HA</span>
+   <span style="background:rgba(255,255,255,.18);border:2px solid rgba(255,255,255,.5);border-radius:999px;padding:12px 22px;font-size:22px;font-weight:600">Fast-Absorbing</span>
+   <span style="background:rgba(255,255,255,.18);border:2px solid rgba(255,255,255,.5);border-radius:999px;padding:12px 22px;font-size:22px;font-weight:600">For Dry &amp; Sensitive Skin</span>
+  </div>
+ </div>
+ <svg style="position:absolute;right:250px;top:40px" width="250" height="530"><use href="#bottle"/></svg>
+ <div style="position:absolute;right:60px;bottom:60px;width:200px;background:#fff;color:#0b1f3a;border-radius:20px;padding:18px;text-align:center">
+  <div style="font-size:15px;font-weight:600;color:#1557ff">OLIVE YOUNG ONLINE</div>
+  <div style="font-size:40px;font-weight:800">#1</div>
+  <div style="font-size:14px;line-height:1.3">in total sales*<br>Korea's go-to beauty store</div>
+ </div>
+ <div style="position:absolute;left:90px;bottom:26px;font-size:14px;opacity:.85">*Ranked #1 in total sales on Olive Young Korea Online Mall, February 3, 2026.</div>
+</div>
+</body></html>
