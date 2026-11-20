@@ -14,7 +14,7 @@ const CONFIG = {
   allowCountries: ["KR"],          // 예: 해외 교민도 받으려면 ["KR", "US", "JP", "CA", "AU"]
   blockAiBots: true,
   allowSearchEngines: true,
-  kakaoChannel: "",                // 예: "https://pf.kakao.com/_xxxxxx/chat" (접근 제한 화면의 문의 버튼)
+  kakaoChannel: "https://pf.kakao.com/_FxfHNX/chat",   // 접근 제한 화면의 문의 버튼
 };
 
 const SEARCH_AND_PREVIEW =

@@ -8,7 +8,7 @@
   "use strict";
 
   var CONFIG = {
-    kakaoChannel: "",            // 예: "https://pf.kakao.com/_xxxxxx/chat"
+    kakaoChannel: "https://pf.kakao.com/_FxfHNX/chat",   // 1:1 채팅방이 바로 열리는 주소
     kakaoTitle: "KY연애코칭 비공개 상담 신청"
   };
 
