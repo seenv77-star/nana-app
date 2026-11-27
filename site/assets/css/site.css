@@ -1250,6 +1250,8 @@ html.tone-js .qa-view:has(.qa:target):not(.is-open) { display: none; }
 .done-next .btn { justify-self: start; }
 .apply-done .done-hint { font-size: .875rem; line-height: 1.7; text-wrap: pretty; }
 @media (max-width: 600px) { .done-next .btn { justify-self: stretch; } }
+.apply-done .done-no { display: inline-flex; align-items: baseline; gap: 12px; justify-self: start; padding: 10px 16px; border: 1px solid var(--line); border-radius: 4px; font-size: .8125rem; letter-spacing: .04em; color: var(--fg-soft); }
+.done-no b { font-family: var(--sans); font-size: 1.0625rem; font-weight: 600; letter-spacing: .08em; color: var(--fg); }
 
 /* =========================================================
    모바일 글자 크기 체계 (600px 이하에서만, PC는 그대로)

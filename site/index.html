@@ -856,10 +856,11 @@
       <div class="apply-done" data-apply-done hidden tabindex="-1">
         <h2 class="display display-l"><span class="ln">사연이 정상적으로</span><span class="ln">접수되었습니다.</span></h2>
         <p data-done-text>이제 카카오톡 채널에서 작성하신 닉네임을 알려주세요. <br>사연을 확인한 후 예약 가능한 일정을 안내해 드립니다.</p>
+        <p class="done-no">접수번호 <b data-receipt-no></b></p>
         <div class="done-next">
           <p class="ky-label">다음 단계</p>
           <a class="btn btn-kakao" data-kakao data-kakao-copy href="#support"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3.5C6.75 3.5 2.5 6.86 2.5 11c0 2.66 1.76 5 4.4 6.33l-.9 3.3c-.08.3.26.54.52.37l3.95-2.6c.5.06 1.01.1 1.53.1 5.25 0 9.5-3.36 9.5-7.5S17.25 3.5 12 3.5z"/></svg>카카오톡에서 닉네임 전달하기</a>
-          <p class="done-hint">버튼을 누르면 닉네임이 담긴 메시지가 복사돼요. <br>채팅방에 붙여 넣고 보내기만 하면 돼요.</p>
+          <p class="done-hint">버튼을 누르면 접수번호와 닉네임이 담긴 메시지가 복사되고, <br>카카오톡 채널 채팅방이 열려요. <br>채팅방에 붙여 넣어 직접 보내 주셔야 코치에게 전달돼요.</p>
         </div>
       </div>
       <div class="support" id="support">
@@ -870,6 +871,7 @@
     <!-- Netlify Forms: 배포하면 제출 내용은 사이트 관리자(정예나 코치)만 볼 수 있어요 -->
     <form class="apply-form" name="consult" method="POST" data-netlify="true" netlify-honeypot="company" enctype="multipart/form-data" novalidate data-apply-form>
       <input type="hidden" name="form-name" value="consult">
+      <input type="hidden" name="receipt_no" value="" data-receipt-no-input>
       <p class="hp" aria-hidden="true"><label>회사 <input name="company" tabindex="-1" autocomplete="off"></label></p>
 
       <ol class="af-steps" aria-label="신청 단계">
@@ -957,7 +959,8 @@
         </div>
         <div class="field">
           <label for="contact" data-contact-label>카카오톡 ID</label>
-          <input id="contact" name="contact" type="text" required autocomplete="off">
+          <input id="contact" name="contact" type="text" required autocomplete="off" aria-describedby="contact-help">
+          <p class="help" id="contact-help" data-contact-help>카카오톡 › 설정 › 프로필 관리에서 내 카카오톡 ID를 확인할 수 있어요.</p>
           <p class="err" data-err="contact" hidden>연락받을 카카오톡 ID나 휴대폰 번호를 적어 주세요.</p>
         </div>
         <div class="field">

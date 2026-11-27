@@ -45,7 +45,7 @@
         e.preventDefault();
         toast("카카오톡 채널 주소가 아직 연결되지 않았어요.");
       } else if (a.hasAttribute("data-kakao-copy")) {
-        toast("닉네임이 담긴 메시지를 복사했어요. 채팅방에 붙여 넣어 보내 주세요.");
+        toast("접수번호와 닉네임이 담긴 메시지를 복사했어요. 채팅방에 붙여 넣어 보내 주세요.");
       }
     });
   });
@@ -275,11 +275,12 @@
   });
 
   // 연락 방법에 따라 입력칸 바꾸기
-  var contact = $("#contact"), contactLabel = $("[data-contact-label]");
+  var contact = $("#contact"), contactLabel = $("[data-contact-label]"), contactHelp = $("[data-contact-help]");
   $$('input[name="contact_type"]', form).forEach(function (r) {
     r.addEventListener("change", function () {
       var phone = r.value === "휴대폰 번호" && r.checked;
       contactLabel.textContent = phone ? "휴대폰 번호" : "카카오톡 ID";
+      if (contactHelp) contactHelp.textContent = phone ? "숫자만 적어도 돼요. 예: 01012345678" : "카카오톡 › 설정 › 프로필 관리에서 내 카카오톡 ID를 확인할 수 있어요.";
       contact.inputMode = phone ? "tel" : "text";
       contact.autocomplete = phone ? "tel" : "off";
     });
@@ -311,7 +312,9 @@
     if (i === 2) {
       var n = $("#nickname");
       if (!n.value.trim()) { showErr("nickname"); bad.push(n); }
-      if (!contact.value.trim()) { showErr("contact"); bad.push(contact); }
+      var isPhone = ($('input[name="contact_type"]:checked', form) || {}).value === "휴대폰 번호";
+      if (!contact.value.trim()) { showErr("contact", "연락받을 카카오톡 ID나 휴대폰 번호를 적어 주세요."); bad.push(contact); }
+      else if (isPhone && !/^01\d{8,9}$/.test(contact.value.replace(/\D/g, ""))) { showErr("contact", "휴대폰 번호를 다시 확인해 주세요. 예: 01012345678"); bad.push(contact); }
       var w = $("#when");
       if (!w.value) { showErr("when"); bad.push(w); }
       var c = $('input[name="consent"]', form);
@@ -344,10 +347,22 @@
   $$("[data-next]", form).forEach(function (b) { b.addEventListener("click", function () { if (validate(stepIdx)) goStep(stepIdx + 1); }); });
   $$("[data-prev]", form).forEach(function (b) { b.addEventListener("click", function () { goStep(stepIdx - 1); }); });
 
-  function summary() {
+  // 접수번호: KY-날짜-무작위 4자리 (예: KY-261127-7KQ4). 신청 내용과 함께 Netlify에 저장돼요.
+  // 번호만으로는 아무것도 열람할 수 없어요(조회 기능 없음). 다시 보내도 같은 번호를 써서 중복을 막아요.
+  var noInput = $("[data-receipt-no-input]", form);
+  function receiptNo() {
+    if (noInput.value) return noInput.value;
+    var abc = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ", r = "", d = new Date(), a = new Uint8Array(4);
+    window.crypto.getRandomValues(a);
+    for (var k = 0; k < 4; k++) r += abc[a[k] % abc.length];
+    var p2 = function (x) { return String(x).padStart(2, "0"); };
+    noInput.value = "KY-" + p2(d.getFullYear() % 100) + p2(d.getMonth() + 1) + p2(d.getDate()) + "-" + r;
+    return noInput.value;
+  }
+  function summary(withNo) {
     var v = function (n) { var el = $('[name="' + n + '"]:checked', form) || $('[name="' + n + '"]', form); return el ? el.value : ""; };
-    return ["[" + CONFIG.kakaoTitle + "]", "닉네임: " + $("#nickname").value.trim(), "상담: " + v("plan"), "스타일: " + v("style"),
-      "고민 유형: " + v("topic"), "희망 시간: " + $("#when").value, "홈페이지에서 사연을 비공개로 작성했어요."].join("\n");
+    return ["[" + CONFIG.kakaoTitle + "]"].concat(withNo ? ["접수번호: " + noInput.value] : []).concat(["닉네임: " + $("#nickname").value.trim(), "상담: " + v("plan"), "스타일: " + v("style"),
+      "고민 유형: " + v("topic"), "희망 시간: " + $("#when").value, "홈페이지에서 사연을 비공개로 작성했어요."]).join("\n");
   }
 
   form.addEventListener("submit", function (e) {
@@ -357,12 +372,14 @@
     sendErr.hidden = true;
     var btn = $("[data-submit]", form);
     btn.disabled = true; btn.textContent = "보내는 중";
-    lastSummary = summary();
+    receiptNo();
+    lastSummary = summary(true);
     var preview = location.protocol === "file:" || /claude|localhost|127\.0\.0\.1/.test(location.hostname);
     var done = function (isPreview) {
       var head = $("[data-apply-head]"), ok = $("[data-apply-done]");
       if (isPreview) { var dt = $("[data-done-text]"); if (!dt.dataset.preview) { dt.dataset.preview = "1"; dt.insertAdjacentHTML("afterbegin", "미리보기 화면이라 실제로 전송되지는 않았어요. <br>배포하면 이 단계에서 사연이 비공개로 전달돼요. <br>"); } }
-      var rows = [["상담", "plan"], ["스타일", "style"], ["고민 유형", "topic"], ["닉네임", "nickname"], ["희망 시간", "when"]];
+      $$("[data-receipt-no]").forEach(function (b) { b.textContent = noInput.value; });
+      var rows = [["접수번호", "receipt_no"], ["상담", "plan"], ["스타일", "style"], ["고민 유형", "topic"], ["닉네임", "nickname"], ["희망 시간", "when"]];
       var list = $("[data-receipt-list]");
       list.innerHTML = "";
       rows.forEach(function (r) {
@@ -386,7 +403,9 @@
     fetch("/", { method: "POST", body: new FormData(form) })
       .then(function (res) { if (!res.ok) throw new Error(res.status); done(false); })
       .catch(function () {
-        copyText(lastSummary);
+        // 접수되지 않았으니 접수번호 없이 복사하고, 완료 화면 버튼용 요약도 비워 둬요
+        lastSummary = "";
+        copyText(summary(false));
         sendErr.textContent = "사연을 보내지 못했어요. 인터넷 연결을 확인하고 다시 보내 주세요. 계속 안 되면 카카오톡 채널로 문의해 주세요. 신청 내용은 복사해 두었어요.";
         sendErr.hidden = false;
         btn.disabled = false; btn.textContent = "비공개로 사연 보내기";
