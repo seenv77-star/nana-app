@@ -868,10 +868,8 @@
       </div>
     </div>
 
-    <!-- Netlify Forms: 배포하면 제출 내용은 사이트 관리자(정예나 코치)만 볼 수 있어요 -->
-    <form class="apply-form" name="consult" method="POST" data-netlify="true" netlify-honeypot="company" enctype="multipart/form-data" novalidate data-apply-form>
-      <input type="hidden" name="form-name" value="consult">
-      <input type="hidden" name="receipt_no" value="" data-receipt-no-input>
+    <!-- 상담 신청: Cloudflare Pages Functions(/api/consult)로 보내 D1에 저장해요. 열람은 관리자만 가능해요 -->
+    <form class="apply-form" name="consult" method="POST" action="/api/consult" enctype="multipart/form-data" novalidate data-apply-form>
       <p class="hp" aria-hidden="true"><label>회사 <input name="company" tabindex="-1" autocomplete="off"></label></p>
 
       <ol class="af-steps" aria-label="신청 단계">
@@ -938,8 +936,8 @@
 
         <div class="field">
           <label for="capture">대화 캡처 <span class="opt">선택</span></label>
-          <input id="capture" name="capture" type="file" accept="image/*">
-          <p class="help">상대의 말투와 흐름을 더 정확하게 볼 수 있어요. <br>이름과 사진은 가려서 올려 주세요.</p>
+          <input id="capture" name="capture" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+          <p class="help">상대의 말투와 흐름을 더 정확하게 볼 수 있어요. <br>이름과 사진은 가려서 올려 주세요. <br>1MB 이하 PNG·JPG·WebP·GIF 이미지 1장까지 올릴 수 있어요.</p>
         </div>
         <div class="af-actions"><button type="button" class="btn btn-ghost" data-prev>이전</button><button type="button" class="btn btn-pearl" data-next>다음</button></div>
       </fieldset>

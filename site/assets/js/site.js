@@ -347,49 +347,92 @@
   $$("[data-next]", form).forEach(function (b) { b.addEventListener("click", function () { if (validate(stepIdx)) goStep(stepIdx + 1); }); });
   $$("[data-prev]", form).forEach(function (b) { b.addEventListener("click", function () { goStep(stepIdx - 1); }); });
 
-  // 접수번호: KY-날짜-무작위 4자리 (예: KY-261127-7KQ4). 신청 내용과 함께 Netlify에 저장돼요.
-  // 번호만으로는 아무것도 열람할 수 없어요(조회 기능 없음). 다시 보내도 같은 번호를 써서 중복을 막아요.
-  var noInput = $("[data-receipt-no-input]", form);
-  function receiptNo() {
-    if (noInput.value) return noInput.value;
-    var abc = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ", r = "", d = new Date(), a = new Uint8Array(4);
-    window.crypto.getRandomValues(a);
-    for (var k = 0; k < 4; k++) r += abc[a[k] % abc.length];
-    var p2 = function (x) { return String(x).padStart(2, "0"); };
-    noInput.value = "KY-" + p2(d.getFullYear() % 100) + p2(d.getMonth() + 1) + p2(d.getDate()) + "-" + r;
-    return noInput.value;
+  // 상담 신청 전송: Cloudflare Pages Functions(/api/consult) + Turnstile 보안 확인 + D1 저장
+  // - 신청마다 무작위 UUID(Idempotency-Key)를 만들어 다시 보내도 한 번만 저장돼요.
+  // - 접수번호는 이 UUID 앞 6자리에서 만들어요 → D1의 신청 id와 바로 연결돼요.
+  //   (관리자 조회: SELECT … FROM consultations WHERE id LIKE '3f9a2c%')
+  //   번호만으로 조회·열람하는 공개 기능은 없어요.
+  var submissionId, receipt = "";
+  var challengeScript;
+  ["input", "change"].forEach(function (eventName) {
+    form.addEventListener(eventName, function () { submissionId = undefined; });
+  });
+  function receiptFrom(id) {
+    var d = new Date(), p2 = function (x) { return String(x).padStart(2, "0"); };
+    return "KY-" + p2(d.getFullYear() % 100) + p2(d.getMonth() + 1) + p2(d.getDate()) + "-" + id.slice(0, 6).toUpperCase();
   }
   function summary(withNo) {
     var v = function (n) { var el = $('[name="' + n + '"]:checked', form) || $('[name="' + n + '"]', form); return el ? el.value : ""; };
-    return ["[" + CONFIG.kakaoTitle + "]"].concat(withNo ? ["접수번호: " + noInput.value] : []).concat(["닉네임: " + $("#nickname").value.trim(), "상담: " + v("plan"), "스타일: " + v("style"),
+    return ["[" + CONFIG.kakaoTitle + "]"].concat(withNo && receipt ? ["접수번호: " + receipt] : []).concat(["닉네임: " + $("#nickname").value.trim(), "상담: " + v("plan"), "스타일: " + v("style"),
       "고민 유형: " + v("topic"), "희망 시간: " + $("#when").value, "홈페이지에서 사연을 비공개로 작성했어요."]).join("\n");
+  }
+
+  async function getChallengeToken() {
+    var configResponse = await fetch(form.action, { signal: AbortSignal.timeout(8000) });
+    if (!configResponse.ok) throw new Error("unavailable");
+    var config = await configResponse.json();
+    if (!challengeScript) {
+      challengeScript = new Promise(function (resolve, reject) {
+        var script = document.createElement("script");
+        script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+        var timer = setTimeout(fail, 8000);
+        function fail() { clearTimeout(timer); script.remove(); reject(new Error("challenge")); }
+        script.onload = function () { clearTimeout(timer); resolve(); };
+        script.onerror = fail;
+        document.head.appendChild(script);
+      }).catch(function (error) { challengeScript = undefined; throw error; });
+    }
+    await challengeScript;
+    var slot = document.createElement("div");
+    form.appendChild(slot);
+    var widget, timer;
+    try {
+      return await new Promise(function (resolve, reject) {
+        function fail() { reject(new Error("challenge")); }
+        timer = setTimeout(fail, 12000);
+        widget = window.turnstile.render(slot, {
+          sitekey: config.siteKey, action: "consult", execution: "execute",
+          "response-field": false, callback: resolve,
+          "error-callback": fail, "expired-callback": fail, "timeout-callback": fail
+        });
+        window.turnstile.execute(widget);
+      });
+    } finally {
+      clearTimeout(timer);
+      if (widget !== undefined) window.turnstile.remove(widget);
+      slot.remove();
+    }
   }
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
-    if (!validate(2)) return;
+    var btn = $("[data-submit]", form);
+    if (btn.disabled || stepIdx !== 2) return;
+    for (var i = 0; i < steps.length; i++) {
+      if (!validate(i)) { goStep(i, false); validate(i); return; }
+    }
     var sendErr = $('[data-err="send"]', form);
     sendErr.hidden = true;
-    var btn = $("[data-submit]", form);
     btn.disabled = true; btn.textContent = "보내는 중";
-    receiptNo();
-    lastSummary = summary(true);
     var preview = location.protocol === "file:" || /claude|localhost|127\.0\.0\.1/.test(location.hostname);
+    var body = new FormData(form);
+    var capture = body.get("capture");
+    if (capture && !capture.name && !capture.size) body.delete("capture");
+    var receiptValues = Object.fromEntries(body);
     var done = function (isPreview) {
       var head = $("[data-apply-head]"), ok = $("[data-apply-done]");
       if (isPreview) { var dt = $("[data-done-text]"); if (!dt.dataset.preview) { dt.dataset.preview = "1"; dt.insertAdjacentHTML("afterbegin", "미리보기 화면이라 실제로 전송되지는 않았어요. <br>배포하면 이 단계에서 사연이 비공개로 전달돼요. <br>"); } }
-      $$("[data-receipt-no]").forEach(function (b) { b.textContent = noInput.value; });
-      var rows = [["접수번호", "receipt_no"], ["상담", "plan"], ["스타일", "style"], ["고민 유형", "topic"], ["닉네임", "nickname"], ["희망 시간", "when"]];
+      $$("[data-receipt-no]").forEach(function (b) { b.textContent = receipt; });
+      var rows = [["접수번호", null], ["상담", "plan"], ["스타일", "style"], ["고민 유형", "topic"], ["닉네임", "nickname"], ["희망 시간", "when"]];
       var list = $("[data-receipt-list]");
       list.innerHTML = "";
       rows.forEach(function (r) {
-        var el = $('[name="' + r[1] + '"]:checked', form) || $('[name="' + r[1] + '"]', form);
         var d = document.createElement("div"), dt = document.createElement("dt"), dd = document.createElement("dd");
-        dt.textContent = r[0]; dd.textContent = el ? el.value : ""; d.appendChild(dt); d.appendChild(dd); list.appendChild(d);
+        dt.textContent = r[0]; dd.textContent = r[1] ? (receiptValues[r[1]] || "") : receipt; d.appendChild(dt); d.appendChild(dd); list.appendChild(d);
       });
-      var receipt = $("[data-apply-receipt]");
-      form.hidden = true; receipt.hidden = false;
-      if (window.gsap && !reduce) gsap.from(receipt, { opacity: 0, y: 30, duration: .9, ease: "power3.out", delay: .35, clearProps: "all" });
+      var receiptBox = $("[data-apply-receipt]");
+      form.hidden = true; receiptBox.hidden = false;
+      if (window.gsap && !reduce) gsap.from(receiptBox, { opacity: 0, y: 30, duration: .9, ease: "power3.out", delay: .35, clearProps: "all" });
       if (window.gsap && !reduce) {
         gsap.to(head, { autoAlpha: 0, y: -16, duration: .35, ease: "power2.in", onComplete: function () {
           head.hidden = true; ok.hidden = false;
@@ -399,17 +442,37 @@
       } else { head.hidden = true; ok.hidden = false; ok.focus(); }
       $("#apply").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
     };
-    if (preview) { setTimeout(function () { done(true); }, 500); return; }
-    fetch("/", { method: "POST", body: new FormData(form) })
-      .then(function (res) { if (!res.ok) throw new Error(res.status); done(false); })
-      .catch(function () {
-        // 접수되지 않았으니 접수번호 없이 복사하고, 완료 화면 버튼용 요약도 비워 둬요
-        lastSummary = "";
-        copyText(summary(false));
-        sendErr.textContent = "사연을 보내지 못했어요. 인터넷 연결을 확인하고 다시 보내 주세요. 계속 안 되면 카카오톡 채널로 문의해 주세요. 신청 내용은 복사해 두었어요.";
-        sendErr.hidden = false;
-        btn.disabled = false; btn.textContent = "비공개로 사연 보내기";
+    Promise.resolve().then(async function () {
+      var id = submissionId || (submissionId = crypto.randomUUID());
+      if (preview) { receipt = receiptFrom(id); lastSummary = summary(true); await new Promise(function (r) { setTimeout(r, 500); }); done(true); return; }
+      if (capture && capture.size > 1024 * 1024) throw new Error("size");
+      if (capture && capture.size && !["image/png", "image/jpeg", "image/webp", "image/gif"].includes(capture.type)) throw new Error("image");
+      var token = await getChallengeToken();
+      var response = await fetch(form.action, {
+        method: "POST", body: body, signal: AbortSignal.timeout(20000),
+        headers: { "Idempotency-Key": id, "X-Turnstile-Token": token }
       });
+      var result = await response.json().catch(function () { return {}; });
+      if (!response.ok || result.ok !== true) throw new Error(result.code || "unavailable");
+      // 서버에 저장된 뒤에만 접수번호를 보여 주고 복사해요
+      receipt = receiptFrom(id);
+      lastSummary = summary(true);
+      done(false);
+    }).catch(function (error) {
+      var messages = {
+        size: "첨부 이미지는 1MB 이하로 올려 주세요.",
+        image: "PNG, JPG, WebP 또는 GIF 이미지를 올려 주세요.",
+        field: "입력값을 확인해 주세요. 사연은 20~10,000자, 닉네임과 연락처는 120자 이내로 입력해 주세요.",
+        challenge: "보안 확인이 완료되지 않았어요. 잠시 후 다시 보내 주세요."
+      };
+      sendErr.dataset.failure = ["size", "image", "field", "challenge", "upload_read", "verify_unavailable", "storage_unavailable", "unavailable", "duplicate"].includes(error.message) ? error.message : "transport";
+      // 접수되지 않았으니 접수번호 없이 복사하고, 완료 화면 버튼용 요약도 비워 둬요
+      receipt = ""; lastSummary = "";
+      copyText(summary(false));
+      sendErr.textContent = (messages[error.message] || "사연을 보내지 못했어요. 잠시 후 다시 시도해 주세요. 계속 안 되면 카카오톡 채널로 문의해 주세요.") + " 입력하신 신청 내용은 복사해 두었어요.";
+      sendErr.hidden = false;
+      btn.disabled = false; btn.textContent = "비공개로 사연 보내기";
+    });
   });
 
   /* =========================================================
